@@ -1,0 +1,25 @@
+********************************************
+Angular installation
+npm install -g @angular/cli
+
+********************************************
+Downgrade node version 19.x to 18.10.0 using npm
+sudo npm install -g n
+sudo n 18.10.0
+
+********************************************
+Angular components overview
+creating new component "<component-name>"
+ng generate component <component-name>
+Components are the main building block for Angular applications. Each component consists of:
+An HTML template that declares what renders on the page
+A TypeScript class that defines behavior
+A CSS selector that defines how the component is used in a template
+Optionally, CSS styles applied to the template
+
+********************************************/05/06/2023
+npm install bootstrap // for installing bootstrap in angular
+ng g c home //for ceating home component
+sudo npm install -g json-server // for installing json server for making fake api's
+json-server --watch db.json // for calling/launching fake api on port "http://localhost:3000"
+ng g guard auth // for creating auth guard

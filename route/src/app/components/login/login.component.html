@@ -1,0 +1,31 @@
+<section class="vh-100 gradient-custom abcd">
+    <div class="wrapper">
+        <div class="logo">
+            <img src="/assets/img/logo.jpg" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Staff Login
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-field d-flex align-items-center">
+                <input class="text-center" type="email" name="email" placeholder="Username" formControlName="email">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <input class="text-center" type="password" name="password" placeholder="Password"
+                    formControlName="password">
+            </div>
+            <button class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+        </div>
+    </div>
+</section>
+<div *ngIf="divVisible" class="loding-img-main">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div> <span id="showOrg">Loading Library ...</span>
+    </div>
+</div>
