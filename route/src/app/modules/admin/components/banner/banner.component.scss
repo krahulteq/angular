@@ -1,0 +1,37 @@
+#hero {
+    background-attachment: fixed;
+}
+
+#hero {
+    position: relative;
+    background-color: #000;
+    height: 70vh;
+}
+
+#hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 35px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 30px;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+#hero::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.9;
+    background: url("/assets/img/header-img.jpg") top center;
+    background-size: cover;
+}

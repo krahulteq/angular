@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,9 +13,17 @@ export class LoginComponent {
   faLock = faLock;
 
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   constructor(private auth: AuthService, private router: Router) { }
   divVisible = true;
@@ -23,11 +31,11 @@ export class LoginComponent {
   ngOnInit(): void {
     setTimeout(() => {
       this.divVisible = false;
-    }, 3000);
+    }, 1000);
 
-    if (this.auth.isLoggedIn()) {
-      this.router.navigate(['admin']);
-    }
+    // if (this.auth.isLoggedIn()) {
+    //   this.router.navigate(['admin']);
+    // }
   }
 
   onSubmit(): void {

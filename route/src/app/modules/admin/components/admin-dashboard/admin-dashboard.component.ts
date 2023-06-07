@@ -6,11 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent {
+  currentItem = 'Television';
+  
   divVisible = true;
 
   ngOnInit(): void {
     setTimeout(() => {
       this.divVisible = false;
-    }, 3000);
+    }, 1000);
   }
+
+
 }

@@ -9,6 +9,19 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { SearchComponent } from './components/search/search.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { LlhComponent } from './components/llh/llh.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { AnimalsComponent } from './components/animals/animals.component';
+import { CollectionComponent } from './components/collection/collection.component';
+import { PopularTitlesComponent } from './components/popular-titles/popular-titles.component';
+import { NewComponent } from './components/new/new.component';
+import { MysteriesComponent } from './components/mysteries/mysteries.component';
+import { RecentReviewsComponent } from './components/recent-reviews/recent-reviews.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,11 +33,22 @@ import { ContactComponent } from './components/contact/contact.component';
        HomeComponent,
        AboutComponent,
        ServicesComponent,
-       ContactComponent
+       ContactComponent,
+       BannerComponent,
+       SearchComponent,
+       FaqComponent,
+       LlhComponent,
+       CalendarComponent,
+       AnimalsComponent,
+       CollectionComponent,
+       PopularTitlesComponent,
+       NewComponent,
+       MysteriesComponent,
+       RecentReviewsComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
   ]
 })
 export class AdminModule { }
