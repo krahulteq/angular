@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-faq',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent {
+  @Input()
+  // faq!: { q: string; a: string; }[];
+  faq: { q: string, a: string }[] = [];
 
+  ngOnInit() {
+    // this.faq.forEach(element => {
+      
+      console.log(this.faq);
+    // });
+  }
 }

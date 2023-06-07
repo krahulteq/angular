@@ -8,7 +8,7 @@ export class SettingService {
   
   constructor(private http: HttpClient) { }
   
-  private apiUrlSettings = 'https://api.library.site/v1/setting'; // Replace with your API endpoint
+  private apiUrlSettings = 'https://api.library.site/v1/setting';
   getSettings() {
     const headers = new HttpHeaders({
       'App-Id': 'opac',
@@ -21,7 +21,7 @@ export class SettingService {
     return this.http.get(`${this.apiUrlSettings}`, { headers });
   }
 
-  private apiUrlSettingsWithContent = 'https://api.library.site/v1/widget/settingswithcontent'; // Replace with your API endpoint
+  private apiUrlSettingsWithContent = 'https://api.library.site/v1/widget/settingswithcontent';
   getSettingsWithContent() {
     const headers = new HttpHeaders({
       'App-Id': 'opac',
