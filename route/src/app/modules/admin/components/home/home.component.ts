@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SettingService } from '../../services/setting.service';
+import { EventInput } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-home',
@@ -20,19 +21,24 @@ export class HomeComponent {
   // app-llh "location library hours"
   llh: any;
 
+  // app-calendar
+  events: EventInput[] = [];
+
 
   constructor(private settingService: SettingService) { }
 
   ngOnInit() {
-    this.settingService.getSettings().subscribe(response => {
+    this.settingService.getSettings().subscribe((response: any) => {
       this.settings = response;
       this.bannerTitle = this.settings.data.settings.appearance.banner.main;
     });
 
-    this.settingService.getSettingsWithContent().subscribe(response => {
+    this.settingService.getSettingsWithContent().subscribe((response: any) => {
       this.settingsWithContent = response;
       console.log(this.settingsWithContent);
-      this.settingsWithContent.data.forEach((section: { code: any; settings: { caption: any; questions: any; days: any; }; }) => {
+      this.settingsWithContent.data.forEach((section: {
+        content: any; code: any; settings: { caption: any; questions: any; days: any; content: any; };
+      }) => {
         switch (section.code) {
           case 'QA':
             // FAQ section
@@ -43,11 +49,34 @@ export class HomeComponent {
             // LLH "Location library hours" section
             this.llh = section.settings.days;
             break;
+          case 'CA':
+            // LLH "Location library hours" section
+            // this.events = section.content.events;
+            // let eventsArr = [];
+            section.content.events.forEach( (element: { name: any; date: any; endDate: any;}) => {
+              // if (element['library']) {
+              //   color = "#ADD8E6";
+              // } else {
+              //   color = "#CBC3E3";
+              // }
+              // console.log(element.name);
+              let ob = {
+                title: element.name,
+                start: element.date,
+                end: element.endDate,
+                // color: color
+              };
+              this.events.push(ob);
+            });
+            console.log("dddddddddddddddd");
+            console.log(this.events);
+            console.log("dddddddddddddddd");
+            break;
           default:
             break;
         }
       });
-      console.log(this.faq);
+      // console.log(this.events);
     });
   }
 }

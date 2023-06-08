@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventSourceInput } from '@fullcalendar/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput, EventSourceInput } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 // import timeGridPlugin from '@fullcalendar/timegrid';
@@ -12,6 +12,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent {
+  @Input() calendarEvents: EventInput[] = [];
   // calendarOptions: CalendarOptions = {
   //   initialView: 'dayGridMonth',
   //   plugins: [dayGridPlugin]
@@ -26,9 +27,12 @@ export class CalendarComponent {
       // listPlugin,
     ],
     headerToolbar: {
-      left: 'prev,next today',
+      // left: 'prev,next today',
+      // center: 'title',
+      // right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      left: 'prev',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: 'next'
     },
     initialView: 'dayGridMonth',
     // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
@@ -37,7 +41,7 @@ export class CalendarComponent {
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
-    select: this.handleDateSelect.bind(this),
+    // select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this)
     /* you can update a remote database when these fire:
@@ -51,14 +55,14 @@ export class CalendarComponent {
   constructor(private changeDetector: ChangeDetectorRef) {
   }
 
-  handleCalendarToggle() {
-    this.calendarVisible = !this.calendarVisible;
-  }
+  // handleCalendarToggle() {
+  //   this.calendarVisible = !this.calendarVisible;
+  // }
 
-  handleWeekendsToggle() {
-    const { calendarOptions } = this;
-    calendarOptions.weekends = !calendarOptions.weekends;
-  }
+  // handleWeekendsToggle() {
+  //   const { calendarOptions } = this;
+  //   calendarOptions.weekends = !calendarOptions.weekends;
+  // }
 
   handleDateSelect(selectInfo: DateSelectArg) {
     const title = prompt('Please enter a new title for your event');
@@ -83,9 +87,25 @@ export class CalendarComponent {
     }
   }
 
+  ngOnInit() {
+    // this.calendarEvents.forEach((pushNewEvent: any) => {
+
+      console.log('ssss');
+      console.log(this.calendarEvents);
+      console.log('ssss');
+    // });
+  }
+
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
     this.changeDetector.detectChanges();
+    // console.log(events);
   }
+
+
+  // calendarEvents: EventInput[] = [
+  //   { title: 'Event 1', date: '2023-06-08' },
+  //   { title: 'Event 2', date: '2023-06-09' },
+  // ];
 
 }
