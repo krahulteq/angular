@@ -9,13 +9,13 @@
             </div>
             <div class="col-7 pt-5">
                 <mat-accordion>
-                    <mat-expansion-panel *ngFor="let item of faqs" class="rounded-pill mb-2 border-bottom border-start border-muted">
-                        <mat-expansion-panel-header class="rounded-pill bg-muted pt-3 pb-2">
+                    <mat-expansion-panel *ngFor="let faq of faqs" class="rounded-pill mb-2 border-bottom border-start border-muted">
+                        <mat-expansion-panel-header class="rounded-pill bg-muted pt-2 pb-2">
                             <mat-panel-title class="d-flex justify-content-center">
-                                {{ item.q }}
+                                {{ faq.q }}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <p class="text-muted">{{ item.a }}</p>
+                        <p class="text-muted">{{ faq.a }}</p>
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>

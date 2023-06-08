@@ -37,6 +37,7 @@ export class HomeComponent {
           case 'QA':
             // FAQ section
             this.faqCaption = section.settings.caption;
+            this.faq = section.settings.questions;
             break;
           case 'LL':
             // LLH "Location library hours" section
@@ -46,7 +47,7 @@ export class HomeComponent {
             break;
         }
       });
-      // console.log(this.llh[0].caption);
+      console.log(this.faq);
     });
   }
 }

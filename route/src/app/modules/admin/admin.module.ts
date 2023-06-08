@@ -24,6 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CommonModule,
     AdminRoutingModule,
     NgbModalModule,
-    MatExpansionModule
+    MatExpansionModule,
+    FullCalendarModule
   ]
 })
 export class AdminModule { }
