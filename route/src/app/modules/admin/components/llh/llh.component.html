@@ -1,1 +1,25 @@
-<p>llh works!</p>
+<section class="text-white">
+    <br>
+    <br>
+    <div class="container">
+        <div class="row mt-4 ml-5 mr-5">
+            <div class="col-6 bg-info p-5">
+                <h3 class="font-weight-bold mb-4 m-2">Location</h3>
+                <a href="https://goo.gl/maps/rt1JGAAyaJ9zR6GPA?coh=178572&entry=tt"
+                    class="p-2 bg-white text-info font-weight-bold m-2">Find In Map <i
+                        class="far fa-arrow-alt-circle-right"></i></a>
+            </div>
+            <div class="col-6 bg-warning p-5">
+                <div class="hours-details">
+                    <h4 class="block-heading font-weight-bold">Library Hours</h4>
+                    <h5 class="font-weight-bold mb-3">REGULAR LIBRARY HOURS</h5>
+                    <div *ngFor="let llh of llhs; first as isFirst">
+                        <h6 class="font-weight-bold">{{ llh.caption}}<span class="float-end">{{
+                                llh.hours}}</span></h6>
+                        <hr *ngIf="isFirst" class="bg-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

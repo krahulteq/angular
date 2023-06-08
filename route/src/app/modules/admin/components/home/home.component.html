@@ -1,10 +1,22 @@
-<app-banner [bannerTitle1]="bannerTitle1" [bannerTitle2]="bannerTitle2"></app-banner>
+<app-banner [bannerTitles]="bannerTitle"></app-banner>
 <!-- <app-search></app-search> -->
-<app-faq [faq]="faq"></app-faq>
-<app-llh></app-llh>
-<app-calendar></app-calendar>
-<app-animals></app-animals>
-<app-popular-titles></app-popular-titles>
-<app-new></app-new>
-<app-mysteries></app-mysteries>
-<app-recent-reviews></app-recent-reviews>
+<app-faq [faqs]="faq" [faqCaption]="faqCaption"></app-faq>
+<app-llh [llhs]="llh"></app-llh>
+<div class="border border-warning text-center">
+    <app-calendar></app-calendar>
+</div>
+<div class="border border-warning text-center">
+    <app-animals></app-animals>
+</div>
+<div class="border border-warning text-center">
+    <app-popular-titles></app-popular-titles>
+</div>
+<div class="border border-warning text-center">
+    <app-new></app-new>
+</div>
+<div class="border border-warning text-center">
+    <app-mysteries></app-mysteries>
+</div>
+<div class="border border-warning text-center">
+    <app-recent-reviews></app-recent-reviews>
+</div>

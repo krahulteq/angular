@@ -22,6 +22,8 @@ import { MysteriesComponent } from './components/mysteries/mysteries.component';
 import { RecentReviewsComponent } from './components/recent-reviews/recent-reviews.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     AdminRoutingModule,
+    NgbModalModule,
+    MatExpansionModule
   ]
 })
 export class AdminModule { }

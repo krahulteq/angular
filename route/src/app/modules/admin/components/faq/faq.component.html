@@ -1,42 +1,23 @@
-<section id="faqsection" class="text-center mb-4">
+<section id="faqsection" class="text-center mb-2">
     <strong>
-        <h2 class="m-5"></h2>
+        <h2 class="m-5">{{ faqCaption }}</h2>
     </strong>
     <div class="container-fluid">
         <div class="row">
             <div class="col-5">
                 <img src="/assets/img/libraryfaq.png" style="width:300x; height:400px">
             </div>
-            <div class="col-7">
-                <div id="accordion">
-                    <!-- @foreach ($faqs as $faq) -->
-                    <!-- <div class="card m-2" style="cursor:pointer;"> -->
-                    <!-- <div class="card-header collapsed card-link rounded-pill" data-toggle="collapse"
-                            data-target="{{ '#faq' . $faq->id }}">
-                            {{ $faq->question . ' ?' }}
-                        </div>
-                        <div id="{{ 'faq' . $faq->id }}" class="collapse" data-parent="#accordion">
-                            <div class="card-body text-muted">
-                                {{ $faq->answer }}
-                            </div>
-                        </div> -->
-                    <!-- </div> -->
-                    <!-- @endforeach -->
-
-                    <!-- <select [(ngModel)]="faq" class="form-control"> -->
-                        <!-- <div *ngFor="let qa of faq">
-                            {{ qa.q }}
-                            <br>
-                            {{ qa.a }}
-                            <br>
-                            <br>
-                        </div> -->
-                        <!-- <option *ngFor="let data of faq" [ngValue]="data">
-                            {{ data.name }}
-                        </option> -->
-                    <!-- </select> -->
-
-                </div>
+            <div class="col-7 pt-5">
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let item of faqs" class="rounded-pill mb-2 border-bottom border-start border-muted">
+                        <mat-expansion-panel-header class="rounded-pill bg-muted pt-3 pb-2">
+                            <mat-panel-title class="d-flex justify-content-center">
+                                {{ item.q }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="text-muted">{{ item.a }}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
             </div>
         </div>
     </div>

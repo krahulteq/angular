@@ -6,6 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent {
-  @Input() bannerTitle1 = '';
-  @Input() bannerTitle2 = '';
+  @Input() bannerTitles: any;
 }

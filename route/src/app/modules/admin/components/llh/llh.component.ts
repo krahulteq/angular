@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-llh',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./llh.component.scss']
 })
 export class LlhComponent {
-
+@Input() llhs:any;
 }

@@ -11,12 +11,14 @@ export class HomeComponent {
   settingsWithContent: any;
 
   // app-banner
-  bannerTitle1: any;
-  bannerTitle2: any;
+  bannerTitle: any;
 
   // app-faq
   faqCaption: any;
-  faq: { q: string, a: string }[] = [];
+  faq: any;
+
+  // app-llh "location library hours"
+  llh: any;
 
 
   constructor(private settingService: SettingService) { }
@@ -24,33 +26,27 @@ export class HomeComponent {
   ngOnInit() {
     this.settingService.getSettings().subscribe(response => {
       this.settings = response;
-      // console.log(this.settings);
-      this.bannerTitle1 = this.settings.data.settings.appearance.banner.main.line1;
-      this.bannerTitle2 = this.settings.data.settings.appearance.banner.main.line2;
-      // console.log(this.bannerTitle);
+      this.bannerTitle = this.settings.data.settings.appearance.banner.main;
     });
 
     this.settingService.getSettingsWithContent().subscribe(response => {
       this.settingsWithContent = response;
       console.log(this.settingsWithContent);
-      this.settingsWithContent.data.forEach((section: { code: any; settings: { caption: any; questions: any; }; }) => {
+      this.settingsWithContent.data.forEach((section: { code: any; settings: { caption: any; questions: any; days: any; }; }) => {
         switch (section.code) {
           case 'QA':
+            // FAQ section
             this.faqCaption = section.settings.caption;
-            section.settings.questions.forEach((qa: { q: any; a: any }) => {
-                const q = qa.q;
-                const a = qa.a;
-                const entry = { q, a };
-                this.faq.push(entry);
-            });
-            console.log(this.faq);
             break;
-
+          case 'LL':
+            // LLH "Location library hours" section
+            this.llh = section.settings.days;
+            break;
           default:
             break;
         }
       });
-      this.faq = this.settingsWithContent.data;
+      // console.log(this.llh[0].caption);
     });
   }
 }
