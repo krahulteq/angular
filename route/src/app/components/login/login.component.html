@@ -7,15 +7,16 @@
             Login Here
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="text-center">
-            <span *ngIf="email && email.invalid && email.touched" class="text-danger">Please enter valid email</span>
+            <!-- <span *ngIf="email && email.invalid && email.touched" class="text-danger">Please enter valid email</span>
             <div class="form-field d-flex align-items-center">
                 <input class="text-center" type="email" name="email" placeholder="Username" formControlName="email">
-            </div>
-            <span *ngIf="password && password.invalid && password.touched" class="text-danger">Please enter valid password</span>
+            </div> -->
+            <!-- <span *ngIf="password && password.invalid && password.touched" class="text-danger">Please enter valid password</span>
             <div class="form-field d-flex align-items-center">
                 <input class="text-center" type="password" name="password" placeholder="Password"
                     formControlName="password">
-            </div>
+            </div> -->
+
             <button class="btn mt-3">Login</button>
         </form>
         <div class="text-center fs-6">

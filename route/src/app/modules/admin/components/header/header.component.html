@@ -21,10 +21,12 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="./contact">Contact</a>
                 </li>
-                <li class=" btn-primary nav-item text-white" role="button">
-                    <a class="nav-link text-white" (click)="logout()">logout</a>
-                </li>
+                <!-- <li class="nav-item float-end" role="button">
+                </li> -->
             </ul>
+            
         </div>
     </div>
+    <a *ngIf="!btnVisible" class="btn btn-primary badge me-5" (click)="logout()">Logout</a>
+    <a *ngIf="btnVisible" class="btn btn-primary badge me-5" routerLink="/login">Login</a>
 </nav>

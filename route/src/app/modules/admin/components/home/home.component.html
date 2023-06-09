@@ -1,20 +1,23 @@
 <app-banner [bannerTitles]="bannerTitle"></app-banner>
+
 <!-- <app-search></app-search> -->
+
 <app-faq [faqs]="faq" [faqCaption]="faqCaption"></app-faq>
+
 <app-llh [llhs]="llh"></app-llh>
+
 <app-calendar [calendarEvents]="events"></app-calendar>
-<div class="border border-warning text-center">
-    <app-animals></app-animals>
-</div>
-<div class="border border-warning text-center">
-    <app-popular-titles></app-popular-titles>
-</div>
-<div class="border border-warning text-center">
-    <app-new></app-new>
-</div>
-<div class="border border-warning text-center">
-    <app-mysteries></app-mysteries>
-</div>
-<div class="border border-warning text-center">
-    <app-recent-reviews></app-recent-reviews>
-</div>
+
+<app-animals [animals]="animal" [animalCaption]="animalCaption"></app-animals>
+
+<app-collection [collections]="collection" [collectionCaption]="collectionCaption"></app-collection>
+
+<app-popular-titles [populars]="popular" [popularCaption]="popularCaption"></app-popular-titles>
+
+<app-new [newins]="newin" [newCaption]="newCaption"></app-new>
+
+<app-mysteries [mysteries]="mystry" [mystryCaption]="mystryCaption"></app-mysteries>
+
+<app-catalog [catalogCaption]="catalogCaption" [catalogContent]="catalogContent"></app-catalog>
+
+<app-recent-reviews [recentreviews]="recentreview" [recentreviewCaption]="recentreviewCaption"></app-recent-reviews>

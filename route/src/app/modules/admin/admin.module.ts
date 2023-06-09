@@ -25,6 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 
 @NgModule({
@@ -47,14 +50,17 @@ import { FullCalendarModule } from '@fullcalendar/angular';
        PopularTitlesComponent,
        NewComponent,
        MysteriesComponent,
-       RecentReviewsComponent
+       RecentReviewsComponent,
+       StarRatingComponent,
+       CatalogComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     NgbModalModule,
     MatExpansionModule,
-    FullCalendarModule
+    FullCalendarModule,
+    FontAwesomeModule
   ]
 })
 export class AdminModule { }

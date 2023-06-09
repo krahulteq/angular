@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recent-reviews',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./recent-reviews.component.scss']
 })
 export class RecentReviewsComponent {
-
+  @Input() recentreviews: any;
+  @Input() recentreviewCaption: any;
 }

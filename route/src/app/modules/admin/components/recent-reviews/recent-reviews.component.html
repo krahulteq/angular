@@ -1,1 +1,35 @@
-<p>recent-reviews works!</p>
+<section class="" id="rv-section">
+    <div class="container-fluid">
+        <h2 class="text-center m-5"><strong id="rv-caption">{{ recentreviewCaption }}</strong></h2>
+        <div class="row" id="rv-content">
+            <div class="col-lg-4 card border border-white" *ngFor="let book of recentreviews">
+                <div class="row p-2 rounded mb-4 m-3">
+                    <div class="col-lg-6">
+                        <div *ngIf="book.images[0]?.url; else elseBlock">
+                            <img src="{{ book.images[0].url }}" style="width:150px; height:220px"
+                                class="img-fluid border border-muted p-2" alt="">
+                        </div>
+                        <ng-template #elseBlock>
+                            <img src="/assets/img/altimage.png" style="width:150px; height:220px"
+                                class="img-fluid border border-muted p-2" alt="">
+                        </ng-template>
+                        <!-- <img src="{{ recentreviewCaption }}" style="width:150px; height:220px"
+                            class="img-fluid border border-muted p-2"> -->
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <h4 class="text-black">{{ book.title | slice:0:45 }}</h4>
+                        <span class="text-center">
+                            <app-star-rating [rating]="book.stars"></app-star-rating>
+                        </span>
+                        <p class="text-muted">{{ book.firstParagraph | slice:0:110 }}</p>
+                        <div class="text-muted font-weight-bold">{{ book.reviewer }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <!-- <a href="{{ route('searchreview') }}" class="btn btn-primary mt-2">Find More Review <i
+                    class="fa-solid fa-arrow-right"></i></a> -->
+        </div>
+    </div>
+</section>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./new.component.scss']
 })
 export class NewComponent {
-
+  @Input() newins: any;
+  @Input() newCaption: any;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-mysteries',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./mysteries.component.scss']
 })
 export class MysteriesComponent {
-
+  @Input() mysteries: any;
+  @Input() mystryCaption: any;
 }
