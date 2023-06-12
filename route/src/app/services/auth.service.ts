@@ -35,7 +35,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     location.reload();
-    // this.router.navigate(['']);
   }
 
   login(username: string, password: string): Observable<any> {
