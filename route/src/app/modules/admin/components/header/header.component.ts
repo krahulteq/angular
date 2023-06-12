@@ -8,11 +8,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   @Input() item = '';
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) { }
   btnVisible = true;
-
-  ngOnInit(): void { }
+  
+  ngOnInit(): void {
+    if (this.auth.isLoggedIn()) {
+      this.btnVisible = false;
+    }
+  }
   logout(): void {
-    this.auth.logout();
+    this.auth.logout(); 
   }
 }

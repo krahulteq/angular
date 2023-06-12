@@ -76,7 +76,7 @@ export class HomeComponent {
 
     this.settingService.getSettingsWithContent().subscribe((response: any) => {
       this.settingsWithContent = response;
-      console.log(this.settingsWithContent);
+      // console.log(this.settingsWithContent);
       this.settingsWithContent.data.forEach((section: {
         content: any; code: any; id: any; settings: { caption: any; questions: any; days: any; content: any; };
       }) => {

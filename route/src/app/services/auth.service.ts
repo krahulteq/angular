@@ -1,7 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
+
+const AUTH_API = 'https://auth.surpass.cloud/connect/token';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Tenant': 'pcs',
+    'Configuration': '*',
+  })
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,38 +34,29 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['login']);
+    location.reload();
+    // this.router.navigate(['']);
   }
 
-  // login({ email }: any): Observable<any> {
-  //   if (email === 'krahul@teqmavens.com') {
-  //     this.setToken('abcdefghijklmnopqrstuvwxyz');
-  //     return of({ name: 'Rahul Kumar', email: 'admin@gmail.com' });
-  //   }
-  //   return throwError(new Error('Failed to login'));
-  // }
+  login(username: string, password: string): Observable<any> {
 
-  private apiUrlLogin = 'https://auth.surpass.cloud/connect/token';
-  // login({ client_id, client_secret, grant_type, username, password, scope }: any) {
-  login() {
+    const params = new HttpParams()
+      .set('client_id', 'surpasscloudapp')
+      .set('client_secret', 'c7f70adf-bab4-4717-ae3e-dc7c7071a445')
+      .set('grant_type', 'password')
+      .set('username', username)
+      .set('password', password)
+      .set('scope', 'offline_access');
+
+    // Prepare the headers
     const headers = new HttpHeaders({
-      'Authority': 'auth.surpass.cloud',
-      'Configuration': '*',
-      'Sec-Fetch-Mode': 'cors',
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Tenant': 'pcs',
+      'tenant': 'pcs',
+      'configuration': '*',
     });
 
-    const credentials = {
-      // client_id: 'surpasscloudapp',
-      // client_secret: 'c7f70adf-bab4-4717-ae3e-dc7c7071a445',
-      // grant_type: 'password',
-      username: '998848',
-      password: '998848',
-      // scope: 'offline_access'
-    };
-
-    return this.http.post(`${this.apiUrlLogin}`, credentials, { headers });
+    // Make the HTTP POST request
+    return this.http.post<any>('https://auth.surpass.cloud/connect/token', params.toString(), { headers });
   }
 
 }
