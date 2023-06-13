@@ -7,7 +7,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
-import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { SearchComponent } from './components/search/search.component';
@@ -28,31 +27,38 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { UsedBookComponent } from './components/used-book/used-book.component';
+import { CommunityResourcesComponent } from './components/community-resources/community-resources.component';
+import { TestComponent } from './components/test/test.component';
+import { BarcodeComponent } from './components/barcode/barcode.component';
 
 
 @NgModule({
   declarations: [
-  
+
     AdminDashboardComponent,
-       HeaderComponent,
-       FooterComponent,
-       HomeComponent,
-       AboutComponent,
-       ServicesComponent,
-       ContactComponent,
-       BannerComponent,
-       SearchComponent,
-       FaqComponent,
-       LlhComponent,
-       CalendarComponent,
-       AnimalsComponent,
-       CollectionComponent,
-       PopularTitlesComponent,
-       NewComponent,
-       MysteriesComponent,
-       RecentReviewsComponent,
-       StarRatingComponent,
-       CatalogComponent
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    BannerComponent,
+    SearchComponent,
+    FaqComponent,
+    LlhComponent,
+    CalendarComponent,
+    AnimalsComponent,
+    CollectionComponent,
+    PopularTitlesComponent,
+    NewComponent,
+    MysteriesComponent,
+    RecentReviewsComponent,
+    StarRatingComponent,
+    CatalogComponent,
+    UsedBookComponent,
+    CommunityResourcesComponent,
+    TestComponent,
+    BarcodeComponent
   ],
   imports: [
     CommonModule,

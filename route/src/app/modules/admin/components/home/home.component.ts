@@ -3,6 +3,7 @@ import { SettingService } from '../../services/setting.service';
 import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import { DatePipe } from '@angular/common';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -65,10 +66,21 @@ export class HomeComponent {
   // new-recent-review
   recentreviewCaption: any;
   recentreview: any;
+
+  // used-book 
+  usedbookCaption: any;
+  // usedbook: string = '';
+
   // changeDetector: any;
 
-  constructor(private settingService: SettingService, private datePipe: DatePipe, private changeDetector: ChangeDetectorRef) {
-    
+  htmlContent: string = '';
+  sanitizedHtmlContent: SafeHtml;
+  usedbook: any;
+  community: any;
+
+  constructor(private settingService: SettingService, private datePipe: DatePipe, private changeDetector: ChangeDetectorRef, private sanitizer: DomSanitizer) {
+
+    this.sanitizedHtmlContent = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
     this.settingService.getSettings().subscribe((response: any) => {
       this.settings = response;
       this.bannerTitle = this.settings.data.settings.appearance.banner.main;
@@ -81,6 +93,20 @@ export class HomeComponent {
         content: any; code: any; id: any; settings: { caption: any; questions: any; days: any; content: any; };
       }) => {
         switch (section.code) {
+          case 'MS':
+            // used book section
+            if (section.id === 28) {
+              this.usedbookCaption = section.settings.caption;
+              this.sanitizedHtmlContent = this.sanitizer.bypassSecurityTrustHtml(section.settings.content);
+
+            }
+            break;
+          case 'LK':
+            // used book section
+            if (section.id === 7) {
+              this.community = section.settings;
+            }
+            break;
           case 'QA':
             // FAQ section
             this.faqCaption = section.settings.caption;
