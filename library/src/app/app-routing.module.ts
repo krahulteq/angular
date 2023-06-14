@@ -1,9 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SiteComponent } from './site/site.component';
+import { LoginComponent } from './components/login/login.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: SiteComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  {
+    path: 'admin',
+    // canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

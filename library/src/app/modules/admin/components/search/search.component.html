@@ -1,0 +1,83 @@
+<section *ngIf="!navbarSearch" class="search-block show_graphics">
+    <div class="container text-center">
+        <div class="form-holder">
+            <div id="searchForm">
+                <div class="search-main-input">
+                    <input type="search" name="search" placeholder="Search for..." class="search-input"
+                        autocomplete="off">
+                    <div class="search-main-input-right">
+                        <select name="select-profession" class="sel">
+                            <option value="" class="">All</option>
+                            <option value="A" class="">Author</option>
+                            <option value="T" class="">Title</option>
+                            <option value="S" class="">Subject</option>
+                            <option value="I" class="">Series Title</option>
+                        </select>
+                        <button type="button" class="search-btn">
+                            <i aria-hidden="true" class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="search-main-tab-bottom">
+                    <button type="button" class="limit-btn">
+                        Limit To
+                        <span>
+                            <i class="fas fa-caret-down"></i>
+                            <i class="fas fa-caret-up"></i>
+                        </span>
+                    </button>
+                    <button type="button" class="advanced-btn">
+                        Advanced
+                        <span>
+                            <i class="fas fa-caret-down"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="navbarSearch">
+    <div class="form-holder py-2 ps-2">
+        <div id="searchForm">
+            <div class="row">
+                <div class="col-9">
+                    <div class="search-main-input">
+                        <input type="search" name="search" placeholder="Search for..." class="search-input"
+                            autocomplete="off">
+                        <div class="search-main-input-right">
+                            <select name="select-profession" class="sel border-white">
+                                <option value="" class="">All</option>
+                                <option value="A" class="">Author</option>
+                                <option value="T" class="">Title</option>
+                                <option value="S" class="">Subject</option>
+                                <option value="I" class="">Series Title</option>
+                            </select>
+                            <button type="button" class="search-btn">
+                                <i aria-hidden="true" class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 border border-3 border-muted">
+                    <div class="search-main-tab-bottom">
+                        <button type="button" class="limit-btn">
+                            Limit To
+                            <span>
+                                <i class="fas fa-caret-down"></i>
+                                <i class="fas fa-caret-up"></i>
+                            </span>
+                        </button>
+                        <button type="button" class="advanced-btn">
+                            Advanced
+                            <span>
+                                <i class="fas fa-caret-down"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

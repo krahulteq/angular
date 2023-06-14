@@ -1,0 +1,26 @@
+<app-breadcrumb [title]="title"></app-breadcrumb>
+
+<section *ngIf="!divVisible" id="explore-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 text-center mb-3" *ngFor="let explore of explores">
+                <a class="book-display explore-block" href="/new">
+                    <div class="book-cover">
+                        <img alt="image" class="p-2 border border-muted" style="height: 130px; width: 130px"
+                            src="/assets/img/explore/{{ explore.image }}">
+                    </div>
+                    <div class="book-info text-center font-weight-bold text-black mt-2"><strong>{{ explore.caption
+                            }}</strong></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div *ngIf="divVisible" class="loader-inner-container" style="padding: 0; position: absolute; width: 100%; top: 15px;">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>

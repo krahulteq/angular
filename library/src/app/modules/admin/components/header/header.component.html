@@ -1,0 +1,150 @@
+<header *ngIf="homeNavbar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4 bg-info">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="assets/img/logo.png" class="rounded mx-3 my-2" height="70px" width="70px"
+                            alt="logo" />
+                    </div>
+                    <div class="col-9 text-white py-3">
+                        <h5>Welcome!</h5>
+                        <p>The Humphress Group</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 bg-muted my-nav-color">
+                <div class="row bg-white">
+                    <div class="col-12">
+                        <span *ngIf="!btnVisible" (click)="logout()"
+                            class="cursor-pointer font-weight-bold float-end py-2 px-5">Logout</span>
+                        <span *ngIf="btnVisible" routerLink="/login"
+                            class="cursor-pointer font-weight-bold float-end py-2 px-5">Login</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="navbar-nav ml-auto text-black">
+                        <div class="row">
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./home">Home
+                                        <span class="sr-only"></span>
+                                    </a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./explore">Explore</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./new">New in Library</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./popular">Popular Titles</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./reading-lists">Resource Lists</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./news">Library News</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item" routerLinkActive="active">
+                                    <a class="nav-link py-3 text-center" routerLink="./awards">Awards & Honors</a>
+                                </li>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<header *ngIf="!homeNavbar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3 bg-info">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="assets/img/logo.png" class="rounded mx-3 my-2" height="70px" width="70px"
+                            alt="logo" />
+                    </div>
+                    <div class="col-9 text-white py-3">
+                        <h5>Welcome!</h5>
+                        <p>The Humphress Group</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 bg-muted">
+                <div class="row bg-white">
+                    <div class="col-12">
+                        <app-search [navbarSearch]="navbarSearch"></app-search>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 bg-muted">
+                <div class="row bg-white">
+                    <div class="col-12 py-3">
+                        <span *ngIf="!btnVisible" (click)="logout()"
+                            class="cursor-pointer font-weight-bold float-end py-2 px-5">Logout</span>
+                        <span *ngIf="btnVisible" routerLink="/login"
+                            class="cursor-pointer font-weight-bold float-end py-2 px-5">Login</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="navbar-nav ml-auto text-black">
+                <div class="row my-nav-color">
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./home">Home
+                                <span class="sr-only"></span>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./explore">Explore</a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./new">New in Library</a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./popular">Popular Titles</a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./reading-lists">Resource Lists</a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./news">Library News</a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link py-3 text-center" routerLink="./awards">Awards & Honors</a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</header>
