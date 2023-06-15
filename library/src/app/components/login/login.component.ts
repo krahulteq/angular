@@ -42,12 +42,13 @@ export class LoginComponent {
   onSubmit(): void {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-
+    this.divVisible = true;
     this.authService.login(username, password).subscribe({
       next: data => {
         // console.log(data);
         this.authService.setToken(data.access_token)
         this.router.navigate(['admin/home']);
+
         // location.reload();
       },
       error: err => {

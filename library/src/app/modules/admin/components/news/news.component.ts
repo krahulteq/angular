@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent {
+  divVisible = true;
 
+  title = 'library news';
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.divVisible = false;
+    }, 1000);
+  }
 }

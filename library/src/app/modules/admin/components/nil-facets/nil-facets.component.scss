@@ -1,0 +1,137 @@
+h2 {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+h2 .fa-caret-down,
+h2 .fa-caret-up {
+    display: none;
+}
+
+.fas {
+    color: #ffca51;
+    float: right;
+    margin: 5px 0 0;
+    position: relative;
+    z-index: -1;
+}
+
+.fa,
+.fas {
+    font-weight: 900;
+}
+
+.fas {
+    color: #ffca51;
+    float: right;
+    margin: 5px 0 0;
+    position: relative;
+    z-index: -1;
+}
+
+#accordion {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    float: left;
+    margin: 11px 0 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+#accordion .card:last-child {
+    border-bottom: none;
+}
+
+#accordion .card {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 0;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+#accordion .card-header {
+    padding: 10px 15px 0;
+    background-color: transparent;
+    border-bottom: none;
+}
+
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.card-header h5 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#accordion .card-body {
+    padding: 10px;
+}
+
+#accordion .card-body ul {
+    padding: 0;
+    margin: 0;
+}
+
+#accordion .card-body li {
+    list-style: none;
+}
+
+#accordion .card-body ul li a {
+    color: #8c8c8c;
+    font-size: 14px;
+    font-weight: 300;
+    list-style: none;
+    padding: 7px 5px;
+    width: 100%;
+    border-bottom: 1px dashed #eee;
+    position: relative;
+    cursor: pointer;
+}
+
+#accordion .card-body ul li a strong {
+    font-weight: 400;
+    color: #333;
+}
+
+#accordion .card-body ul li a span {
+    // position: absolute;
+    padding-right: 10px;
+    // top: 6px;
+    float: right;
+    // color: black;
+}

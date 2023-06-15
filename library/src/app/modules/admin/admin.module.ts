@@ -40,6 +40,8 @@ import { AwardsComponent } from './components/awards/awards.component';
 import { HeaderAlternateComponent } from './components/header-alternate/header-alternate.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ExploreDataComponent } from './components/explore-data/explore-data.component';
+import { NilFacetsComponent } from './components/nil-facets/nil-facets.component';
+import { NilResourcesComponent } from './components/nil-resources/nil-resources.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { ExploreDataComponent } from './components/explore-data/explore-data.com
     AwardsComponent,
     HeaderAlternateComponent,
     BreadcrumbComponent,
-    ExploreDataComponent
+    ExploreDataComponent,
+    NilFacetsComponent,
+    NilResourcesComponent
   ],
   imports: [
     CommonModule,

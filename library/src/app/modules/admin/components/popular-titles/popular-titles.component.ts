@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./popular-titles.component.scss']
 })
 export class PopularTitlesComponent {
-@Input() populars: any;
-@Input() popularCaption: any;
+  @Input() populars: any;
+  @Input() popularCaption: any;
 }

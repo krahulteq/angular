@@ -1,0 +1,63 @@
+<div class="search-sesults-top-head mb-4">
+    <p class="found-items">Found: <span>{{ count }} items</span></p>
+    <p class="sort-by">
+        Sort by: <span>Author</span><span>Call</span>
+        <span class="active">Newest</span><span>Title</span><span>Type</span>
+    </p>
+    <div class="view-btn">
+        <span>
+            <span class="thumbnail-btn">
+                <i class="fas fa-list"></i>
+            </span>
+            <span>
+                <i class="fas fa-th-list"></i>
+            </span>
+            <span>
+                <i class="fas fa-th"></i>
+            </span>
+        </span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div *ngFor="let resource of resources" class="mb-5 col-12 d-flex">
+            <span *ngFor="let image of resource.images; last as isLast; index as i">
+
+                <div *ngIf="isLast">
+                    <div *ngIf="image.url; else elseBlock">
+                        <img src="{{ image.url }}" name="warning" style="width: 90px; height: 130px;"
+                            class="border border-muted py-2 px-2">
+                    </div>
+                    <ng-template #elseBlock>
+                        <img src="/assets/img/altimage.png" style="width: 90px; height: 130px;"
+                            class="border border-muted py-2 px-2">
+                    </ng-template>
+                </div>
+
+            </span>
+            <div class="mt-1 ms-3">
+                <h5 class="m-0 p-0"><strong>{{ resource.title }}</strong></h5>
+                <p class="m-0 p-0">{{ resource.author }}</p>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        <p class="overdue"><i style="color: #8bc34a;" class="material-icons md-12 success">check_box</i>
+                            <strong class="ms-2">AVAILABLE</strong>
+                        </p>
+                        <span class="px-3">|</span>
+                        <p class="regular"><i class="text-warning material-icons md-12 warning">import_contacts</i>
+                            <strong class="ms-2">HARDBACK BOOK</strong>
+                        </p>
+                    </div>
+                    <div class="d-flex ms-5 ps-5">
+                        <button data-toggle="modal" class="m-2 btn btn-succes btn-sm hold-resourse"><i
+                                class="material-icons">local_offer</i> Hold</button>
+                        <button type="button"
+                            class="m-2 btn btn-primary btn-sm pull-right addButton6073 addButtonList show"
+                            resourceid="6073"><i class="fas fa-plus"></i> Add To List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./awards.component.scss']
 })
 export class AwardsComponent {
+  divVisible = true;
 
+  title = 'awards & honors';
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.divVisible = false;
+    }, 1000);
+  }
 }

@@ -11,7 +11,15 @@
     <div class="container-fluid px-5">
         <ul class="list-bread-crumbs mx-4">
             <li><a routerLink="/admin/home"><i class="fas fa-home"></i></a></li>
-            <li><a>{{ title | titlecase }}</a></li>
+            <li><a class="text-muted">{{ title | titlecase }}</a></li>
         </ul>
+        <div *ngIf="downloadCSV" class="right-btn-bread opac-dropdownBar export-options">
+            <div class="printContainer exploreCon">
+                <a class="print-btn"><i class="fas fa-print"></i></a>
+            </div>
+            <div class="fileContainer exploreCon">
+                <a class="print-btn"><i class="fas fa-download"></i></a>
+            </div>
+        </div>
     </div>
 </section>

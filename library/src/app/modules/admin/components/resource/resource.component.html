@@ -1,1 +1,30 @@
-<p>resource works!</p>
+<app-breadcrumb [title]="title"></app-breadcrumb>
+
+<div *ngIf="divVisible" class="loader-inner-container" style="padding: 0; position: absolute; width: 100%; top: 15px;">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<section *ngIf="!divVisible" class="widgets narrow Search-Results" id="resouce-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div *ngFor="let resourceList of resourceLists" class="col-6 px-5 py-4">
+                <div class="book-block-resource mb-2">
+                    <a class="book-block item d-flex" href="/resource/list/450">
+                        <div class="book-cover">
+                            <img alt="image" class="border border-muted p-2" style="width: 170px; height: 140px;"
+                                src="{{ resourceList.imageUrl }}">
+                        </div>
+                        <div class="book-cover-info p-3">
+                            <h4 class="block-heading text-black">{{ resourceList.name }}</h4>
+                            <p class="book-text mb-0 text-muted">{{ resourceList.description }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -44,10 +44,31 @@ ul {
     color: #26b6ef;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.fa, .fas {
+.fa,
+.fas {
     font-weight: 900;
+}
+
+// for download csv etc
+.opac-dropdownBar.export-options .fileContainer,
+.opac-dropdownBar.export-options .printContainer {
+    float: right;
+    position: relative;
+}
+
+.right-btn-bread .print-btn {
+    margin: 2px;
+}
+
+.print-btn {
+    border-radius: 3px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+    color: #26b6ef;
+    padding: 7px 10px;
+    background: #fff;
+    border: none;
 }

@@ -8,21 +8,16 @@ import { SettingService } from '../../services/setting.service';
 })
 export class ExploreComponent {
   explores: any;
-  constructor(private settingService: SettingService) {
-
-    this.settingService.exploreSettings().subscribe((response: any) => {
-      this.explores = response.data.buttons;
-      // console.log(this.explores);
-    });
-  }
-
+  divVisible = true;
   title = 'explore';
 
-  divVisible = true;
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.divVisible = false;
-    }, 1000);
+  constructor(private settingService: SettingService) {
+    this.settingService.exploreSettings().subscribe((response: any) => {
+      this.explores = response.data.buttons;
+      // console.log(response.data);
+      setTimeout(() => {
+        this.divVisible = false;
+      }, 1000);
+    });
   }
 }

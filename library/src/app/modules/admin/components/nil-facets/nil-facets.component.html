@@ -1,0 +1,34 @@
+<h2>
+    Narrow Results
+    <i class="fas fa-caret-up"></i>
+    <i class="fas fa-caret-down"></i>
+    <i class="fas fa-filter"></i>
+</h2>
+<div id="accordion">
+    <div>
+        <div *ngFor="let facet of facets" class="{{ facet.caption }} card">
+            <div class="card-header">
+                <h5 class="mb-0">{{ facet.caption }}</h5>
+            </div>
+            <div id="collapse0">
+                <div class="card-body">
+                    <ul>
+                        <li *ngFor="let facetitem of facet.values; index as i">
+                            <span *ngIf="i<10">
+                                <a>
+                                    <strong>{{ facetitem.value }}</strong>
+                                    <span>
+                                        {{ facetitem.count }}
+                                    </span>
+                                </a>
+                            </span>
+                            <span *ngIf="i==11" class="text-warning">
+                                More... 
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

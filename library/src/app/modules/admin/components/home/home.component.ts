@@ -189,7 +189,3 @@ export class HomeComponent {
   }
 
 }
-
-function addEvents() {
-  throw new Error('Function not implemented.');
-}
