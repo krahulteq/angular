@@ -1,0 +1,155 @@
+#awards-section {
+    margin: 100px 50px 50px 50px;
+}
+
+.widgets.awards-honors {
+    padding: 15px 0;
+}
+
+.awards-honors-clum-block-main {
+    width: 100%;
+}
+
+.grid-item,
+.grid-sizer {
+    width: 50%;
+}
+
+.grid-item,
+.grid-sizer {
+    padding: 15px;
+}
+
+.one-clum-block,
+.two-clum-block {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    float: left;
+    padding: 15px;
+    width: 100%;
+}
+
+.two-clum-block {
+    margin: 0;
+}
+
+.text-heading {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.two-clum-list {
+    padding: 0;
+    list-style: none;
+}
+
+.awards-honors .a-h-body,
+.awards-honors .two-clum-list li {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+
+.two-clum-list li a:last-child {
+    border: 0 solid;
+}
+
+.text-list-noborder .two-clum-list li a {
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 2px 0;
+    padding: 0 20px 0 25px;
+}
+
+.two-clum-list li a {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    color: #666;
+    font-size: 1.125rem;
+    font-weight: 400;
+    padding: 0 0 5px 25px;
+    width: 100%;
+}
+
+.text-list-noborder .two-clum-list li a.text-widgets-list:before {
+    font-size: 18px;
+    top: -1px;
+}
+
+.text-widgets-list:before {
+    content: "\f18e";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 100;
+    color: #ffca51;
+    position: absolute;
+    top: 3px;
+    font-size: 18px;
+    left: 0;
+    line-height: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.two-clum-block {
+    margin: 0;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+hr.dot-divdr {
+    border: 1px dashed #f1f1f1;
+}
+
+.grid-item.full {
+    width: 100%;
+}
+
+.one-clum-block,
+.two-clum-block {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    float: left;
+    padding: 15px;
+    width: 100%;
+}
+
+.two-clum-list {
+    padding: 0;
+    list-style: none;
+}
+
+.awards-honors .one-clum-block .multi-year li {
+    display: inline-block;
+    width: 10%;
+}
+
+.awards-honors .a-h-body,
+.awards-honors .two-clum-list li {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+
+.text-list-noborder .two-clum-list.multi-year li a {
+    margin: 5px 0;
+}
+
+.two-clum-list li a:last-child {
+    border: 0 solid;
+}
+
+.text-list-noborder .two-clum-list li a {
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 2px 0;
+    padding: 0 20px 0 25px;
+}

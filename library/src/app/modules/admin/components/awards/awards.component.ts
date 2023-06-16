@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingService } from '../../services/setting.service';
 
 @Component({
   selector: 'app-awards',
@@ -9,10 +10,19 @@ export class AwardsComponent {
   divVisible = true;
 
   title = 'awards & honors';
+  awardMenu: any;
+  awardCategories: any;
+  awardOtherYears: any;
+  awardRecentYears: any;
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.divVisible = false;
-    }, 1000);
+  constructor(private settingService: SettingService) {
+    this.settingService.awardMenu().subscribe((response: any) => {
+      this.awardCategories = response.data.categories;
+      this.awardOtherYears = response.data.otherYears;
+      this.awardRecentYears = response.data.recentYears;
+      setTimeout(() => {
+        this.divVisible = false;
+      }, 1000);
+    });
   }
 }

@@ -91,8 +91,8 @@ export class SettingService {
   }
 
 // *******************library news*****************
-  // for bulletin list
-  private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
+// for bulletin list
+private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
   bulletin() {
     const headers = new HttpHeaders({
       'App-Id': 'opac',
@@ -115,7 +115,7 @@ export class SettingService {
       'Selectedlibrary': '',
       'Tenant': 'pcs',
     });
-
+    
     return this.http.get(`${this.apiUrlCalendar}`, { headers });
   }
 
@@ -132,5 +132,21 @@ export class SettingService {
 
     return this.http.get(`${this.apiUrlRecentReviews}`, { headers });
   }
+  // *******************library news ends here*****************
+  
+  
+    // for recents reviews list
+    private apiUrlAwardMenu = 'https://api.library.site/v1/award/menu';
+    awardMenu() {
+      const headers = new HttpHeaders({
+        'App-Id': 'opac',
+        'Authorization': 'Bearer',
+        'Configuration': '*',
+        'Selectedlibrary': '',
+        'Tenant': 'pcs',
+      });
+  
+      return this.http.get(`${this.apiUrlAwardMenu}`, { headers });
+    }
 
 }

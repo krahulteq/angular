@@ -16,6 +16,9 @@ export class LoginComponent {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
+  isPasswordRequired: any;
+  isPasswordRequiredInput = false;
+  showErrorMessage = false;
 
   get username() {
     return this.loginForm.get('email');
@@ -43,16 +46,31 @@ export class LoginComponent {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
     this.divVisible = true;
+    this.showErrorMessage = false;
     this.authService.login(username, password).subscribe({
       next: data => {
         // console.log(data);
         this.authService.setToken(data.access_token)
         this.router.navigate(['admin/home']);
-
+        setTimeout(() => {
+          this.divVisible = false;
+        }, 1000);
         // location.reload();
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.isPasswordRequired = err.error.isPasswordRequired;
+        if (this.isPasswordRequired) {
+          this.isPasswordRequiredInput = true;
+          if (password) {
+            this.showErrorMessage = true;
+          }
+        } else {
+          this.showErrorMessage = true;
+        }
+        // console.log(this.errorMessage);
+        setTimeout(() => {
+          this.divVisible = false;
+        }, 1000);
       }
     });
   }

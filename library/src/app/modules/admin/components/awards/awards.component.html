@@ -9,3 +9,58 @@
         <div class="loader-dot"></div>
     </div>
 </div>
+
+<section *ngIf="!divVisible" class="widgets awards-honors text-list-noborder" id="awards-section">
+    <div class="row">
+        <div class="awards-honors-clum-block-main">
+            <div id="grid" class="m-0" style="position: relative; height: 682.594px;">
+                <div class="grid-sizer"></div>
+                <div class="grid-item" style="position: absolute; left: 0%; top: 0px;">
+                    <div class="two-clum-block">
+                        <h4 class="text-heading">Recent</h4>
+                        <ul class="two-clum-list">
+                            <li><a class="text-widgets-list"
+                                    href="/list/awards?year=&amp;award=&amp;name=&amp;high=2022&amp;low=2020">All</a>
+                            </li>
+                            <li *ngFor="let recentYears of awardRecentYears"><a class="text-widgets-list"
+                                    href="/list/awards?year=2022&amp;award=&amp;name=">{{ recentYears }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid-item" style="position: absolute; left: 50%; top: 0px;">
+                    <div *ngFor="let category of awardCategories" class="two-clum-block">
+                        <h4 class="text-heading">{{ category.name }}</h4>
+                        <hr class="dot-divdr">
+                        <ul class="two-clum-list">
+                            <li *ngFor="let cat of category.honors"><a data-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="" class="text-widgets-list"
+                                    href="#multiCollapseExample1">{{ cat.name }}</a>
+                                <div data-parent="#grid" class="collapse multi-collapse" id="multiCollapseExample1">
+                                    <div class="a-h-body">
+                                        <p>{{ cat.desc }}</p><a
+                                            href="/list/awards?year=&amp;award=1&amp;name=Newbery%20Medal"><span
+                                                class="btn btn-sm pull-right honorViewButton">View More <i
+                                                    class="far fa-arrow-alt-circle-right"></i></span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid-item full" style="position: absolute; left: 0%; top: 217.797px;">
+                    <div class="one-clum-block">
+                        <h4 class="text-heading">Other Years</h4>
+                        <hr class="dot-divdr">
+                        <ul class="two-clum-list multi-year">
+                            <li *ngFor="let otherYears of awardOtherYears"><a class="text-widgets-list"
+                                    href="/list/awards?year={{ otherYears }}&amp;award=&amp;name=">{{ otherYears }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer *ngIf="!divVisible"></app-footer>

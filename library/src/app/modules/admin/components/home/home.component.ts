@@ -125,7 +125,7 @@ export class HomeComponent {
               this.formattedDate = this.datePipe.transform(date, 'yyyy-MM-dd');
               return { title: event.name, date: this.formattedDate };
             });
-            console.log(this.events);
+            // console.log(this.events);
             break;
           case 'RL':
             // Animal Reports section

@@ -7,12 +7,12 @@
             Login Here
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="text-center">
-            <span *ngIf="username && username.invalid && username.touched" class="text-danger">Please enter valid username</span>
+            <span *ngIf="showErrorMessage" class="text-danger">Please enter valid credential</span>
             <div class="form-field d-flex align-items-center">
                 <input class="text-center" type="email" name="username" placeholder="Username" formControlName="username">
             </div>
             <span *ngIf="password && password.invalid && password.touched" class="text-danger">Please enter valid password</span>
-            <div class="form-field d-flex align-items-center">
+            <div *ngIf="isPasswordRequiredInput" class="form-field d-flex align-items-center">
                 <input class="text-center" type="password" name="password" placeholder="Password"
                     formControlName="password">
             </div>
