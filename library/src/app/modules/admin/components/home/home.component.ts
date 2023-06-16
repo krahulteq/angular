@@ -117,23 +117,15 @@ export class HomeComponent {
             this.llh = section.settings.days;
             break;
           case 'CA':
-            // LLH "Location library hours" section
-            section.content.events.forEach((element: { name: any; date: any; }) => {
-              const dateString = element.date;
+            // calendar section
+            const modifiedEvents = section.content.events;
+            this.events = modifiedEvents.map((event: { name: any; date: any; }) => {
+              const dateString = event.date;
               const date = new Date(dateString);
-
               this.formattedDate = this.datePipe.transform(date, 'yyyy-MM-dd');
-
-              this.ob = {
-                title: element.name,
-                date: this.formattedDate,
-              },
-                this.events.push(this.ob);
-              // this.events.push(ob);
-              this.changeDetector.detectChanges();
+              return { title: event.name, date: this.formattedDate };
             });
-
-            // console.log(this.events);
+            console.log(this.events);
             break;
           case 'RL':
             // Animal Reports section

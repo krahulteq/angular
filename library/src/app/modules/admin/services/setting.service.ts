@@ -90,4 +90,47 @@ export class SettingService {
     return this.http.get(`${this.apiUrlResourceList}`, { headers });
   }
 
+// *******************library news*****************
+  // for bulletin list
+  private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
+  bulletin() {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Authorization': 'Bearer',
+      'Configuration': '*',
+      'Selectedlibrary': '',
+      'Tenant': 'pcs',
+    });
+
+    return this.http.get(`${this.apiUrlBulletin}`, { headers });
+  }
+
+  // for calendar evensts
+  private apiUrlCalendar = 'https://api.library.site/v1/calendar?year=2023&month=6';
+  calendar() {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Authorization': 'Bearer',
+      'Configuration': '*',
+      'Selectedlibrary': '',
+      'Tenant': 'pcs',
+    });
+
+    return this.http.get(`${this.apiUrlCalendar}`, { headers });
+  }
+
+  // for recents reviews list
+  private apiUrlRecentReviews = 'https://api.library.site/v1/review/recent?size=6';
+  recentReviews() {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Authorization': 'Bearer',
+      'Configuration': '*',
+      'Selectedlibrary': '',
+      'Tenant': 'pcs',
+    });
+
+    return this.http.get(`${this.apiUrlRecentReviews}`, { headers });
+  }
+
 }

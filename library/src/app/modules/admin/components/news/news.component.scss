@@ -1,0 +1,103 @@
+.one-clum-block,
+.two-clum-block {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    float: left;
+    padding: 15px;
+    width: 100%;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-heading {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.two-clum-list {
+    padding: 0;
+    list-style: none;
+}
+
+.two-clum-list li a:last-child {
+    border: 0 solid;
+}
+
+.two-clum-list li a {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    color: #666;
+    font-size: 1.125rem;
+    font-weight: 400;
+    padding: 0 0 5px 25px;
+    width: 100%;
+}
+
+.text-widgets-list {
+    color: #8c8c8c;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 5px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+.text-widgets-list h4 {
+    color: #26b6ef;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    margin-bottom: 0;
+}
+
+.text-widgets-list:before {
+    content: "\f18e";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 100;
+    color: #ffca51;
+    position: absolute;
+    top: 3px;
+    font-size: 18px;
+    left: 0;
+    line-height: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+    background: #26b6ef none repeat scroll 0 0 !important;
+    border: 1px solid #26b6ef !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 0 transparent !important;
+}
+
+.btn i {
+    margin: 0 3px 0 0;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary {
+    background: #26b6ef none repeat scroll 0 0 !important;
+    border: 1px solid #26b6ef !important;
+    color: #fff !important;
+}
+
+.custom-padding{
+    padding: 70px;
+}

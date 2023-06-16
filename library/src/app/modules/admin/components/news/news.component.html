@@ -5,5 +5,34 @@
         <div class="loader-dot"></div>
         <div class="loader-dot"></div>
         <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
     </div>
 </div>
+
+<section *ngIf="!divVisible" class="widgets custom-padding">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="two-clum-block">
+            <h3 class="text-heading text-left">Bulletins</h3>
+            <ul class="two-clum-list">
+                <li *ngFor="let bulletin of bulletins">
+                    <a class="text-widgets-list">
+                        <h4>{{ bulletin.caption }}</h4>
+                    </a>
+                </li>
+            </ul>
+            <div class="text-right"><a routerlink="/bulletins" class="btn btn-primary" href="/bulletins">All
+                    bulletins
+                    <i class="far fa-arrow-alt-circle-right"></i></a></div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<div class="custom-padding">
+    <app-recent-reviews *ngIf="!divVisible" [recentreviews]="recentreview"
+        [recentreviewCaption]="recentreviewCaption"></app-recent-reviews>
+</div>
+
+<app-calendar *ngIf="!divVisible" [calendarEvents]="events"></app-calendar>
