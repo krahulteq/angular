@@ -10,6 +10,7 @@ import { PopularComponent } from './components/popular/popular.component';
 import { ResourceComponent } from './components/resource/resource.component';
 import { NewsComponent } from './components/news/news.component';
 import { AwardsComponent } from './components/awards/awards.component';
+import { SearchListComponent } from './components/search-list/search-list.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'reading-lists', component: ResourceComponent },
       { path: 'news', component: NewsComponent },
       { path: 'awards', component: AwardsComponent },
+      { path: 'searchlist', component: SearchListComponent },
       { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
     ],
   },

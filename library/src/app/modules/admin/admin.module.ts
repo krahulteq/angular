@@ -42,6 +42,9 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { ExploreDataComponent } from './components/explore-data/explore-data.component';
 import { NilFacetsComponent } from './components/nil-facets/nil-facets.component';
 import { NilResourcesComponent } from './components/nil-resources/nil-resources.component';
+import { NgxBarcode6Module } from 'ngx-barcode6';
+import { SearchListComponent } from './components/search-list/search-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -80,7 +83,8 @@ import { NilResourcesComponent } from './components/nil-resources/nil-resources.
     BreadcrumbComponent,
     ExploreDataComponent,
     NilFacetsComponent,
-    NilResourcesComponent
+    NilResourcesComponent,
+    SearchListComponent,
   ],
   imports: [
     CommonModule,
@@ -88,7 +92,9 @@ import { NilResourcesComponent } from './components/nil-resources/nil-resources.
     NgbModalModule,
     MatExpansionModule,
     FullCalendarModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxBarcode6Module,
+    FormsModule
   ]
 })
 export class AdminModule { }

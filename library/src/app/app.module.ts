@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgxBarcode6Module } from 'ngx-barcode6';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     NgbModalModule,
     MatExpansionModule,
     FullCalendarModule,
+    NgxBarcode6Module
   ],
   providers: [],
   bootstrap: [AppComponent]

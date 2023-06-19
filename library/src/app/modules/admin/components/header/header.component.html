@@ -7,7 +7,7 @@
                         <img src="assets/img/logo.png" class="rounded mx-3 my-2" height="70px" width="70px"
                             alt="logo" />
                     </div>
-                    <div class="col-9 text-white py-3">
+                    <div class="col-9 text-white pt-3 pb-2">
                         <h5>Welcome!</h5>
                         <p>The Humphress Group</p>
                     </div>
@@ -16,10 +16,43 @@
             <div class="col-8 bg-muted my-nav-color">
                 <div class="row bg-white">
                     <div class="col-12">
-                        <span *ngIf="!btnVisible" (click)="logout()"
-                            class="cursor-pointer font-weight-bold float-end py-2 px-5">Logout</span>
+                        <span *ngIf="!btnVisible" class="cursor-pointer font-weight-bold float-end px-4">
+                            <ul class="m-0">
+                                <li id="profileLi" class="show">
+                                    <div class="profile-img p-3">
+                                        <!-- <img alt="profile" src="" class="hide"> -->
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            {{ userProfile?.firstName }}
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end text-muted">
+                                            <li><a class="dropdown-item ps-2 py-1">My Account</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1">History</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1" data-bs-toggle="modal"
+                                                    data-bs-target="#myModalcard" (click)="getLibraryCard()">Library
+                                                    Card</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1">Change Password</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1" (click)="logout()">Log out</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn dropdown-toggle text-muted"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            My List
+                                        </button>
+                                        <span class="text-white bg-warning rounded-circle my-2 px-1">0</span>
+                                        <ul class="dropdown-menu dropdown-menu-end text-muted">
+                                            <li><a class="dropdown-item ps-2 py-1">View My List</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1">Empty My List</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </span>
                         <span *ngIf="btnVisible" routerLink="/login"
-                            class="cursor-pointer font-weight-bold float-end py-2 px-5">Login</span>
+                            class="cursor-pointer font-weight-bold float-end py-3 px-5">Login</span>
                     </div>
                 </div>
                 <div class="row">
@@ -79,7 +112,7 @@
                         <img src="assets/img/logo.png" class="rounded mx-3 my-2" height="70px" width="70px"
                             alt="logo" />
                     </div>
-                    <div class="col-9 text-white py-3">
+                    <div class="col-9 text-white pt-2 pb-1">
                         <h5>Welcome!</h5>
                         <p>The Humphress Group</p>
                     </div>
@@ -88,19 +121,50 @@
             <div class="col-6 bg-muted">
                 <div class="row bg-white">
                     <div class="col-12">
-                        <app-search [navbarSearch]="navbarSearch"></app-search>    
+                        <app-search [navbarSearch]="navbarSearch"></app-search>
                     </div>
                 </div>
             </div>
             <div class="col-3 bg-muted">
                 <div class="row bg-white">
-                    <div class="col-12 py-3">
-                        <span *ngIf="!btnVisible" (click)="logout()"
-                            class="cursor-pointer font-weight-bold float-end py-2 px-5">
-                            Logout
+                    <div class="col-12 pt-2">
+                        <span *ngIf="!btnVisible" class="cursor-pointer font-weight-bold float-end py-2">
+                            <ul class="m-0">
+                                <li id="profileLi" class="show">
+                                    <div class="profile-img p-3">
+                                        <!-- <img alt="profile" src="" class="hide"> -->
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            {{ userProfile?.firstName }}
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end text-muted">
+                                            <li><a class="dropdown-item ps-2 py-1">My Account</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1">History</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1" data-bs-toggle="modal"
+                                                    data-bs-target="#myModalcard" (click)="getLibraryCard()">Library
+                                                    Card</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1">Change Password</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1" (click)="logout()">Log out</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn dropdown-toggle text-muted"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            My List
+                                        </button>
+                                        <span class="text-white bg-warning rounded-circle my-2 px-1">0</span>
+                                        <ul class="dropdown-menu dropdown-menu-end text-muted">
+                                            <li><a class="dropdown-item ps-2 py-1">View My List</a></li>
+                                            <li><a class="dropdown-item ps-2 py-1">Empty My List</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
                         </span>
                         <span *ngIf="btnVisible" routerLink="/login"
-                            class="cursor-pointer font-weight-bold float-end py-2 px-5">
+                            class="cursor-pointer font-weight-bold float-end py-3 px-5">
                             Login
                         </span>
                     </div>
@@ -152,3 +216,33 @@
         </div>
     </div>
 </header>
+
+<!-- Library card Modal -->
+<div class="modal fade" id="myModalcard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-width">
+        <div class="modal-content" *ngIf="userProfile">
+            <div class="modal-header py-2 d-flex justify-content-center">
+                <h6 class="mt-1" id="exampleModalLabel">The Humphress Group</h6>
+            </div>
+            <div class="modal-body d-flex justify-content-center flex-column">
+                <div class="text-center">
+                    <img src="/assets/img/blank-profile-picture.png" alt="" width="150px" height="150px"
+                        class="rounded-2 mb-3">
+                    <h5>{{ userProfile.firstName }} {{ userProfile.lastName }}</h5>
+                    <p>{{ userProfile.number }}</p>
+                </div>
+                <div class="d-flex justify-content-center px-5">
+                    <ngx-barcode6 [bc-value]="userProfile.barcode" [bc-display-value]="false">
+                    </ngx-barcode6>
+                </div>
+                <div>
+                    <h6 class="text-center mt-3">{{ userProfile.patronType }}</h6>
+                    <h6 *ngIf="userProfile.expires" class="text-center mt-2">Expires</h6>
+                    <p class="text-center">{{ userProfile.expires | date:'dd/MM/yyyy' }}</p>
+                    <h5 *ngIf="userProfile.localAddress" class="text-center mt-1">{{ userProfile.localAddress }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- {{-- Ends here library card modal --}} -->

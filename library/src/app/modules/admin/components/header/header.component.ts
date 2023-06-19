@@ -9,11 +9,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   // @Input() currentNavbar: any;
-  private inactivityTimeout = 60; // 60 seconds of inactivity
+  private inactivityTimeout = 3600; // 60x60 seconds of inactivity
   private timer: any;
 
   homeNavbar = true;
   navbarSearch = true;
+  userProfile: any;
 
   constructor(private router: Router, private auth: AuthService) {
     this.router.events.subscribe((event) => {
@@ -44,6 +45,11 @@ export class HeaderComponent {
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
       this.btnVisible = false;
+      const access_token = this.auth.getToken();
+      this.auth.loginProfile(access_token).subscribe((response: any) => {
+        // console.log(response);
+        this.userProfile = response.data; 
+      });
     }
   }
 
@@ -53,6 +59,14 @@ export class HeaderComponent {
     } else {
       return false;
     }
+  }
+
+  getLibraryCard(): void {
+    const access_token = this.auth.getToken();
+    this.auth.libraryCard(access_token).subscribe((response: any) => {
+      // console.log(response);
+      this.userProfile = response.data; 
+    });
   }
 
   logout(): void {

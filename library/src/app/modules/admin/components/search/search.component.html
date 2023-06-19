@@ -3,20 +3,22 @@
         <div class="form-holder">
             <div id="searchForm">
                 <div class="search-main-input">
-                    <input type="search" name="search" placeholder="Search for..." class="search-input"
-                        autocomplete="off">
-                    <div class="search-main-input-right">
-                        <select name="select-profession" class="sel">
-                            <option value="" class="">All</option>
-                            <option value="A" class="">Author</option>
-                            <option value="T" class="">Title</option>
-                            <option value="S" class="">Subject</option>
-                            <option value="I" class="">Series Title</option>
-                        </select>
-                        <button type="button" class="search-btn">
-                            <i aria-hidden="true" class="fa fa-search"></i>
-                        </button>
-                    </div>
+                    <form (ngSubmit)="searchfcn()" class="text-center">
+                        <input type="search" name="search" placeholder="Search for..." class="search-input"
+                            autocomplete="off">
+                        <div class="search-main-input-right">
+                            <select name="select-profession" class="sel">
+                                <option value="" class="">All</option>
+                                <option value="A" class="">Author</option>
+                                <option value="T" class="">Title</option>
+                                <option value="S" class="">Subject</option>
+                                <option value="I" class="">Series Title</option>
+                            </select>
+                            <button type="submit" class="search-btn">
+                                <i aria-hidden="true" class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="search-main-tab-bottom">
                     <button type="button" class="limit-btn">

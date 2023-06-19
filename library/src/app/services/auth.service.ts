@@ -58,4 +58,35 @@ export class AuthService {
     return this.http.post<any>('https://auth.surpass.cloud/connect/token', params.toString(), { headers });
   }
 
+  // logged in user profile
+  loginProfile(access_token: any): Observable<any> {
+    // Prepare the headers
+    access_token = 'Bearer ' + access_token;
+    const headers = new HttpHeaders({
+      'authorization': access_token,
+      'configuration': '*',
+      'locationid': '32471',
+      'tenant': 'pcs',
+    });
+
+    // Make the HTTP POST request
+    return this.http.get<any>('https://api.library.site/v1/profile/me', { headers });
+  }
+
+  // logged in user library card
+  libraryCard(access_token: any): Observable<any> {
+    // Prepare the headers
+    access_token = 'Bearer ' + access_token;
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'authorization': access_token,
+      'configuration': '*',
+      'locationid': '32471',
+      'tenant': 'pcs',
+    });
+
+    // Make the HTTP POST request
+    return this.http.get<any>('https://api.library.site/v1/profile/librarycard', { headers });
+  }
+
 }

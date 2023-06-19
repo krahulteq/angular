@@ -1,18 +1,52 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+// * {
+//     margin: 0;
+//     padding: 0;
+// }
 
 .my-nav-color {
     background-color: #f7f7f7;
     font-size: 0.9rem;
 }
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
 
-.active{
+.active {
     background-color: #ffca51;
     color: white;
+}
+
+#profileLi {
+    border-left: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+#profileLi .profile-img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+    background-size: 82%;
+    background-image: url('/assets/img/blank-profile-picture.png');
+    background-color: #e4e6e7;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.btn-group ul li a{
+    color: grey;
+    font-size: 0.9rem;
+}
+
+.modal-width{
+    width: 350px;
+}
+
+.modal-header{
+    background-color: #eee;
 }
