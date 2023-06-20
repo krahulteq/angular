@@ -61,7 +61,7 @@ export class SettingService {
 
     return this.http.get(`${this.apiUrlNewInLibrary}`, { headers });
   }
-  
+
   // for popular titles
   private apiUrlPopular = 'https://api.library.site/v1/resource/list/popular?size=20&offset=0&order=date&descending=true&facets=';
   popularTitles() {
@@ -86,13 +86,13 @@ export class SettingService {
       'Selectedlibrary': '',
       'Tenant': 'pcs',
     });
-    
+
     return this.http.get(`${this.apiUrlResourceList}`, { headers });
   }
-  
+
   // *******************library news*****************
   // for bulletin list
-private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
+  private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
   bulletin() {
     const headers = new HttpHeaders({
       'App-Id': 'opac',
@@ -115,10 +115,10 @@ private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
       'Selectedlibrary': '',
       'Tenant': 'pcs',
     });
-    
+
     return this.http.get(`${this.apiUrlCalendar}`, { headers });
   }
-  
+
   // for recents reviews list
   private apiUrlRecentReviews = 'https://api.library.site/v1/review/recent?size=6';
   recentReviews() {
@@ -133,33 +133,33 @@ private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
     return this.http.get(`${this.apiUrlRecentReviews}`, { headers });
   }
   // *******************library news ends here*****************
-  
-  
-  // for recents reviews list
-    private apiUrlAwardMenu = 'https://api.library.site/v1/award/menu';
-    awardMenu() {
-      const headers = new HttpHeaders({
-        'App-Id': 'opac',
-        'Authorization': 'Bearer',
-        'Configuration': '*',
-        'Selectedlibrary': '',
-        'Tenant': 'pcs',
-      });
-  
-      return this.http.get(`${this.apiUrlAwardMenu}`, { headers });
-    }
 
-    // for new in library
-    // private apiUrlsearchkeyService = 'https://api.library.site/v1/search/base?size=20&term='+ term +'&in=&exact=false&order=date';
-    searchfcnService(term: string) {
-      const headers = new HttpHeaders({
-        'App-Id': 'opac',
-        'Configuration': '*',
-        'Selectedlibrary': '32471',
-        'Tenant': 'pcs',
-      });
-    
-      return this.http.get(`${'https://api.library.site/v1/search/base?size=20&term='+ term +'&in=&exact=false&order=date'}`, { headers });
-    }
+
+  // for recents reviews list
+  private apiUrlAwardMenu = 'https://api.library.site/v1/award/menu';
+  awardMenu() {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Authorization': 'Bearer',
+      'Configuration': '*',
+      'Selectedlibrary': '',
+      'Tenant': 'pcs',
+    });
+
+    return this.http.get(`${this.apiUrlAwardMenu}`, { headers });
+  }
+
+  // for new in library
+  // private apiUrlsearchkeyService = 'https://api.library.site/v1/search/base?size=20&term='+ term +'&in=&exact=false&order=date';
+  searchfcnService(term: string, searchin: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+
+    return this.http.get(`${'https://api.library.site/v1/search/base?size=20&term=' + term + '&in=' + searchin + '&exact=false&order=date'}`, { headers });
+  }
 
 }

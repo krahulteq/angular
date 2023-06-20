@@ -18,6 +18,7 @@ export class SearchListComponent {
   facet: any;
   resource: any;
   count: any;
+  searchin: any;
 
 
   constructor(private route: ActivatedRoute, private settingService: SettingService) { }
@@ -25,15 +26,16 @@ export class SearchListComponent {
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       this.keyword = params['keyword'];
-      this.loadSearch(this.keyword);
+      this.searchin = params['searchin'];
+      this.loadSearch(this.keyword, this.searchin);
     });
   }
 
-  loadSearch(keyword: string) {
+  loadSearch(keyword: string, searchin: string) {
     this.divVisible = true;
     this.totalCount = false;
     this.noResultsFound = false;
-    this.settingService.searchfcnService(keyword).subscribe((response: any) => {
+    this.settingService.searchfcnService(keyword, searchin).subscribe((response: any) => {
       setTimeout(() => {
         this.divVisible = false;
       }, 1000);

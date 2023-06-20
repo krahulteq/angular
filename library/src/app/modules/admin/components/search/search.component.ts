@@ -18,14 +18,16 @@ export class SearchComponent {
   constructor(private fb: FormBuilder, private changeDetector: ChangeDetectorRef, private router: Router) {
     this.searchForm = this.fb.group({
       searchterm: ['', Validators.required],
+      searchin: [''],
     });
   }
 
   onSubmit() {
     if (this.searchForm.valid) {
       const term = this.searchForm.value.searchterm;
+      const searchin = this.searchForm.value.searchin;
       this.borderDanger = '';
-      this.router.navigate(['admin/searchlist'], { queryParams: { type: 'basic', keyword: term, searchin: '', exact: false } });
+      this.router.navigate(['admin/searchlist'], { queryParams: { type: 'basic', keyword: term, searchin: searchin, exact: false } });
     } else {
       this.borderDanger = 'border-danger';
     }

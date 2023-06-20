@@ -7,7 +7,7 @@
                         <input type="search" formControlName="searchterm" placeholder="Search for..."
                             class="search-input" autocomplete="off">
                         <div class="search-main-input-right">
-                            <select name="select-profession" class="sel">
+                            <select name="select-profession" formControlName="searchin" class="sel">
                                 <option value="" class="">All</option>
                                 <option value="A" class="">Author</option>
                                 <option value="T" class="">Title</option>
@@ -49,10 +49,8 @@
                         <form [formGroup]="searchForm">
                             <input type="search" formControlName="searchterm" placeholder="Search for..."
                                 class="search-input" autocomplete="off">
-                            <!-- <input type="search" name="search" placeholder="Search for..." class="search-input"
-                            autocomplete="off"> -->
                             <div class="search-main-input-right">
-                                <select name="select-profession" class="sel border-white">
+                                <select name="select-profession" formControlName="searchin" class="sel border-white">
                                     <option value="" class="">All</option>
                                     <option value="A" class="">Author</option>
                                     <option value="T" class="">Title</option>
