@@ -10,4 +10,6 @@ import { Component, Input } from '@angular/core';
 export class BreadcrumbComponent {
 @Input() title: any;
 @Input() downloadCSV: any;
+@Input() keyword: any;
+@Input() totalCount: any;
 }

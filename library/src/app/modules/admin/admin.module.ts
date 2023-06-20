@@ -44,7 +44,7 @@ import { NilFacetsComponent } from './components/nil-facets/nil-facets.component
 import { NilResourcesComponent } from './components/nil-resources/nil-resources.component';
 import { NgxBarcode6Module } from 'ngx-barcode6';
 import { SearchListComponent } from './components/search-list/search-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -94,7 +94,8 @@ import { FormsModule } from '@angular/forms';
     FullCalendarModule,
     FontAwesomeModule,
     NgxBarcode6Module,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

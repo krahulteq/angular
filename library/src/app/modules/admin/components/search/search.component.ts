@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SettingService } from '../../services/setting.service';
 
@@ -11,28 +11,24 @@ import { SettingService } from '../../services/setting.service';
 export class SearchComponent {
   @Input() navbarSearch: any;
 
-  constructor(private router: Router, private settingService: SettingService) { }
+  searchForm: FormGroup;
+  borderDanger: string = '';
+  searchData: any;
 
-  searchForm: any = new FormGroup({
-    searchterm: new FormControl('', [Validators.required]),
-  });
-
-  get searchterm() {
-    return this.searchForm.get('searchterm');
-  }
-
-  loginForm: any = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
-  searchfcn(): void {
-    // const term = this.searchForm.value.searchterm;
-    const term = 'harry';
-    console.log(term);
-    this.settingService.searchfcnService(term).subscribe((response: any) => {
-      console.log(response);
-      // this.userProfile = response.data;
+  constructor(private fb: FormBuilder, private changeDetector: ChangeDetectorRef, private router: Router) {
+    this.searchForm = this.fb.group({
+      searchterm: ['', Validators.required],
     });
   }
+
+  onSubmit() {
+    if (this.searchForm.valid) {
+      const term = this.searchForm.value.searchterm;
+      this.borderDanger = '';
+      this.router.navigate(['admin/searchlist'], { queryParams: { type: 'basic', keyword: term, searchin: '', exact: false } });
+    } else {
+      this.borderDanger = 'border-danger';
+    }
+  }
+
 }

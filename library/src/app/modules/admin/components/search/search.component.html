@@ -2,10 +2,10 @@
     <div class="container text-center">
         <div class="form-holder">
             <div id="searchForm">
-                <div class="search-main-input">
-                    <form (ngSubmit)="searchfcn()" class="text-center">
-                        <input type="search" name="search" placeholder="Search for..." class="search-input"
-                            autocomplete="off">
+                <div class="search-main-input {{ borderDanger }}">
+                    <form [formGroup]="searchForm">
+                        <input type="search" formControlName="searchterm" placeholder="Search for..."
+                            class="search-input" autocomplete="off">
                         <div class="search-main-input-right">
                             <select name="select-profession" class="sel">
                                 <option value="" class="">All</option>
@@ -15,7 +15,7 @@
                                 <option value="I" class="">Series Title</option>
                             </select>
                             <button type="submit" class="search-btn">
-                                <i aria-hidden="true" class="fa fa-search"></i>
+                                <i aria-hidden="true" class="fa fa-search" (click)="onSubmit()"></i>
                             </button>
                         </div>
                     </form>
@@ -45,21 +45,25 @@
         <div id="searchForm">
             <div class="row">
                 <div class="col-9">
-                    <div class="search-main-input">
-                        <input type="search" name="search" placeholder="Search for..." class="search-input"
-                            autocomplete="off">
-                        <div class="search-main-input-right">
-                            <select name="select-profession" class="sel border-white">
-                                <option value="" class="">All</option>
-                                <option value="A" class="">Author</option>
-                                <option value="T" class="">Title</option>
-                                <option value="S" class="">Subject</option>
-                                <option value="I" class="">Series Title</option>
-                            </select>
-                            <button type="button" class="search-btn">
-                                <i aria-hidden="true" class="fa fa-search"></i>
-                            </button>
-                        </div>
+                    <div class="search-main-input {{ borderDanger }}">
+                        <form [formGroup]="searchForm">
+                            <input type="search" formControlName="searchterm" placeholder="Search for..."
+                                class="search-input" autocomplete="off">
+                            <!-- <input type="search" name="search" placeholder="Search for..." class="search-input"
+                            autocomplete="off"> -->
+                            <div class="search-main-input-right">
+                                <select name="select-profession" class="sel border-white">
+                                    <option value="" class="">All</option>
+                                    <option value="A" class="">Author</option>
+                                    <option value="T" class="">Title</option>
+                                    <option value="S" class="">Subject</option>
+                                    <option value="I" class="">Series Title</option>
+                                </select>
+                                <button type="submit" class="search-btn">
+                                    <i aria-hidden="true" class="fa fa-search" (click)="onSubmit()"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-3 border border-3 border-muted">

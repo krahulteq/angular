@@ -3,11 +3,14 @@
         <div style="background: url('/assets/img/inner-page-banner.jpg'); height: 100px;">
             <h3 class="text-white text-center" style="padding-top: 30px;">
                 {{ title | titlecase }}
+                <h4 class="text-secondary text-center">
+                    {{ keyword | titlecase }}
+                </h4>
             </h3>
         </div>
     </div>
 </section>
-<section class="widgets bread-crumbs mt-4">
+<section *ngIf="!totalCount" class="widgets bread-crumbs mt-4">
     <div class="container-fluid px-5">
         <ul class="list-bread-crumbs mx-4">
             <li><a routerLink="/admin/home"><i class="fas fa-home"></i></a></li>

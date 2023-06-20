@@ -1,0 +1,33 @@
+#nil-section {
+    margin: 100px 50px 50px 50px;
+}
+
+.no-record-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    padding: 0;
+    float: none;
+    margin: auto;
+}
+
+.no-record-found img {
+    max-width: 50px;
+    float: left;
+}
+
+.no-record-found p {
+    font-size: 40px;
+    font-weight: 300;
+    color: #333;
+    margin: 0 0 0 15px;
+    float: left;
+    line-height: 42px;
+    width: calc(100% - 65px);
+}
+
+.no-record-found p strong {
+    color: #26b6ef;
+    font-weight: 900;
+}

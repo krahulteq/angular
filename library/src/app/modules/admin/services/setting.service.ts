@@ -149,7 +149,7 @@ private apiUrlBulletin = 'https://api.library.site/v1/bulletin?size=10';
       return this.http.get(`${this.apiUrlAwardMenu}`, { headers });
     }
 
-    // for new in libarary
+    // for new in library
     // private apiUrlsearchkeyService = 'https://api.library.site/v1/search/base?size=20&term='+ term +'&in=&exact=false&order=date';
     searchfcnService(term: string) {
       const headers = new HttpHeaders({

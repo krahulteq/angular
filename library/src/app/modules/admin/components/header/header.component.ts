@@ -8,13 +8,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  // @Input() currentNavbar: any;
+  @Input() userProfile: any;
+  @Input() btnVisible: any;
   private inactivityTimeout = 3600; // 60x60 seconds of inactivity
   private timer: any;
 
   homeNavbar = true;
   navbarSearch = true;
-  userProfile: any;
+  // userProfile: any;
 
   constructor(private router: Router, private auth: AuthService) {
     this.router.events.subscribe((event) => {
@@ -25,7 +26,7 @@ export class HeaderComponent {
     this.startTimer();
   }
 
-  btnVisible = true;
+  // btnVisible = true;
 
   @HostListener('document:mousemove')
   @HostListener('document:keypress')
@@ -42,16 +43,16 @@ export class HeaderComponent {
     }
   }
 
-  ngOnInit(): void {
-    if (this.auth.isLoggedIn()) {
-      this.btnVisible = false;
-      const access_token = this.auth.getToken();
-      this.auth.loginProfile(access_token).subscribe((response: any) => {
-        // console.log(response);
-        this.userProfile = response.data; 
-      });
-    }
-  }
+  // ngOnInit(): void {
+  //   if (this.auth.isLoggedIn()) {
+  //     this.btnVisible = false;
+  //     const access_token = this.auth.getToken();
+  //     this.auth.loginProfile(access_token).subscribe((response: any) => {
+  //       // console.log(response);
+  //       this.userProfile = response.data; 
+  //     });
+  //   }
+  // }
 
   private getComponentBasedOnUrl(url: string): any {
     if (url.includes('admin/home')) {

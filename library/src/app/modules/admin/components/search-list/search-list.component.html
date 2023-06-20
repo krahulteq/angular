@@ -1,1 +1,34 @@
-<p>search-list works!</p>
+<app-breadcrumb [title]="title" [downloadCSV]="downloadCSV" [keyword]="keyword" [totalCount]="totalCount"></app-breadcrumb>
+
+<div *ngIf="divVisible" class="loader-inner-container" style="padding: 0; position: absolute; width: 100%; top: 15px;">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<div *ngIf="!noResultsFound">
+    <section *ngIf="!divVisible" class="widgets narrow Search-Results" id="nil-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12 narrow-results-main">
+                    <app-nil-facets [facets]="facet"></app-nil-facets>
+                </div>
+                <div class="col-sm-12 col-12 search-results-main col-xl-9 col-lg-8 col-md-8">
+                    <app-nil-resources [resources]="resource" [count]="count"></app-nil-resources>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div *ngIf="noResultsFound">
+    <div class="no-record-found"><span><img src="/assets/img/No-Record-icon.png">
+            <p><strong>Sorry!</strong> There are no items to show here.
+            </p>
+        </span></div>
+</div>
+<app-footer *ngIf="!divVisible"></app-footer>
