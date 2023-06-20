@@ -19,6 +19,7 @@ export class SearchListComponent {
   resource: any;
   count: any;
   searchin: any;
+  resourceId: any;
 
 
   constructor(private route: ActivatedRoute, private settingService: SettingService) { }
@@ -27,19 +28,23 @@ export class SearchListComponent {
     this.route.queryParams.subscribe((params: Params) => {
       this.keyword = params['keyword'];
       this.searchin = params['searchin'];
-      this.loadSearch(this.keyword, this.searchin);
+      this.resourceId = params['resource'];
+      if(!this.resourceId){
+        this.resourceId = ''
+      }
+      this.loadSearch(this.keyword, this.searchin, this.resourceId);
     });
   }
 
-  loadSearch(keyword: string, searchin: string) {
+  loadSearch(keyword: string, searchin: string, resourceId: string) {
     this.divVisible = true;
     this.totalCount = false;
     this.noResultsFound = false;
-    this.settingService.searchfcnService(keyword, searchin).subscribe((response: any) => {
+    this.settingService.searchfcnService(keyword, searchin, resourceId).subscribe((response: any) => {
       setTimeout(() => {
         this.divVisible = false;
       }, 1000);
-      console.log(response);
+      // console.log(response);
       // this.title = response.caption;
       if (response.totalCount > 0) {
         this.facet = response.facets;

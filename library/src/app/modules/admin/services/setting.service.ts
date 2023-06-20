@@ -149,9 +149,8 @@ export class SettingService {
     return this.http.get(`${this.apiUrlAwardMenu}`, { headers });
   }
 
-  // for new in library
-  // private apiUrlsearchkeyService = 'https://api.library.site/v1/search/base?size=20&term='+ term +'&in=&exact=false&order=date';
-  searchfcnService(term: string, searchin: string) {
+  // for basic search suggestions
+  searchSuggestionService(term: string, searchby: string) {
     const headers = new HttpHeaders({
       'App-Id': 'opac',
       'Configuration': '*',
@@ -159,7 +158,22 @@ export class SettingService {
       'Tenant': 'pcs',
     });
 
-    return this.http.get(`${'https://api.library.site/v1/search/base?size=20&term=' + term + '&in=' + searchin + '&exact=false&order=date'}`, { headers });
+    return this.http.get(`${'https://api.library.site/v1/resource/suggestion?searchby=' + searchby + '&term=' + term}`, { headers });
+  }
+
+  // for basic searching
+  searchfcnService(term: string, searchin: string, resourceId: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    if (resourceId === '') {
+      return this.http.get(`${'https://api.library.site/v1/search/base?size=20&term=' + term + '&in=' + searchin + '&exact=false&order=date'}`, { headers });
+    } else {
+      return this.http.get(`${'https://api.library.site/v1/search/fieldValue?id=' + resourceId + '&size=20&order=date'}`, { headers });
+    }
   }
 
 }

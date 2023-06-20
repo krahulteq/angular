@@ -129,3 +129,48 @@ section.search-block .form-holder {
     margin-top: 7px;
     font-weight: 500;
 }
+
+.autoSuggesstions {
+    position: absolute;
+    text-align: left;
+    top: 62px;
+    width: 100%;
+    padding: 15px;
+    left: 0;
+    box-shadow: 0 8px 15px 0 rgba(0, 0, 0, .1);
+    border-radius: 0 0 3px 3px;
+    background: #fff;
+    z-index: 99;
+}
+
+.autoSuggesstions ul {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-height: 265px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.autoSuggesstions ul li {
+    color: #1c1c1c;
+    font-size: 14px;
+    padding: 5px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all;
+}
+
+.autoSuggesstions ul li span.subjectSpan {
+    color: #8c8c8c;
+    font-size: 12px;
+}
+
+.autoSuggesstions ul li:focus,
+.autoSuggesstions ul li:hover {
+    background-color: #f1fdfd;
+    cursor: pointer;
+    color: #03a9f4;
+}
