@@ -25,7 +25,6 @@ export class AdminDashboardComponent {
       this.loginBtnVisible = false;
       const access_token = this.auth.getToken();
       this.auth.loginProfile(access_token).subscribe((response: any) => {
-        // console.log(response);
         this.userProfile = response.data;
       });
     }

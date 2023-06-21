@@ -174,3 +174,218 @@ section.search-block .form-holder {
     cursor: pointer;
     color: #03a9f4;
 }
+
+// Advance search
+.nav-tabs-head {
+    float: left;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .1);
+    border-radius: 3px;
+}
+
+.nav-tabs-head nav {
+    float: left;
+}
+
+#searchForm .nav-tabs {
+    border-bottom: none;
+    overflow: hidden;
+    border-radius: 3px 0 0 3px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.search-main-tab-bottom #nav-tab a {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 16px 13px;
+    border: none !important;
+}
+
+.BasicSearch-btn {
+    float: right;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    margin: 15px 15px 0 0;
+    padding: 0;
+}
+
+.search-main-tab-bottom .tab-content {
+    padding-top: 20px;
+    width: 100%;
+    float: left;
+}
+
+.book-detail-tab .tab-content .tab-pane,
+.search-main-tab-bottom .tab-content .tab-pane {
+    width: 100%;
+}
+
+.material-form-group,
+.material-form-radio {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.material-form-group input,
+.material-form-group textarea {
+    display: block;
+    background: none;
+    padding: .125rem .125rem .0625rem;
+    font-size: 14px;
+    border-width: 0;
+    border-color: transparent;
+    line-height: 1.9;
+    width: 100%;
+    color: transparent;
+    transition: all .28s ease;
+    box-shadow: none;
+}
+
+.search-main-tab-bottom .material-form-group .material-control-label {
+    font-weight: 300 !important;
+    color: #999 !important;
+}
+
+.material-form-group .material-bar {
+    position: relative;
+    border-bottom: .0625rem solid #e5e5e5;
+    display: block;
+}
+
+.search-main-tab-bottom .nav-tabs .nav-item.show .nav-link,
+.search-main-tab-bottom .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #32b5f3;
+    border: none;
+    border-radius: 0;
+}
+
+.col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+button,
+input {
+    overflow: visible;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.search-main-tab-bottom .material-form-group .material-control-label {
+    font-weight: 300 !important;
+    color: #999 !important;
+}
+
+.material-form-group .material-control-label {
+    position: absolute;
+    top: .25rem;
+    pointer-events: none;
+    padding-left: .125rem;
+    z-index: 1;
+    color: #b3b3b3;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: all .28s ease;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.material-form-group select {
+    width: 100%;
+    font-size: 14px !important;
+    height: 40px !important;
+    padding: 3px 30px 3px 3px !important;
+    border: none;
+    margin: 0;
+    line-height: 1.6 !important;
+    box-shadow: none;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+.material-form-group .material-bar {
+    position: relative;
+    border-bottom: .0625rem solid #e5e5e5;
+    display: block;
+}
+
+
+body select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    // background-image: url(arrow.aa10ea60acc152253e6f.png);
+    background-position: 100%;
+    background-repeat: no-repeat;
+    padding-right: 30px !important;
+}
+
+.search-block #searchForm label {
+    float: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.search-main-tab-bottom .material-form-group .material-control-label {
+    font-weight: 300 !important;
+    color: #999 !important;
+}
+
+.material-form-group input.material-form-file~.material-control-label,
+.material-form-group input.material-has-value~.material-control-label,
+.material-form-group input:focus~.material-control-label,
+.material-form-group input:valid~.material-control-label,
+.material-form-group select~.material-control-label,
+.material-form-group textarea.material-form-file~.material-control-label,
+.material-form-group textarea.material-has-value~.material-control-label,
+.material-form-group textarea:focus~.material-control-label,
+.material-form-group textarea:valid~.material-control-label {
+    font-size: .8rem;
+    color: gray;
+    top: -1rem;
+    left: 0;
+}
+
+.pull-right {
+    float: right;
+}
+
+.btn-primary {
+    background: #26b6ef none repeat scroll 0 0 !important;
+    border: 1px solid #26b6ef !important;
+    color: #fff !important;
+}

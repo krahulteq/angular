@@ -16,6 +16,7 @@ export class SearchComponent {
   searchData: any;
   suggestions: any = [];
   selectedHeroValue: any;
+  isToggled: boolean = true;
 
   constructor(private fb: FormBuilder, private settingService: SettingService, private changeDetector: ChangeDetectorRef, private router: Router) {
     this.searchForm = this.fb.group({
@@ -56,5 +57,10 @@ export class SearchComponent {
     this.router.navigate(['admin/searchlist'], { queryParams: { type: 'basic', keyword: term, searchin: searchin, exact: false, resource: selectedHeroValue } });
   }
 
+  advanceSearch = true;
+
+  toggle() {
+    this.isToggled = !this.isToggled;
+  }
 
 }
