@@ -12,16 +12,24 @@ export class SearchComponent {
   @Input() navbarSearch: any;
 
   searchForm: FormGroup;
+  acceleratedSearchForm: FormGroup;
   borderDanger: string = '';
   searchData: any;
   suggestions: any = [];
   selectedHeroValue: any;
-  isToggled: boolean = true;
 
   constructor(private fb: FormBuilder, private settingService: SettingService, private changeDetector: ChangeDetectorRef, private router: Router) {
     this.searchForm = this.fb.group({
       searchterm: ['', Validators.required],
       searchin: [''],
+    });
+
+    this.acceleratedSearchForm = this.fb.group({
+      levelmin: ['', Validators.required],
+      levelmax: ['', Validators.required],
+      pointmin: ['', Validators.required],
+      pointmax: ['', Validators.required],
+      intrestlevel: [''],
     });
   }
 
@@ -49,6 +57,21 @@ export class SearchComponent {
     }
   }
 
+  advanceForm: any;
+  onSubmitAdvanceSearch() {
+    if (this.acceleratedSearchForm.valid) {
+      console.log(this.acceleratedSearchForm.value);
+      // this.suggestions = [];
+      // const term = this.searchForm.value.searchterm;
+      // const searchin = this.searchForm.value.searchin;
+      this.borderDanger = '';
+      // this.router.navigate(['admin/searchlist'], { queryParams: { type: 'basic', keyword: term, searchin: searchin, exact: false } });
+    } else {
+      this.borderDanger = 'border-danger';
+      console.log('fffffffffff');
+    }
+  }
+
   onItemClick(sugg: any) {
     this.suggestions = [];
     const term = this.searchForm.value.searchterm;
@@ -57,10 +80,20 @@ export class SearchComponent {
     this.router.navigate(['admin/searchlist'], { queryParams: { type: 'basic', keyword: term, searchin: searchin, exact: false, resource: selectedHeroValue } });
   }
 
-  advanceSearch = true;
-
+  isToggledAdvanceSearch: boolean = false;
   toggle() {
-    this.isToggled = !this.isToggled;
+    this.isToggledAdvanceSearch = !this.isToggledAdvanceSearch;
+  }
+
+  isToggledLimitTo: boolean = false;
+  toggleLimitTo() {
+    this.isToggledLimitTo = !this.isToggledLimitTo;
+  }
+
+  activeTab: string = 'accelerated';
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 
 }

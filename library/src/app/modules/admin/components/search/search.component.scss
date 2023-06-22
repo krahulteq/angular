@@ -244,21 +244,17 @@ li {
 .material-form-group textarea {
     display: block;
     background: none;
-    padding: .125rem .125rem .0625rem;
+    padding: .8rem .125rem .0625rem;
     font-size: 14px;
     border-width: 0;
     border-color: transparent;
     line-height: 1.9;
     width: 100%;
-    color: transparent;
     transition: all .28s ease;
     box-shadow: none;
 }
 
-.search-main-tab-bottom .material-form-group .material-control-label {
-    font-weight: 300 !important;
-    color: #999 !important;
-}
+
 
 .material-form-group .material-bar {
     position: relative;
@@ -295,10 +291,7 @@ textarea {
     line-height: inherit;
 }
 
-.search-main-tab-bottom .material-form-group .material-control-label {
-    font-weight: 300 !important;
-    color: #999 !important;
-}
+
 
 .material-form-group .material-control-label {
     position: absolute;
@@ -360,10 +353,7 @@ body select {
     color: #666;
 }
 
-.search-main-tab-bottom .material-form-group .material-control-label {
-    font-weight: 300 !important;
-    color: #999 !important;
-}
+
 
 .material-form-group input.material-form-file~.material-control-label,
 .material-form-group input.material-has-value~.material-control-label,
@@ -388,4 +378,68 @@ body select {
     background: #26b6ef none repeat scroll 0 0 !important;
     border: 1px solid #26b6ef !important;
     color: #fff !important;
+}
+
+ul.booleanOpretors {
+    margin: -5px 0 15px;
+    padding: 0;
+    float: left;
+}
+
+.booleanOpretors li.active {
+    background-color: #16a6df;
+    color: #fff;
+}
+
+.booleanOpretors li {
+    display: inline-block;
+    padding: 3px 10px;
+    margin: 0 1px;
+    font-size: 13px;
+    cursor: pointer;
+    background-color: #f6f6f6;
+    border-radius: 2px;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.search-main-tab-bottom .material-form-group .material-control-label {
+    font-weight: 300 !important;
+    color: #999 !important;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+// for limit form
+.limit-form {
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.material-checkbox {
+    margin-top: 27px;
+}
+
+.navbar-limit-form {
+    position: absolute;
+    background: #fff;
+    padding:10px;
+    width: 50% !important;
+}
+.checkLimit{
+    margin: 10px;
 }

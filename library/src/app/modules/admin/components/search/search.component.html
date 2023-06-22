@@ -2,7 +2,7 @@
     <div class="container text-center">
         <div class="form-holder">
             <div id="searchForm">
-                <div *ngIf="isToggled" class="search-main-input {{ borderDanger }}">
+                <div *ngIf="isToggledAdvanceSearch" class="search-main-input {{ borderDanger }}">
                     <form [formGroup]="searchForm" (keydown.enter)="onSubmit()">
                         <input type="search" formControlName="searchterm" placeholder="Search for..."
                             class="search-input" autocomplete="off" (ngModelChange)="onSearchChanged($event)">
@@ -28,14 +28,51 @@
                         </div>
                     </form>
                 </div>
-                <div *ngIf="isToggled" class="search-main-tab-bottom">
-                    <button type="button" class="limit-btn">
+                <div *ngIf="isToggledAdvanceSearch" class="search-main-tab-bottom">
+                    <button type="button" class="limit-btn" (click)="toggleLimitTo()">
                         Limit To
                         <span>
                             <i class="fas fa-caret-down"></i>
                             <i class="fas fa-caret-up"></i>
                         </span>
                     </button>
+                    <!--  -->
+                    <!--  -->
+                    <div class="limit-form" *ngIf="isToggledLimitTo">
+                        <div class="row">
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitCategory"
+                                            class="checkLimit"><i class="material-helper"></i>Category </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitInlib"
+                                            class="checkLimit"><i class="material-helper"></i>Available in Library
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitLexile"
+                                            class="checkLimit"><i class="material-helper"></i>Lexile </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitFountas"
+                                            class="checkLimit"><i class="material-helper"></i>Fountas &amp; Pinnell
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitReading"
+                                            class="checkLimit"><i class="material-helper"></i>Reading Count </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitAccelerated"
+                                            class="checkLimit"><i class="material-helper"></i>Accelerated Reader
+                                    </label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
                     <button type="button" class="advanced-btn" (click)="toggle()">
                         Advanced
                         <span>
@@ -45,40 +82,48 @@
                 </div>
 
 
-                <div [hidden]="isToggled" class="search-main-tab-bottom">
+                <div [hidden]="isToggledAdvanceSearch" class="search-main-tab-bottom">
                     <div class="advanced-form">
                         <div class="nav-tabs-head">
                             <nav>
                                 <ul id="nav-tab" role="tablist" class="nav nav-tabs nav-fill">
-                                    <li><a id="accelerated-tab" data-toggle="tab" href="#accelerated" role="tab"
-                                            aria-controls="nav-home" aria-selected="false"
-                                            class="nav-item nav-link active show">
+                                    <li><a id="accelerated-tab" data-toggle="tab" role="tab" aria-controls="nav-home"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'accelerated'"
+                                            (click)="setActiveTab('accelerated')">
                                             Accelerated
                                             Reader</a></li>
-                                    <li><a id="nav-Barcode-tab" data-toggle="tab" href="#nav-Barcode" role="tab"
-                                            aria-controls="nav-Barcode" aria-selected="true"
-                                            class="nav-item nav-link">Barcode</a>
+                                    <li><a id="nav-Barcode-tab" data-toggle="tab" role="tab" aria-controls="nav-Barcode"
+                                            aria-selected="true" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'Barcode'"
+                                            (click)="setActiveTab('Barcode')">Barcode</a>
                                     </li>
-                                    <li><a id="nav-Boolean-tab" data-toggle="tab" href="#nav-Boolean" role="tab"
-                                            aria-controls="nav-Boolean" aria-selected="false"
-                                            class="nav-item nav-link">Boolean</a>
+                                    <li><a id="nav-Boolean-tab" data-toggle="tab" role="tab" aria-controls="nav-Boolean"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'Boolean'"
+                                            (click)="setActiveTab('Boolean')">Boolean</a>
                                     </li>
-                                    <li><a id="nav-Call-tab" data-toggle="tab" href="#nav-Call" role="tab"
-                                            aria-controls="nav-Call" aria-selected="false"
-                                            class="nav-item nav-link">Call</a></li>
-                                    <li><a id="nav-Fountas-tab" data-toggle="tab" href="#nav-Fountas" role="tab"
-                                            aria-controls="nav-Fountas" aria-selected="false"
-                                            class="nav-item nav-link">Fountas &amp;
+                                    <li><a id="nav-Call-tab" data-toggle="tab" role="tab" aria-controls="nav-Call"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'Call'"
+                                            (click)="setActiveTab('Call')">Call</a></li>
+                                    <li><a id="nav-Fountas-tab" data-toggle="tab" role="tab" aria-controls="nav-Fountas"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'Fountas'"
+                                            (click)="setActiveTab('Fountas')">Fountas &amp;
                                             Pinnell</a></li>
-                                    <li><a id="nav-Lexile-tab" data-toggle="tab" href="#nav-Lexile" role="tab"
-                                            aria-controls="nav-Lexile" aria-selected="false"
-                                            class="nav-item nav-link">Lexile</a></li>
-                                    <li><a id="nav-MARC-tab" data-toggle="tab" href="#nav-MARC" role="tab"
-                                            aria-controls="nav-MARC" aria-selected="false"
-                                            class="nav-item nav-link">MARC</a></li>
-                                    <li><a id="nav-ReadingCounts-tab" data-toggle="tab" href="#nav-ReadingCounts"
-                                            role="tab" aria-controls="nav-ReadingCounts" aria-selected="false"
-                                            class="nav-item nav-link">Reading
+                                    <li><a id="nav-Lexile-tab" data-toggle="tab" role="tab" aria-controls="nav-Lexile"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'Lexile'"
+                                            (click)="setActiveTab('Lexile')">Lexile</a></li>
+                                    <li><a id="nav-MARC-tab" data-toggle="tab" role="tab" aria-controls="nav-MARC"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'MARC'"
+                                            (click)="setActiveTab('MARC')">MARC</a></li>
+                                    <li><a id="nav-ReadingCounts-tab" data-toggle="tab" role="tab"
+                                            aria-controls="nav-ReadingCounts" aria-selected="false"
+                                            class="nav-item nav-link" [class.active]="activeTab === 'Reading'"
+                                            (click)="setActiveTab('Reading')">Reading
                                             Counts</a></li>
                                 </ul>
                             </nav><button type="button" class="BasicSearch-btn open" (click)="toggle()"><span><i
@@ -87,53 +132,61 @@
                         </div>
                         <div id="nav-tabContent" class="tab-content">
                             <div id="accelerated" role="tabpanel" aria-labelledby="accelerated-tab"
-                                class="tab-pane fade active show">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="material-form-group"><input type="hidden" value="AcceleratedReader"
-                                                class="searchType"><input type="number" required="required"
-                                                id="AcceleratedReaderLevelMin" group="AcceleratedReaderLevel" min="0.1"
-                                                max="15" step="0.1" ismin="true"><label for="AcceleratedReaderLevelMin"
-                                                class="material-control-label">Reading
-                                                Level Min</label><i class="material-bar"></i>
+                                class="tab-pane fade show" [class.active]="activeTab === 'accelerated'">
+                                <form [formGroup]="acceleratedSearchForm">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group">
+                                                <input formControlName="levelmin" type="number" required="required"
+                                                    id="AcceleratedReaderLevelMin" group="AcceleratedReaderLevel"
+                                                    min="0.1" max="15" step="0.1" ismin="true">
+                                                <label for="AcceleratedReaderLevelMin"
+                                                    class="material-control-label">Reading
+                                                    Level Min</label>
+                                                <i class="material-bar {{ borderDanger }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="levelmax"
+                                                    type="number" required="required" group="AcceleratedReaderLevel"
+                                                    min="0.1" max="15" step="0.1" id="AcceleratedReaderLevelMax"><label
+                                                    for="AcceleratedReaderLevelMax"
+                                                    class="material-control-label">Reading
+                                                    Level Max</label><i class="material-bar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="pointmin"
+                                                    type="number" required="required" id="AcceleratedReaderPointsMin"
+                                                    group="AcceleratedReaderPoints" min="0.5" max="120" step="0.5"
+                                                    ismin="true"><label for="AcceleratedReaderPointsMin"
+                                                    class="material-control-label">Points
+                                                    Min</label><i class="material-bar"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="pointmax"
+                                                    type="number" required="required" id="AcceleratedReaderPointsMax"
+                                                    group="AcceleratedReaderPoints" min="0.5" max="120"
+                                                    step="0.5"><label for="AcceleratedReaderPointsMax"
+                                                    class="material-control-label">Points
+                                                    Max</label><i class="material-bar"></i></div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="material-form-group"><select formControlName="intrestlevel"
+                                                    id="AcceleratedReaderInterestLevel" name="InterestLevel">
+                                                    <option value="">All</option>
+                                                    <option value="LG">Lower Grades</option>
+                                                    <option value="MG">Middle Grades</option>
+                                                    <option value="UG">Upper Grades</option>
+                                                </select><label for="AcceleratedReaderInterestLevel"
+                                                    class="material-control-label">Interest Level</label><i
+                                                    class="material-bar"></i></div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="material-form-group"><input type="number" required="required"
-                                                group="AcceleratedReaderLevel" min="0.1" max="15" step="0.1"
-                                                id="AcceleratedReaderLevelMax"><label for="AcceleratedReaderLevelMax"
-                                                class="material-control-label">Reading
-                                                Level Max</label><i class="material-bar"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="material-form-group"><input type="number" required="required"
-                                                id="AcceleratedReaderPointsMin" group="AcceleratedReaderPoints"
-                                                min="0.5" max="120" step="0.5" ismin="true"><label
-                                                for="AcceleratedReaderPointsMin" class="material-control-label">Points
-                                                Min</label><i class="material-bar"></i></div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="material-form-group"><input type="number" required="required"
-                                                id="AcceleratedReaderPointsMax" group="AcceleratedReaderPoints"
-                                                min="0.5" max="120" step="0.5"><label for="AcceleratedReaderPointsMax"
-                                                class="material-control-label">Points
-                                                Max</label><i class="material-bar"></i></div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="material-form-group"><select id="AcceleratedReaderInterestLevel"
-                                                name="InterestLevel">
-                                                <option value="">All</option>
-                                                <option value="LG">Lower Grades</option>
-                                                <option value="MG">Middle Grades</option>
-                                                <option value="UG">Upper Grades</option>
-                                            </select><label for="AcceleratedReaderInterestLevel"
-                                                class="material-control-label">Interest Level</label><i
-                                                class="material-bar"></i></div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
-                            <div id="nav-Lexile" role="tabpanel" aria-labelledby="nav-Lexile-tab" class="tab-pane fade">
+                            <div id="nav-Lexile" role="tabpanel" aria-labelledby="nav-Lexile-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'Lexile'">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6">
                                         <div class="material-form-group"><input type="hidden" value="Lexile"
@@ -201,7 +254,8 @@
                                 </div>
                             </div>
                             <div id="nav-Boolean" role="tabpanel" aria-labelledby="nav-Boolean-tab"
-                                class="tab-pane fade"><input type="hidden" value="Boolean" class="searchType">
+                                class="tab-pane fade show" [class.active]="activeTab === 'Boolean'"><input type="hidden"
+                                    value="Boolean" class="searchType">
                                 <div class="row boxBoolean">
                                     <div class="col-lg-12 col-md-12 hide">
                                         <div class="material-form-group-booleanOpretors">
@@ -403,7 +457,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="nav-MARC" role="tabpanel" aria-labelledby="nav-MARC-tab" class="tab-pane fade">
+                            <div id="nav-MARC" role="tabpanel" aria-labelledby="nav-MARC-tab" class="tab-pane fade show"
+                                [class.active]="activeTab === 'MARC'">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="material-form-group"><input type="hidden" value="Marc"
@@ -586,7 +641,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="nav-Call" role="tabpanel" aria-labelledby="nav-Call-tab" class="tab-pane fade">
+                            <div id="nav-Call" role="tabpanel" aria-labelledby="nav-Call-tab" class="tab-pane fade show"
+                                [class.active]="activeTab === 'Call'">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="material-form-group"><input type="hidden" value="Call"
@@ -604,10 +660,9 @@
                                 </div>
                             </div>
                             <div id="nav-Barcode" role="tabpanel" aria-labelledby="nav-Barcode-tab"
-                                class="tab-pane fade">
-                                <div class="row">
-                                    <form novalidate="" autocomplete="off"
-                                        class="w-100 ng-untouched ng-pristine ng-valid">
+                                class="tab-pane fade show" [class.active]="activeTab === 'Barcode'">
+                                <form novalidate="" autocomplete="off" class="w-100 ng-untouched ng-pristine ng-valid">
+                                    <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="material-form-group"><input type="hidden" value="Barcode"
                                                     class="searchType"><input required="true" id="barcodeStart"
@@ -621,11 +676,11 @@
                                                     for="barcodeEnd" class="material-control-label">End</label><i
                                                     class="material-bar"></i></div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                             <div id="nav-ReadingCounts" role="tabpanel" aria-labelledby="nav-ReadingCounts-tab"
-                                class="tab-pane fade">
+                                class="tab-pane fade show" [class.active]="activeTab === 'Reading'">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3">
                                         <div class="material-form-group"><input type="hidden" value="ReadingCounts"
@@ -659,7 +714,7 @@
                                 </div>
                             </div>
                             <div id="nav-Fountas" role="tabpanel" aria-labelledby="nav-Fountas-tab"
-                                class="tab-pane fade">
+                                class="tab-pane fade show" [class.active]="activeTab === 'Fountas'">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="material-form-group"><input type="hidden" value="Fountas"
@@ -731,63 +786,57 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="nav-PopularTitles" role="tabpanel" aria-labelledby="nav-PopularTitles-tab"
-                                class="tab-pane fade">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="material-form-group"><input type="hidden" value="PopularTitles"
-                                                class="searchType"><input id="populartitlesPeriod" type="number"
-                                                name="populartitles_period" step="1" max="1000" min="1" required="true"
-                                                group="populartitles"><label for="populartitlesPeriod"
-                                                class="material-control-label">Look back how
-                                                many months</label><i class="material-bar"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="material-form-group"><input id="populartitlesSize" type="number"
-                                                name="populartitles_size" step="1" max="1000" min="50" required="true"
-                                                group="populartitles"><label for="populartitlesSize"
-                                                class="material-control-label">Size of
-                                                List</label><i class="material-bar"></i></div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-12">
-                                        <div class="material-checkbox mt-0"><label><input type="checkbox"
-                                                    id="populartitlesPublish"><i class="material-helper"></i> Publish as
-                                                Popular Titles list </label>
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
+                    <button type="button" class="limit-btn" (click)="toggleLimitTo()">
+                        &nbsp;Limit To
+                        <span>
+                            <i class="fas fa-caret-down"></i>
+                            <i class="fas fa-caret-up"></i>
+                        </span>
+                    </button>
+                    <!--  -->
+                    <!--  -->
+                    <div class="limit-form" *ngIf="isToggledLimitTo">
+                        <div class="row">
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitCategory"
+                                            class="checkLimit"><i class="material-helper"></i>Category </label>
                                 </div>
                             </div>
-                            <div id="nav-NewInLibrary" role="tabpanel" aria-labelledby="nav-NewInLibrary-tab"
-                                class="tab-pane fade">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="material-form-group"><input type="hidden" value="NewInLibrary"
-                                                class="searchType"><input id="newinlibraryPeriod" type="number"
-                                                name="populartitles_period" step="1" max="1000" min="1" required="true"
-                                                group="populartitles"><label for="newinlibraryPeriod"
-                                                class="material-control-label"> List
-                                                Size</label><i class="material-bar"></i></div>
-                                    </div>
-                                    <div class="col-md-4 col-lg-4">
-                                        <div class="material-checkbox"><label><input type="checkbox"
-                                                    id="newinlibraryPublish"><i class="material-helper"></i> Publish as
-                                                Popular Titles list </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-lg-4">
-                                        <div class="material-checkbox"><label><input type="checkbox"
-                                                    id="newinlibraryCopies"><i class="material-helper"></i> Include new
-                                                copies of older titles
-                                            </label></div>
-                                    </div>
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitInlib"
+                                            class="checkLimit"><i class="material-helper"></i>Available in Library
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitLexile"
+                                            class="checkLimit"><i class="material-helper"></i>Lexile </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitFountas"
+                                            class="checkLimit"><i class="material-helper"></i>Fountas &amp; Pinnell
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitReading"
+                                            class="checkLimit"><i class="material-helper"></i>Reading Count </label>
                                 </div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitAccelerated"
+                                            class="checkLimit"><i class="material-helper"></i>Accelerated Reader
+                                    </label></div>
                             </div>
                         </div>
-                    </div><button type="button" class="limit-btn">&nbsp;Limit To <span><i
-                                class="fas fa-caret-down"></i><i class="fas fa-caret-up"></i></span></button><button
-                        href="#" class="btn btn-primary btn-md pull-right btn-green">Search <i
-                            class="far fa-arrow-alt-circle-right"></i></button>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <button href="#" class="btn btn-primary btn-md pull-right btn-green"
+                        (click)="onSubmitAdvanceSearch()">
+                        Search
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
                 </div>
 
 
@@ -831,7 +880,7 @@
                 </div>
                 <div class="col-3 border border-3 border-muted">
                     <div class="search-main-tab-bottom">
-                        <button type="button" class="limit-btn">
+                        <button type="button" class="limit-btn" (click)="toggleLimitTo()">
                             Limit To
                             <span>
                                 <i class="fas fa-caret-down"></i>
@@ -846,6 +895,45 @@
                         </button>
                     </div>
                 </div>
+                <!--  -->
+                <!--  -->
+                <div class="search-main-tab-bottom">
+                    <div class="limit-form  navbar-limit-form" *ngIf="isToggledLimitTo">
+                        <div class="row">
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitCategory"
+                                            class="checkLimit"><i class="material-helper"></i>Category </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitInlib"
+                                            class="checkLimit"><i class="material-helper"></i>Available in Library
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitLexile"
+                                            class="checkLimit"><i class="material-helper"></i>Lexile </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitFountas"
+                                            class="checkLimit"><i class="material-helper"></i>Fountas &amp; Pinnell
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitReading"
+                                            class="checkLimit"><i class="material-helper"></i>Reading Count </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitAccelerated"
+                                            class="checkLimit"><i class="material-helper"></i>Accelerated Reader
+                                    </label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <!--  -->
             </div>
         </div>
     </div>

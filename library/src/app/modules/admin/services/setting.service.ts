@@ -176,4 +176,15 @@ export class SettingService {
     }
   }
 
+  // accelerated Reader search
+  acceleratedSearchService(levelmin: string, levelmax: string, pointmin: string, pointmax: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/ar?size=20&levelmin='+levelmin+'&levelmax='+levelmax+'&pointmin='+pointmin+'&pointmax='+pointmax+'&int=&order=date'}`, { headers });
+  }
+
 }

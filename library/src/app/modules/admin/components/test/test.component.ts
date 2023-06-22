@@ -6,16 +6,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-  @Output() newItemEvent = new EventEmitter<string>();
-  value: any;
+  activeTab: string = 'tab1';
 
-  // addNewItem(value: string) {
-  //   this.newItemEvent.emit(value);
-  // }
-
-  // ngOnInit(){
-  //   this.value = 'hello';
-  //   this.newItemEvent.emit(this.value);
-  // }
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
 
 }

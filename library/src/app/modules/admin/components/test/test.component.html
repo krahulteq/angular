@@ -1,3 +1,23 @@
-<!-- <label for="item-input">Add an item:</label>
-<input type="text" id="item-input" #newItem>
-<button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button> -->
+<ul class="nav nav-tabs">
+    <li class="nav-item" [class.active]="activeTab === 'tab1'" (click)="setActiveTab('tab1')">
+        <a class="nav-link">Tab 1</a>
+    </li>
+    <li class="nav-item" [class.active]="activeTab === 'tab2'" (click)="setActiveTab('tab2')">
+        <a class="nav-link">Tab 2</a>
+    </li>
+    <li class="nav-item" [class.active]="activeTab === 'tab3'" (click)="setActiveTab('tab3')">
+        <a class="nav-link">Tab 3</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div *ngIf="activeTab === 'tab1'">
+        Content for Tab 1
+    </div>
+    <div *ngIf="activeTab === 'tab2'">
+        Content for Tab 2
+    </div>
+    <div *ngIf="activeTab === 'tab3'">
+        Content for Tab 3
+    </div>
+</div>
