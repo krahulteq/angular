@@ -177,14 +177,80 @@ export class SettingService {
   }
 
   // accelerated Reader search
-  acceleratedSearchService(levelmin: string, levelmax: string, pointmin: string, pointmax: string) {
+  acceleratedSearchService(levelmin: string, levelmax: string, pointmin: string, pointmax: string, intrestlevel: string) {
     const headers = new HttpHeaders({
       'App-Id': 'opac',
       'Configuration': '*',
       'Selectedlibrary': '32471',
       'Tenant': 'pcs',
     });
-    return this.http.get(`${'https://api.library.site/v1/search/ar?size=20&levelmin='+levelmin+'&levelmax='+levelmax+'&pointmin='+pointmin+'&pointmax='+pointmax+'&int=&order=date'}`, { headers });
+    return this.http.get(`${'https://api.library.site/v1/search/ar?size=20&levelmin=' + levelmin + '&levelmax=' + levelmax + '&pointmin=' + pointmin + '&pointmax=' + pointmax + '&int=' + intrestlevel + '&order=date'}`, { headers });
+  }
+
+  // barcode search
+  barcodeSearchService(start: string, end: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/barcode?start=' + start + '&end=' + end + '&size=20&exact=false&order=date'}`, { headers });
+  }
+
+  // call search
+  callSearchService(start: string, end: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/call?start=' + start + '&end=' + end + '&size=20&exact=false&order=date'}`, { headers });
+  }
+
+  // fountas & pinnell search
+  fountasSearchService(levelmin: string, levelmax: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/fp?levelmin=' + levelmin + '&levelmax=' + levelmax + '&size=20&exact=false&order=date'}`, { headers });
+  }
+
+  // lexile search
+  lexileSearchService(levelmin: string, levelmax: string, code: string, patronType: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/lexile?size=20&levelmin=' + levelmin + '&levelmax=' + levelmax + '&code=' + code + '&patronType=' + patronType + '&order=date'}`, { headers });
+  }
+
+  // marc search
+  marcSearchService(keyword: string, searchin: string, exact: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/marc?size=20&term=' + keyword + '&in=' + searchin + '&exact=' + exact + '&order=date'}`, { headers });
+  }
+
+  // reading counts search
+  readingSearchService(levelmin: string, levelmax: string, pointmin: string, pointmax: string, exact: string) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/rc?levelmin=' + levelmin + '&levelmax=' + levelmax + '&pointmin=' + pointmin + '&pointmax=' + pointmax + '&size=20&exact=' + exact + '&order=date'}`, { headers });
   }
 
 }

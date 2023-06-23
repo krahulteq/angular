@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent {
   @Input() userProfile: any;
   @Input() btnVisible: any;
-  private inactivityTimeout = 3600; // 60x60 seconds of inactivity
+  private inactivityTimeout = 360; // 3*60 seconds of inactivity
   private timer: any;
 
   homeNavbar = true;
