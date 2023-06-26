@@ -77,6 +77,7 @@ export class HomeComponent {
   sanitizedHtmlContent: SafeHtml;
   usedbook: any;
   community: any;
+  defaultSearch: any;
 
   constructor(private settingService: SettingService, private datePipe: DatePipe, private changeDetector: ChangeDetectorRef, private sanitizer: DomSanitizer) {
 
@@ -84,11 +85,12 @@ export class HomeComponent {
     this.settingService.getSettings().subscribe((response: any) => {
       this.settings = response;
       this.bannerTitle = this.settings.data.settings.appearance.banner.main;
+      // this.defaultSearch = response.data.settings.search.defaultSearch;
+      // console.log(this.defaultSearch);
     });
 
     this.settingService.getSettingsWithContent().subscribe((response: any) => {
       this.settingsWithContent = response;
-      // console.log(this.settingsWithContent);
       this.settingsWithContent.data.forEach((section: {
         content: any; code: any; id: any; settings: { caption: any; questions: any; days: any; content: any; };
       }) => {

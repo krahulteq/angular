@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SettingService } from '../../services/setting.service';
 
@@ -26,11 +26,21 @@ export class SearchComponent {
   mBorderDanger: string = '';
   rBorderDanger: string = '';
 
+  myForm: FormGroup;
+  activeGate: string = '';
+
   constructor(private fb: FormBuilder, private settingService: SettingService, private changeDetector: ChangeDetectorRef, private router: Router) {
     this.searchForm = this.fb.group({
       searchterm: ['', Validators.required],
       searchin: [''],
     });
+
+    // Initialize the form with an empty form array
+    this.myForm = this.fb.group({
+      formControlsArray: this.fb.array([])
+    });
+
+    this.addControl();
   }
 
   acceleratedSearchForm: any = new FormGroup({
@@ -185,6 +195,20 @@ export class SearchComponent {
           this.rBorderDanger = 'border-danger';
         }
         break;
+      case 'boolean':
+        console.log(this.myForm.value);
+        if (this.myForm.valid) {
+          // this.rBorderDanger = '';
+          // const levelmin = this.readingSearchForm.value.levelmin;
+          // const levelmax = this.readingSearchForm.value.levelmax;
+          // const pointmin = this.readingSearchForm.value.pointmin;
+          // const pointmax = this.readingSearchForm.value.pointmax;
+          // const exact = this.readingSearchForm.value.exact;
+          // this.router.navigate(['admin/searchlist'], { queryParams: { type: 'ReadingCounts', levelmin: levelmin, levelmax: levelmax, pointmin: pointmin, pointmax: pointmax, exact: exact } });
+        } else {
+          this.rBorderDanger = 'border-danger';
+        }
+        break;
 
       default:
         break;
@@ -211,10 +235,48 @@ export class SearchComponent {
   }
 
   // default search 
-  activeTab: string = 'reading';
+  activeTab: string = 'boolean';
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
+  }
+
+  get formControlsArray() {
+    return this.myForm.get('formControlsArray') as FormArray;
+  }
+
+  addControl() {
+    this.formControlsArray.push(this.fb.group({
+      searchTerm: '',
+      searchIn: '',
+      searchOp: '',
+    }));
+  }
+
+  removeControl(index: number) {
+    // Remove the form control at the specified index from the form array
+    this.formControlsArray.removeAt(index);
+  }
+
+  items = [
+    { name: 'AND' },
+    { name: 'OR' },
+    { name: 'NOT' },
+  ];
+
+  activeIndices: number[] = [];
+  activeInputValue: string[] = [];
+
+  setActive(ulIndex: number, liIndex: number, liOp: string): void {
+    if (this.activeIndices[ulIndex] == null) {
+      this.formControlsArray.push(this.fb.group({
+        searchTerm: '',
+        searchIn: '',
+        searchOp: '',
+      }));
+    }
+    this.activeIndices[ulIndex] = liIndex;
+    this.activeInputValue[ulIndex] = liOp;
   }
 
 }

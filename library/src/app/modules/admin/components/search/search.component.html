@@ -260,208 +260,223 @@
                                 </form>
                             </div>
                             <div id="nav-Boolean" role="tabpanel" aria-labelledby="nav-Boolean-tab"
-                                class="tab-pane fade show" [class.active]="activeTab === 'boolean'"><input type="hidden"
-                                    value="Boolean" class="searchType">
-                                <div class="row boxBoolean">
-                                    <div class="col-lg-12 col-md-12 hide">
-                                        <div class="material-form-group-booleanOpretors">
-                                            <ul class="booleanOpretors">
-                                                <li class="active">AND</li>
-                                                <li>OR</li>
-                                                <li>NOT</li>
-                                            </ul>
+                                class="tab-pane fade show" [class.active]="activeTab === 'boolean'">
+                                <form [formGroup]="myForm">
+                                    <div formArrayName="formControlsArray">
+                                        <div class="row boxBoolean"
+                                            *ngFor="let control of formControlsArray.controls; let i = index"
+                                            [formGroupName]="i">
+                                            <div class="col-lg-6 col-md-5">
+                                                <div class="material-form-group">
+                                                    <input formControlName="searchTerm" type="text" required="required"
+                                                        id="BooleanSearch">
+                                                    <label for="BooleanSearch" class="material-control-label">Search
+                                                        for...
+                                                    </label><i class="material-bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-4">
+                                                <div class="material-form-group"><select formControlName="searchIn"
+                                                        id="Lexilecode" name="searchIn">
+                                                        <option value="">All</option>
+                                                        <option value="A">Author</option>
+                                                        <option value="T">Title</option>
+                                                        <option value="S">Subject</option>
+                                                        <option value="I">Series Title</option>
+                                                        <option value="007">
+                                                            <span>007&nbsp;&nbsp;-&nbsp;&nbsp;</span>Physical
+                                                            Description Fixed Field - General Info
+                                                        </option>
+                                                        <option value="008">
+                                                            <span>008&nbsp;&nbsp;-&nbsp;&nbsp;</span>Fixed-Length
+                                                            Data Elements - General Info
+                                                        </option>
+                                                        <option value="017">
+                                                            <span>017&nbsp;&nbsp;-&nbsp;&nbsp;</span>Copyright
+                                                            or Legal Deposit Number
+                                                        </option>
+                                                        <option value="020">
+                                                            <span>020&nbsp;&nbsp;-&nbsp;&nbsp;</span>ISBN
+                                                        </option>
+                                                        <option value="024">
+                                                            <span>024&nbsp;&nbsp;-&nbsp;&nbsp;</span>Other
+                                                            Standard Identifier
+                                                        </option>
+                                                        <option value="072">
+                                                            <span>072&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Category Code
+                                                        </option>
+                                                        <option value="082">
+                                                            <span>082&nbsp;&nbsp;-&nbsp;&nbsp;</span>Dewey
+                                                            Decimal Classification Number
+                                                        </option>
+                                                        <option value="100">
+                                                            <span>100&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Personal Name
+                                                        </option>
+                                                        <option value="110">
+                                                            <span>110&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Corporate Name
+                                                        </option>
+                                                        <option value="111">
+                                                            <span>111&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Meeting Name
+                                                        </option>
+                                                        <option value="130">
+                                                            <span>130&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Uniform Title
+                                                        </option>
+                                                        <option value="210">
+                                                            <span>210&nbsp;&nbsp;-&nbsp;&nbsp;</span>Abbreviated
+                                                            Title
+                                                        </option>
+                                                        <option value="222">
+                                                            <span>222&nbsp;&nbsp;-&nbsp;&nbsp;</span>Key
+                                                            Title
+                                                        </option>
+                                                        <option value="240">
+                                                            <span>240&nbsp;&nbsp;-&nbsp;&nbsp;</span>Uniform
+                                                            Title
+                                                        </option>
+                                                        <option value="242">
+                                                            <span>242&nbsp;&nbsp;-&nbsp;&nbsp;</span>Translation
+                                                            of Title by Cataloging Agency
+                                                        </option>
+                                                        <option value="243">
+                                                            <span>243&nbsp;&nbsp;-&nbsp;&nbsp;</span>Collective
+                                                            Uniform Title
+                                                        </option>
+                                                        <option value="245">
+                                                            <span>245&nbsp;&nbsp;-&nbsp;&nbsp;</span>Title
+                                                            Statement
+                                                        </option>
+                                                        <option value="246">
+                                                            <span>246&nbsp;&nbsp;-&nbsp;&nbsp;</span>Varying
+                                                            Form of Title
+                                                        </option>
+                                                        <option value="247">
+                                                            <span>247&nbsp;&nbsp;-&nbsp;&nbsp;</span>Former
+                                                            Title
+                                                        </option>
+                                                        <option value="336">
+                                                            <span>336&nbsp;&nbsp;-&nbsp;&nbsp;</span>Content
+                                                            Type
+                                                        </option>
+                                                        <option value="337">
+                                                            <span>337&nbsp;&nbsp;-&nbsp;&nbsp;</span>Media
+                                                            Type
+                                                        </option>
+                                                        <option value="338">
+                                                            <span>338&nbsp;&nbsp;-&nbsp;&nbsp;</span>Carrier
+                                                            Type
+                                                        </option>
+                                                        <option value="440">
+                                                            <span>440&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Statement/Added Entry - Title
+                                                        </option>
+                                                        <option value="490">
+                                                            <span>490&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Statement
+                                                        </option>
+                                                        <option value="505">
+                                                            <span>505&nbsp;&nbsp;-&nbsp;&nbsp;</span>Formatted
+                                                            Contents Note
+                                                        </option>
+                                                        <option value="520">
+                                                            <span>520&nbsp;&nbsp;-&nbsp;&nbsp;</span>Summary,
+                                                            Etc.
+                                                        </option>
+                                                        <option value="521">
+                                                            <span>521&nbsp;&nbsp;-&nbsp;&nbsp;</span>Target
+                                                            Audience Note
+                                                        </option>
+                                                        <option value="526">
+                                                            <span>526&nbsp;&nbsp;-&nbsp;&nbsp;</span>Study
+                                                            Program Information Note
+                                                        </option>
+                                                        <option value="600">
+                                                            <span>600&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Personal Name
+                                                        </option>
+                                                        <option value="610">
+                                                            <span>610&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Corporate Name
+                                                        </option>
+                                                        <option value="611">
+                                                            <span>611&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Meeting Name
+                                                        </option>
+                                                        <option value="630">
+                                                            <span>630&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Uniform Title
+                                                        </option>
+                                                        <option value="650">
+                                                            <span>650&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Topical
+                                                        </option>
+                                                        <option value="651">
+                                                            <span>651&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Geographic
+                                                        </option>
+                                                        <option value="655">
+                                                            <span>655&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
+                                                            Term - Genre/Form
+                                                        </option>
+                                                        <option value="656">
+                                                            <span>656&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
+                                                            Term - Occupation
+                                                        </option>
+                                                        <option value="700">
+                                                            <span>700&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                            Entry - Personal Name
+                                                        </option>
+                                                        <option value="710">
+                                                            <span>710&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                            Entry - Corporate Name
+                                                        </option>
+                                                        <option value="730">
+                                                            <span>730&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                            Entry - Uniform Title
+                                                        </option>
+                                                        <option value="800">
+                                                            <span>800&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Added Entry - Personal Name
+                                                        </option>
+                                                        <option value="810">
+                                                            <span>810&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Added Entry - Corporate Name
+                                                        </option>
+                                                        <option value="830">
+                                                            <span>830&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Added Entry - Uniform Title
+                                                        </option>
+                                                    </select><label for="Lexilecode"
+                                                        class="material-control-label">Search
+                                                        In</label><i class="material-bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-1 col-md-3">
+                                                <div *ngIf="i > 0" class="material-form-group chack-right">
+                                                    <i (click)="removeControl(i)"
+                                                        class="material-icons booleanremove">remove</i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="material-form-group-booleanOpretors">
+                                                    <input type="hidden" class="ng-dirty" formControlName="searchOp"
+                                                        [value]="activeInputValue[i]" />
+                                                    <ul class="booleanOpretors">
+                                                        <li *ngFor="let item of items; let j = index"
+                                                            [ngClass]="{'active': activeIndices[i] === j}"
+                                                            (click)="setActive(i, j, item.name)">
+                                                            {{ item.name }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-5">
-                                        <div class="material-form-group">
-                                            <form novalidate="" autocomplete="off"
-                                                class="ng-untouched ng-pristine ng-valid"><input name="terms"
-                                                    type="text" required="required" id="BooleanSearch"><label
-                                                    for="BooleanSearch" class="material-control-label">Search for...
-                                                </label><i class="material-bar"></i></form>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-4">
-                                        <div class="material-form-group"><select id="Lexilecode" name="searchIn">
-                                                <option value="">All</option>
-                                                <option value="A">Author</option>
-                                                <option value="T">Title</option>
-                                                <option value="S">Subject</option>
-                                                <option value="I">Series Title</option>
-                                                <option value="007">
-                                                    <span>007&nbsp;&nbsp;-&nbsp;&nbsp;</span>Physical
-                                                    Description Fixed Field - General Info
-                                                </option>
-                                                <option value="008">
-                                                    <span>008&nbsp;&nbsp;-&nbsp;&nbsp;</span>Fixed-Length
-                                                    Data Elements - General Info
-                                                </option>
-                                                <option value="017">
-                                                    <span>017&nbsp;&nbsp;-&nbsp;&nbsp;</span>Copyright
-                                                    or Legal Deposit Number
-                                                </option>
-                                                <option value="020"><span>020&nbsp;&nbsp;-&nbsp;&nbsp;</span>ISBN
-                                                </option>
-                                                <option value="024">
-                                                    <span>024&nbsp;&nbsp;-&nbsp;&nbsp;</span>Other
-                                                    Standard Identifier
-                                                </option>
-                                                <option value="072">
-                                                    <span>072&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Category Code
-                                                </option>
-                                                <option value="082">
-                                                    <span>082&nbsp;&nbsp;-&nbsp;&nbsp;</span>Dewey
-                                                    Decimal Classification Number
-                                                </option>
-                                                <option value="100"><span>100&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
-                                                    Entry - Personal Name</option>
-                                                <option value="110"><span>110&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
-                                                    Entry - Corporate Name</option>
-                                                <option value="111"><span>111&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
-                                                    Entry - Meeting Name</option>
-                                                <option value="130"><span>130&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
-                                                    Entry - Uniform Title</option>
-                                                <option value="210">
-                                                    <span>210&nbsp;&nbsp;-&nbsp;&nbsp;</span>Abbreviated
-                                                    Title
-                                                </option>
-                                                <option value="222"><span>222&nbsp;&nbsp;-&nbsp;&nbsp;</span>Key
-                                                    Title</option>
-                                                <option value="240">
-                                                    <span>240&nbsp;&nbsp;-&nbsp;&nbsp;</span>Uniform
-                                                    Title
-                                                </option>
-                                                <option value="242">
-                                                    <span>242&nbsp;&nbsp;-&nbsp;&nbsp;</span>Translation
-                                                    of Title by Cataloging Agency
-                                                </option>
-                                                <option value="243">
-                                                    <span>243&nbsp;&nbsp;-&nbsp;&nbsp;</span>Collective
-                                                    Uniform Title
-                                                </option>
-                                                <option value="245">
-                                                    <span>245&nbsp;&nbsp;-&nbsp;&nbsp;</span>Title
-                                                    Statement
-                                                </option>
-                                                <option value="246">
-                                                    <span>246&nbsp;&nbsp;-&nbsp;&nbsp;</span>Varying
-                                                    Form of Title
-                                                </option>
-                                                <option value="247">
-                                                    <span>247&nbsp;&nbsp;-&nbsp;&nbsp;</span>Former
-                                                    Title
-                                                </option>
-                                                <option value="336">
-                                                    <span>336&nbsp;&nbsp;-&nbsp;&nbsp;</span>Content
-                                                    Type
-                                                </option>
-                                                <option value="337">
-                                                    <span>337&nbsp;&nbsp;-&nbsp;&nbsp;</span>Media
-                                                    Type
-                                                </option>
-                                                <option value="338">
-                                                    <span>338&nbsp;&nbsp;-&nbsp;&nbsp;</span>Carrier
-                                                    Type
-                                                </option>
-                                                <option value="440">
-                                                    <span>440&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
-                                                    Statement/Added Entry - Title
-                                                </option>
-                                                <option value="490">
-                                                    <span>490&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
-                                                    Statement
-                                                </option>
-                                                <option value="505">
-                                                    <span>505&nbsp;&nbsp;-&nbsp;&nbsp;</span>Formatted
-                                                    Contents Note
-                                                </option>
-                                                <option value="520">
-                                                    <span>520&nbsp;&nbsp;-&nbsp;&nbsp;</span>Summary,
-                                                    Etc.
-                                                </option>
-                                                <option value="521">
-                                                    <span>521&nbsp;&nbsp;-&nbsp;&nbsp;</span>Target
-                                                    Audience Note
-                                                </option>
-                                                <option value="526">
-                                                    <span>526&nbsp;&nbsp;-&nbsp;&nbsp;</span>Study
-                                                    Program Information Note
-                                                </option>
-                                                <option value="600">
-                                                    <span>600&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Added Entry - Personal Name
-                                                </option>
-                                                <option value="610">
-                                                    <span>610&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Added Entry - Corporate Name
-                                                </option>
-                                                <option value="611">
-                                                    <span>611&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Added Entry - Meeting Name
-                                                </option>
-                                                <option value="630">
-                                                    <span>630&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Added Entry - Uniform Title
-                                                </option>
-                                                <option value="650">
-                                                    <span>650&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Added Entry - Topical
-                                                </option>
-                                                <option value="651">
-                                                    <span>651&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
-                                                    Added Entry - Geographic
-                                                </option>
-                                                <option value="655">
-                                                    <span>655&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
-                                                    Term - Genre/Form
-                                                </option>
-                                                <option value="656">
-                                                    <span>656&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
-                                                    Term - Occupation
-                                                </option>
-                                                <option value="700">
-                                                    <span>700&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
-                                                    Entry - Personal Name
-                                                </option>
-                                                <option value="710">
-                                                    <span>710&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
-                                                    Entry - Corporate Name
-                                                </option>
-                                                <option value="730">
-                                                    <span>730&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
-                                                    Entry - Uniform Title
-                                                </option>
-                                                <option value="800">
-                                                    <span>800&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
-                                                    Added Entry - Personal Name
-                                                </option>
-                                                <option value="810">
-                                                    <span>810&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
-                                                    Added Entry - Corporate Name
-                                                </option>
-                                                <option value="830">
-                                                    <span>830&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
-                                                    Added Entry - Uniform Title
-                                                </option>
-                                            </select><label for="Lexilecode" class="material-control-label">Search
-                                                In</label><i class="material-bar"></i></div>
-                                    </div>
-                                    <div class="col-lg-1 col-md-3">
-                                        <div class="material-form-group chack-right"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="material-form-group-booleanOpretors">
-                                            <ul class="booleanOpretors">
-                                                <li>AND</li>
-                                                <li>OR</li>
-                                                <li>NOT</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                             <div id="nav-MARC" role="tabpanel" aria-labelledby="nav-MARC-tab" class="tab-pane fade show"
                                 [class.active]="activeTab === 'MARC'">
@@ -674,8 +689,8 @@
                             </div>
                             <div id="nav-Barcode" role="tabpanel" aria-labelledby="nav-Barcode-tab"
                                 class="tab-pane fade show" [class.active]="activeTab === 'barcode'">
-                                <form [formGroup]="barcodeSearchForm" (keydown.enter)="onSubmitAdvanceSearch()" autocomplete="off"
-                                    class="w-100 ng-untouched ng-pristine ng-valid">
+                                <form [formGroup]="barcodeSearchForm" (keydown.enter)="onSubmitAdvanceSearch()"
+                                    autocomplete="off" class="w-100 ng-untouched ng-pristine ng-valid">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="material-form-group"><input formControlName="start"
