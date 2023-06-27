@@ -266,18 +266,29 @@
                                         <div class="row boxBoolean"
                                             *ngFor="let control of formControlsArray.controls; let i = index"
                                             [formGroupName]="i">
+                                            <div class="col-lg-12 col-md-12" *ngIf="i>0">
+                                                <div class="material-form-group-booleanOpretors">
+                                                    <input type="hidden" formControlName="searchOp"
+                                                        value="{{ activeInputValue[i] }}" />
+                                                    <ul class="booleanOpretors">
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'AND'}" (click)="setActive('AND', i)">AND</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'OR'}" (click)="setActive('OR', i)">OR</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'NOT'}" (click)="setActive('NOT', i)">NOT</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-6 col-md-5">
                                                 <div class="material-form-group">
                                                     <input formControlName="searchTerm" type="text" required="required"
                                                         id="BooleanSearch">
                                                     <label for="BooleanSearch" class="material-control-label">Search
                                                         for...
-                                                    </label><i class="material-bar"></i>
+                                                    </label><i class="material-bar {{ blnBorderDanger }}"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-5 col-md-4">
-                                                <div class="material-form-group"><select formControlName="searchIn"
-                                                        id="Lexilecode" name="searchIn">
+                                                <div class="material-form-group">
+                                                    <select formControlName="searchIn" id="Lexilecode" name="searchIn">
                                                         <option value="">All</option>
                                                         <option value="A">Author</option>
                                                         <option value="T">Title</option>
@@ -450,8 +461,8 @@
                                                             <span>830&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
                                                             Added Entry - Uniform Title
                                                         </option>
-                                                    </select><label for="Lexilecode"
-                                                        class="material-control-label">Search
+                                                    </select>
+                                                    <label for="Lexilecode" class="material-control-label">Search
                                                         In</label><i class="material-bar"></i>
                                                 </div>
                                             </div>
@@ -461,16 +472,14 @@
                                                         class="material-icons booleanremove">remove</i>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="material-form-group-booleanOpretors">
-                                                    <input type="hidden" class="ng-dirty" formControlName="searchOp"
-                                                        [value]="activeInputValue[i]" />
                                                     <ul class="booleanOpretors">
-                                                        <li *ngFor="let item of items; let j = index"
-                                                            [ngClass]="{'active': activeIndices[i] === j}"
-                                                            (click)="setActive(i, j, item.name)">
-                                                            {{ item.name }}
-                                                        </li>
+                                                        <li (click)="addControl('AND')">AND</li>
+                                                        <li (click)="addControl('OR')">OR</li>
+                                                        <li (click)="addControl('NOT')">NOT</li>
                                                     </ul>
                                                 </div>
                                             </div>

@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SettingService } from '../../services/setting.service';
+import { HttpParams } from '@angular/common/http';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-search',
@@ -28,6 +30,7 @@ export class SearchComponent {
 
   myForm: FormGroup;
   activeGate: string = '';
+  blnBorderDanger: string = '';
 
   constructor(private fb: FormBuilder, private settingService: SettingService, private changeDetector: ChangeDetectorRef, private router: Router) {
     this.searchForm = this.fb.group({
@@ -37,10 +40,10 @@ export class SearchComponent {
 
     // Initialize the form with an empty form array
     this.myForm = this.fb.group({
-      formControlsArray: this.fb.array([])
+      formControlsArray: this.fb.array([], Validators.required)
     });
 
-    this.addControl();
+    this.addControl(this.activeGate);
   }
 
   acceleratedSearchForm: any = new FormGroup({
@@ -196,17 +199,27 @@ export class SearchComponent {
         }
         break;
       case 'boolean':
-        console.log(this.myForm.value);
         if (this.myForm.valid) {
-          // this.rBorderDanger = '';
-          // const levelmin = this.readingSearchForm.value.levelmin;
-          // const levelmax = this.readingSearchForm.value.levelmax;
-          // const pointmin = this.readingSearchForm.value.pointmin;
-          // const pointmax = this.readingSearchForm.value.pointmax;
-          // const exact = this.readingSearchForm.value.exact;
+          console.log(this.myForm.value.formControlsArray);
+          this.blnBorderDanger = '';
+          let params = new HttpParams;
+          params = params.append('type', 'Boolean');
+          
+          this.myForm.value.formControlsArray.forEach((item: any, index: any) => {
+            params = params.append(`term-${index+1}`, item.searchTerm);
+            params = params.append(`in-${index+1}`, item.searchIn);
+            params = params.append(`op-${index+1}`, item.searchOp);
+          });
+
+          // // Loop through the array and append each item as a parameter
+          // this.myForm.value.forEach((item: { searchTerm: string; searchIn: string; searchOp: string; }, index: any) => {
+          // });
+
+          console.log(params);
           // this.router.navigate(['admin/searchlist'], { queryParams: { type: 'ReadingCounts', levelmin: levelmin, levelmax: levelmax, pointmin: pointmin, pointmax: pointmax, exact: exact } });
+          this.router.navigate(['admin/searchlist'], { queryParams: params});
         } else {
-          this.rBorderDanger = 'border-danger';
+          this.blnBorderDanger = 'border-danger';
         }
         break;
 
@@ -245,17 +258,23 @@ export class SearchComponent {
     return this.myForm.get('formControlsArray') as FormArray;
   }
 
-  addControl() {
+  myIndex: any = 0;
+  activeIndices: any[] = [];
+
+  addControl(gate: string) {
     this.formControlsArray.push(this.fb.group({
       searchTerm: '',
       searchIn: '',
-      searchOp: '',
+      searchOp: gate,
     }));
+    this.activeIndices[this.myIndex] = gate;
+    this.myIndex += 1;
   }
 
   removeControl(index: number) {
     // Remove the form control at the specified index from the form array
     this.formControlsArray.removeAt(index);
+    this.myIndex -= 1;
   }
 
   items = [
@@ -264,19 +283,12 @@ export class SearchComponent {
     { name: 'NOT' },
   ];
 
-  activeIndices: number[] = [];
-  activeInputValue: string[] = [];
+  activeInputValue: any[] = [];
 
-  setActive(ulIndex: number, liIndex: number, liOp: string): void {
-    if (this.activeIndices[ulIndex] == null) {
-      this.formControlsArray.push(this.fb.group({
-        searchTerm: '',
-        searchIn: '',
-        searchOp: '',
-      }));
-    }
-    this.activeIndices[ulIndex] = liIndex;
-    this.activeInputValue[ulIndex] = liOp;
+  setActive(gate: any, i: any): void {
+    this.activeIndices[i] = gate;
+    this.activeInputValue[i] = gate;
+    console.log(i);
   }
 
 }
