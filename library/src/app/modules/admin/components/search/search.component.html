@@ -271,9 +271,12 @@
                                                     <input type="hidden" formControlName="searchOp"
                                                         value="{{ activeInputValue[i] }}" />
                                                     <ul class="booleanOpretors">
-                                                        <li [ngClass]="{'active': activeIndices[i] === 'AND'}" (click)="setActive('AND', i)">AND</li>
-                                                        <li [ngClass]="{'active': activeIndices[i] === 'OR'}" (click)="setActive('OR', i)">OR</li>
-                                                        <li [ngClass]="{'active': activeIndices[i] === 'NOT'}" (click)="setActive('NOT', i)">NOT</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'AND'}"
+                                                            (click)="setActive('AND', i)">AND</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'OR'}"
+                                                            (click)="setActive('OR', i)">OR</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'NOT'}"
+                                                            (click)="setActive('NOT', i)">NOT</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -895,7 +898,7 @@
     <div class="form-holder py-2 ps-2">
         <div id="searchForm">
             <div class="row">
-                <div class="col-9">
+                <div *ngIf="!isToggledAdvanceSearch" class="col-9">
                     <div class="search-main-input {{ borderDanger }}">
                         <form [formGroup]="searchForm" (keydown.enter)="onSubmit()">
                             <input type="search" formControlName="searchterm" placeholder="Search for..."
@@ -924,7 +927,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-3 border border-3 border-muted" style="background-color: #f6f6f6;">
+                <div *ngIf="!isToggledAdvanceSearch" class="col-3 border border-3 border-muted" style="background-color: #f6f6f6;">
                     <div class="search-main-tab-bottom mt-2">
                         <button type="button" class="limit-btn" (click)="toggleLimitTo()">
                             Limit To
@@ -933,7 +936,7 @@
                                 <i class="fas fa-caret-up" *ngIf="isToggledLimitTo"></i>
                             </span>
                         </button>
-                        <button type="button" class="advanced-btn">
+                        <button type="button" class="advanced-btn" (click)="toggle()">
                             Advanced
                             <span>
                                 <i class="fas fa-caret-down"></i>
@@ -941,9 +944,816 @@
                         </button>
                     </div>
                 </div>
+
+                <div [hidden]="!isToggledAdvanceSearch" class="search-main-tab-bottom navbar-limit-form">
+                    <div class="advanced-form">
+                        <div class="nav-tabs-head">
+                            <nav>
+                                <ul id="nav-tab" role="tablist" class="nav nav-tabs nav-fill">
+                                    <li><a id="accelerated-tab" data-toggle="tab" role="tab" aria-controls="nav-home"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'accelerated'"
+                                            (click)="setActiveTab('accelerated')">
+                                            Accelerated
+                                            Reader</a></li>
+                                    <li><a id="nav-Barcode-tab" data-toggle="tab" role="tab" aria-controls="nav-Barcode"
+                                            aria-selected="true" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'barcode'"
+                                            (click)="setActiveTab('barcode')">Barcode</a>
+                                    </li>
+                                    <li><a id="nav-Boolean-tab" data-toggle="tab" role="tab" aria-controls="nav-Boolean"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'boolean'"
+                                            (click)="setActiveTab('boolean')">Boolean</a>
+                                    </li>
+                                    <li><a id="nav-Call-tab" data-toggle="tab" role="tab" aria-controls="nav-Call"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'call'"
+                                            (click)="setActiveTab('call')">Call</a></li>
+                                    <li><a id="nav-Fountas-tab" data-toggle="tab" role="tab" aria-controls="nav-Fountas"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'fountas'"
+                                            (click)="setActiveTab('fountas')">Fountas &amp;
+                                            Pinnell</a></li>
+                                    <li><a id="nav-Lexile-tab" data-toggle="tab" role="tab" aria-controls="nav-Lexile"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'lexile'"
+                                            (click)="setActiveTab('lexile')">Lexile</a></li>
+                                    <li><a id="nav-MARC-tab" data-toggle="tab" role="tab" aria-controls="nav-MARC"
+                                            aria-selected="false" class="nav-item nav-link"
+                                            [class.active]="activeTab === 'MARC'"
+                                            (click)="setActiveTab('MARC')">MARC</a></li>
+                                    <li><a id="nav-ReadingCounts-tab" data-toggle="tab" role="tab"
+                                            aria-controls="nav-ReadingCounts" aria-selected="false"
+                                            class="nav-item nav-link" [class.active]="activeTab === 'reading'"
+                                            (click)="setActiveTab('reading')">Reading
+                                            Counts</a></li>
+                                </ul>
+                            </nav><button type="button" class="BasicSearch-btn open" (click)="toggle()"><span><i
+                                        class="fas fa-caret-left"></i></span>
+                                Basic Search</button>
+                        </div>
+                        <div id="nav-tabContent" class="tab-content">
+                            <div id="accelerated" role="tabpanel" aria-labelledby="accelerated-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'accelerated'">
+                                <form [formGroup]="acceleratedSearchForm" (keydown.enter)="onSubmitAdvanceSearch()">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group">
+                                                <input formControlName="levelmin" type="number" required="required"
+                                                    id="AcceleratedReaderLevelMin" group="AcceleratedReaderLevel"
+                                                    min="0.1" max="15" step="0.1" ismin="true">
+                                                <label for="AcceleratedReaderLevelMin"
+                                                    class="material-control-label">Reading
+                                                    Level Min</label>
+                                                <i class="material-bar {{ aRLMBorderDanger }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="levelmax"
+                                                    type="number" required="required" group="AcceleratedReaderLevel"
+                                                    min="0.1" max="15" step="0.1" id="AcceleratedReaderLevelMax"><label
+                                                    for="AcceleratedReaderLevelMax"
+                                                    class="material-control-label">Reading
+                                                    Level Max</label><i class="material-bar {{ aRLMBorderDanger }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="pointmin"
+                                                    type="number" required="required" id="AcceleratedReaderPointsMin"
+                                                    group="AcceleratedReaderPoints" min="0.5" max="120" step="0.5"
+                                                    ismin="true"><label for="AcceleratedReaderPointsMin"
+                                                    class="material-control-label">Points
+                                                    Min</label><i class="material-bar {{ aRLMBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="pointmax"
+                                                    type="number" required="required" id="AcceleratedReaderPointsMax"
+                                                    group="AcceleratedReaderPoints" min="0.5" max="120"
+                                                    step="0.5"><label for="AcceleratedReaderPointsMax"
+                                                    class="material-control-label">Points
+                                                    Max</label><i class="material-bar {{ aRLMBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="material-form-group"><select formControlName="intrestlevel"
+                                                    id="AcceleratedReaderInterestLevel" name="InterestLevel">
+                                                    <option value="">All</option>
+                                                    <option value="LG">Lower Grades</option>
+                                                    <option value="MG">Middle Grades</option>
+                                                    <option value="UG">Upper Grades</option>
+                                                </select><label for="AcceleratedReaderInterestLevel"
+                                                    class="material-control-label">Interest Level</label><i
+                                                    class="material-bar"></i></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-Lexile" role="tabpanel" aria-labelledby="nav-Lexile-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'lexile'">
+                                <form [formGroup]="lexileSearchForm" (keydown.enter)="onSubmitAdvanceSearch()">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="levelmin"
+                                                    type="text" required="required" id="LexileLevelMin"
+                                                    group="LexileLevel" ismin="true" min="-2000" max="2000"
+                                                    step="1"><label for="LexileLevelMin"
+                                                    class="material-control-label">Level Min</label><i
+                                                    class="material-bar {{ lBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="material-form-group"><input formControlName="levelmax"
+                                                    type="text" required="required" id="LexileLevelMax"
+                                                    group="LexileLevel" min="-2000" max="2000" step="1"><label
+                                                    for="LexileLevelMax" class="material-control-label">Level
+                                                    Max</label><i class="material-bar {{ lBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-12">
+                                            <div class="material-form-group"><select formControlName="code"
+                                                    id="Lexilecode" name="code">
+                                                    <option value=""></option>
+                                                    <option value="BR">BR - Beginning Reading</option>
+                                                    <option value="IG">IG - Illustrated Glossary
+                                                    </option>
+                                                    <option value="NC">NC - Non-Conforming Text
+                                                    </option>
+                                                    <option value="NP">NP - Non-Prose Text</option>
+                                                    <option value="AD">AD - Adult-Directed Text
+                                                    </option>
+                                                </select><label for="Lexilecode"
+                                                    class="material-control-label">Code</label><i
+                                                    class="material-bar {{ lBorderDanger }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-12">
+                                            <div class="material-form-group"><select formControlName="patronType"
+                                                    id="LexilePatronType" name="code">
+                                                    <option value="">All</option>
+                                                    <option value="14" min="-120" high="0">14 -
+                                                        Kindergarten</option>
+                                                    <option value="1" min="-120" high="295">1 - First
+                                                    </option>
+                                                    <option value="2" min="170" high="545">2 - Second
+                                                    </option>
+                                                    <option value="3" min="415" high="760">3 - Third
+                                                    </option>
+                                                    <option value="4" min="635" high="950">4 - Fourth
+                                                    </option>
+                                                    <option value="5" min="770" high="1080">5 - Fifth
+                                                    </option>
+                                                    <option value="6" min="855" high="1165">6 - Sixth
+                                                    </option>
+                                                    <option value="7" min="925" high="1235">7 -
+                                                        Seventh</option>
+                                                    <option value="8" min="985" high="1295">8 - Eighth
+                                                    </option>
+                                                    <option value="9" min="1040" high="1350">9 - Ninth
+                                                    </option>
+                                                    <option value="10" min="1085" high="1400">10 -
+                                                        Tenth</option>
+                                                    <option value="11" min="1130" high="1440">11 -
+                                                        Eleventh</option>
+                                                    <option value="12" min="1130" high="1440">12 -
+                                                        Twelfth</option>
+                                                </select><label for="LexilePatronType"
+                                                    class="material-control-label">Grade</label><i
+                                                    class="material-bar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-Boolean" role="tabpanel" aria-labelledby="nav-Boolean-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'boolean'">
+                                <form [formGroup]="myForm">
+                                    <div formArrayName="formControlsArray">
+                                        <div class="row boxBoolean"
+                                            *ngFor="let control of formControlsArray.controls; let i = index"
+                                            [formGroupName]="i">
+                                            <div class="col-lg-12 col-md-12" *ngIf="i>0">
+                                                <div class="material-form-group-booleanOpretors">
+                                                    <input type="hidden" formControlName="searchOp"
+                                                        value="{{ activeInputValue[i] }}" />
+                                                    <ul class="booleanOpretors">
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'AND'}"
+                                                            (click)="setActive('AND', i)">AND</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'OR'}"
+                                                            (click)="setActive('OR', i)">OR</li>
+                                                        <li [ngClass]="{'active': activeIndices[i] === 'NOT'}"
+                                                            (click)="setActive('NOT', i)">NOT</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-5">
+                                                <div class="material-form-group">
+                                                    <input formControlName="searchTerm" type="text" required="required"
+                                                        id="BooleanSearch">
+                                                    <label for="BooleanSearch" class="material-control-label">Search
+                                                        for...
+                                                    </label><i class="material-bar {{ blnBorderDanger }}"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-4">
+                                                <div class="material-form-group">
+                                                    <select formControlName="searchIn" id="Lexilecode" name="searchIn">
+                                                        <option value="">All</option>
+                                                        <option value="A">Author</option>
+                                                        <option value="T">Title</option>
+                                                        <option value="S">Subject</option>
+                                                        <option value="I">Series Title</option>
+                                                        <option value="007">
+                                                            <span>007&nbsp;&nbsp;-&nbsp;&nbsp;</span>Physical
+                                                            Description Fixed Field - General Info
+                                                        </option>
+                                                        <option value="008">
+                                                            <span>008&nbsp;&nbsp;-&nbsp;&nbsp;</span>Fixed-Length
+                                                            Data Elements - General Info
+                                                        </option>
+                                                        <option value="017">
+                                                            <span>017&nbsp;&nbsp;-&nbsp;&nbsp;</span>Copyright
+                                                            or Legal Deposit Number
+                                                        </option>
+                                                        <option value="020">
+                                                            <span>020&nbsp;&nbsp;-&nbsp;&nbsp;</span>ISBN
+                                                        </option>
+                                                        <option value="024">
+                                                            <span>024&nbsp;&nbsp;-&nbsp;&nbsp;</span>Other
+                                                            Standard Identifier
+                                                        </option>
+                                                        <option value="072">
+                                                            <span>072&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Category Code
+                                                        </option>
+                                                        <option value="082">
+                                                            <span>082&nbsp;&nbsp;-&nbsp;&nbsp;</span>Dewey
+                                                            Decimal Classification Number
+                                                        </option>
+                                                        <option value="100">
+                                                            <span>100&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Personal Name
+                                                        </option>
+                                                        <option value="110">
+                                                            <span>110&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Corporate Name
+                                                        </option>
+                                                        <option value="111">
+                                                            <span>111&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Meeting Name
+                                                        </option>
+                                                        <option value="130">
+                                                            <span>130&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                            Entry - Uniform Title
+                                                        </option>
+                                                        <option value="210">
+                                                            <span>210&nbsp;&nbsp;-&nbsp;&nbsp;</span>Abbreviated
+                                                            Title
+                                                        </option>
+                                                        <option value="222">
+                                                            <span>222&nbsp;&nbsp;-&nbsp;&nbsp;</span>Key
+                                                            Title
+                                                        </option>
+                                                        <option value="240">
+                                                            <span>240&nbsp;&nbsp;-&nbsp;&nbsp;</span>Uniform
+                                                            Title
+                                                        </option>
+                                                        <option value="242">
+                                                            <span>242&nbsp;&nbsp;-&nbsp;&nbsp;</span>Translation
+                                                            of Title by Cataloging Agency
+                                                        </option>
+                                                        <option value="243">
+                                                            <span>243&nbsp;&nbsp;-&nbsp;&nbsp;</span>Collective
+                                                            Uniform Title
+                                                        </option>
+                                                        <option value="245">
+                                                            <span>245&nbsp;&nbsp;-&nbsp;&nbsp;</span>Title
+                                                            Statement
+                                                        </option>
+                                                        <option value="246">
+                                                            <span>246&nbsp;&nbsp;-&nbsp;&nbsp;</span>Varying
+                                                            Form of Title
+                                                        </option>
+                                                        <option value="247">
+                                                            <span>247&nbsp;&nbsp;-&nbsp;&nbsp;</span>Former
+                                                            Title
+                                                        </option>
+                                                        <option value="336">
+                                                            <span>336&nbsp;&nbsp;-&nbsp;&nbsp;</span>Content
+                                                            Type
+                                                        </option>
+                                                        <option value="337">
+                                                            <span>337&nbsp;&nbsp;-&nbsp;&nbsp;</span>Media
+                                                            Type
+                                                        </option>
+                                                        <option value="338">
+                                                            <span>338&nbsp;&nbsp;-&nbsp;&nbsp;</span>Carrier
+                                                            Type
+                                                        </option>
+                                                        <option value="440">
+                                                            <span>440&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Statement/Added Entry - Title
+                                                        </option>
+                                                        <option value="490">
+                                                            <span>490&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Statement
+                                                        </option>
+                                                        <option value="505">
+                                                            <span>505&nbsp;&nbsp;-&nbsp;&nbsp;</span>Formatted
+                                                            Contents Note
+                                                        </option>
+                                                        <option value="520">
+                                                            <span>520&nbsp;&nbsp;-&nbsp;&nbsp;</span>Summary,
+                                                            Etc.
+                                                        </option>
+                                                        <option value="521">
+                                                            <span>521&nbsp;&nbsp;-&nbsp;&nbsp;</span>Target
+                                                            Audience Note
+                                                        </option>
+                                                        <option value="526">
+                                                            <span>526&nbsp;&nbsp;-&nbsp;&nbsp;</span>Study
+                                                            Program Information Note
+                                                        </option>
+                                                        <option value="600">
+                                                            <span>600&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Personal Name
+                                                        </option>
+                                                        <option value="610">
+                                                            <span>610&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Corporate Name
+                                                        </option>
+                                                        <option value="611">
+                                                            <span>611&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Meeting Name
+                                                        </option>
+                                                        <option value="630">
+                                                            <span>630&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Uniform Title
+                                                        </option>
+                                                        <option value="650">
+                                                            <span>650&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Topical
+                                                        </option>
+                                                        <option value="651">
+                                                            <span>651&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                            Added Entry - Geographic
+                                                        </option>
+                                                        <option value="655">
+                                                            <span>655&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
+                                                            Term - Genre/Form
+                                                        </option>
+                                                        <option value="656">
+                                                            <span>656&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
+                                                            Term - Occupation
+                                                        </option>
+                                                        <option value="700">
+                                                            <span>700&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                            Entry - Personal Name
+                                                        </option>
+                                                        <option value="710">
+                                                            <span>710&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                            Entry - Corporate Name
+                                                        </option>
+                                                        <option value="730">
+                                                            <span>730&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                            Entry - Uniform Title
+                                                        </option>
+                                                        <option value="800">
+                                                            <span>800&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Added Entry - Personal Name
+                                                        </option>
+                                                        <option value="810">
+                                                            <span>810&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Added Entry - Corporate Name
+                                                        </option>
+                                                        <option value="830">
+                                                            <span>830&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                            Added Entry - Uniform Title
+                                                        </option>
+                                                    </select>
+                                                    <label for="Lexilecode" class="material-control-label">Search
+                                                        In</label><i class="material-bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-1 col-md-3">
+                                                <div *ngIf="i > 0" class="material-form-group chack-right">
+                                                    <i (click)="removeControl(i)"
+                                                        class="material-icons booleanremove">remove</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="material-form-group-booleanOpretors">
+                                                    <ul class="booleanOpretors">
+                                                        <li (click)="addControl('AND')">AND</li>
+                                                        <li (click)="addControl('OR')">OR</li>
+                                                        <li (click)="addControl('NOT')">NOT</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-MARC" role="tabpanel" aria-labelledby="nav-MARC-tab" class="tab-pane fade show"
+                                [class.active]="activeTab === 'MARC'">
+                                <form [formGroup]="marcSearchForm" (keydown.enter)="onSubmitAdvanceSearch()">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><input formControlName="keyword"
+                                                    required="required" id="serachInMarc" type="text" name="search"
+                                                    autocomplete="off"><label for="input"
+                                                    class="material-control-label">Search
+                                                    for...</label><i class="material-bar {{ mBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><select formControlName="searchin"
+                                                    name="select-profession" id="serachInMarcIn">
+                                                    <option value="">All</option>
+                                                    <option value="A">Author</option>
+                                                    <option value="T">Title</option>
+                                                    <option value="S">Subject</option>
+                                                    <option value="I">Series Title</option>
+                                                    <option value="007">
+                                                        <span>007&nbsp;&nbsp;-&nbsp;&nbsp;</span>Physical
+                                                        Description Fixed Field - General Info
+                                                    </option>
+                                                    <option value="008">
+                                                        <span>008&nbsp;&nbsp;-&nbsp;&nbsp;</span>Fixed-Length
+                                                        Data Elements - General Info
+                                                    </option>
+                                                    <option value="017">
+                                                        <span>017&nbsp;&nbsp;-&nbsp;&nbsp;</span>Copyright
+                                                        or Legal Deposit Number
+                                                    </option>
+                                                    <option value="020"><span>020&nbsp;&nbsp;-&nbsp;&nbsp;</span>ISBN
+                                                    </option>
+                                                    <option value="024">
+                                                        <span>024&nbsp;&nbsp;-&nbsp;&nbsp;</span>Other
+                                                        Standard Identifier
+                                                    </option>
+                                                    <option value="072">
+                                                        <span>072&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Category Code
+                                                    </option>
+                                                    <option value="082">
+                                                        <span>082&nbsp;&nbsp;-&nbsp;&nbsp;</span>Dewey
+                                                        Decimal Classification Number
+                                                    </option>
+                                                    <option value="100"><span>100&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                        Entry - Personal Name</option>
+                                                    <option value="110"><span>110&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                        Entry - Corporate Name</option>
+                                                    <option value="111"><span>111&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                        Entry - Meeting Name</option>
+                                                    <option value="130"><span>130&nbsp;&nbsp;-&nbsp;&nbsp;</span>Main
+                                                        Entry - Uniform Title</option>
+                                                    <option value="210">
+                                                        <span>210&nbsp;&nbsp;-&nbsp;&nbsp;</span>Abbreviated
+                                                        Title
+                                                    </option>
+                                                    <option value="222"><span>222&nbsp;&nbsp;-&nbsp;&nbsp;</span>Key
+                                                        Title</option>
+                                                    <option value="240">
+                                                        <span>240&nbsp;&nbsp;-&nbsp;&nbsp;</span>Uniform
+                                                        Title
+                                                    </option>
+                                                    <option value="242">
+                                                        <span>242&nbsp;&nbsp;-&nbsp;&nbsp;</span>Translation
+                                                        of Title by Cataloging Agency
+                                                    </option>
+                                                    <option value="243">
+                                                        <span>243&nbsp;&nbsp;-&nbsp;&nbsp;</span>Collective
+                                                        Uniform Title
+                                                    </option>
+                                                    <option value="245">
+                                                        <span>245&nbsp;&nbsp;-&nbsp;&nbsp;</span>Title
+                                                        Statement
+                                                    </option>
+                                                    <option value="246">
+                                                        <span>246&nbsp;&nbsp;-&nbsp;&nbsp;</span>Varying
+                                                        Form of Title
+                                                    </option>
+                                                    <option value="247">
+                                                        <span>247&nbsp;&nbsp;-&nbsp;&nbsp;</span>Former
+                                                        Title
+                                                    </option>
+                                                    <option value="336">
+                                                        <span>336&nbsp;&nbsp;-&nbsp;&nbsp;</span>Content
+                                                        Type
+                                                    </option>
+                                                    <option value="337">
+                                                        <span>337&nbsp;&nbsp;-&nbsp;&nbsp;</span>Media
+                                                        Type
+                                                    </option>
+                                                    <option value="338">
+                                                        <span>338&nbsp;&nbsp;-&nbsp;&nbsp;</span>Carrier
+                                                        Type
+                                                    </option>
+                                                    <option value="440">
+                                                        <span>440&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                        Statement/Added Entry - Title
+                                                    </option>
+                                                    <option value="490">
+                                                        <span>490&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                        Statement
+                                                    </option>
+                                                    <option value="505">
+                                                        <span>505&nbsp;&nbsp;-&nbsp;&nbsp;</span>Formatted
+                                                        Contents Note
+                                                    </option>
+                                                    <option value="520">
+                                                        <span>520&nbsp;&nbsp;-&nbsp;&nbsp;</span>Summary,
+                                                        Etc.
+                                                    </option>
+                                                    <option value="521">
+                                                        <span>521&nbsp;&nbsp;-&nbsp;&nbsp;</span>Target
+                                                        Audience Note
+                                                    </option>
+                                                    <option value="526">
+                                                        <span>526&nbsp;&nbsp;-&nbsp;&nbsp;</span>Study
+                                                        Program Information Note
+                                                    </option>
+                                                    <option value="600">
+                                                        <span>600&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Added Entry - Personal Name
+                                                    </option>
+                                                    <option value="610">
+                                                        <span>610&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Added Entry - Corporate Name
+                                                    </option>
+                                                    <option value="611">
+                                                        <span>611&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Added Entry - Meeting Name
+                                                    </option>
+                                                    <option value="630">
+                                                        <span>630&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Added Entry - Uniform Title
+                                                    </option>
+                                                    <option value="650">
+                                                        <span>650&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Added Entry - Topical
+                                                    </option>
+                                                    <option value="651">
+                                                        <span>651&nbsp;&nbsp;-&nbsp;&nbsp;</span>Subject
+                                                        Added Entry - Geographic
+                                                    </option>
+                                                    <option value="655">
+                                                        <span>655&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
+                                                        Term - Genre/Form
+                                                    </option>
+                                                    <option value="656">
+                                                        <span>656&nbsp;&nbsp;-&nbsp;&nbsp;</span>Index
+                                                        Term - Occupation
+                                                    </option>
+                                                    <option value="700">
+                                                        <span>700&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                        Entry - Personal Name
+                                                    </option>
+                                                    <option value="710">
+                                                        <span>710&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                        Entry - Corporate Name
+                                                    </option>
+                                                    <option value="730">
+                                                        <span>730&nbsp;&nbsp;-&nbsp;&nbsp;</span>Added
+                                                        Entry - Uniform Title
+                                                    </option>
+                                                    <option value="800">
+                                                        <span>800&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                        Added Entry - Personal Name
+                                                    </option>
+                                                    <option value="810">
+                                                        <span>810&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                        Added Entry - Corporate Name
+                                                    </option>
+                                                    <option value="830">
+                                                        <span>830&nbsp;&nbsp;-&nbsp;&nbsp;</span>Series
+                                                        Added Entry - Uniform Title
+                                                    </option>
+                                                </select><label for="input" class="material-control-label">Search
+                                                    In</label><i class="material-bar"></i></div>
+                                        </div>
+                                        <div class="col-md-6 col-lg-6 exact-term-checkbox">
+                                            <div class="material-checkbox"><label><input formControlName="exact"
+                                                        type="checkbox" id="startWithMarc"><i _ngcontent-c5=""
+                                                        class="material-helper"></i>
+                                                    Starts with exact term </label></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-Call" role="tabpanel" aria-labelledby="nav-Call-tab" class="tab-pane fade show"
+                                [class.active]="activeTab === 'call'">
+                                <form [formGroup]="callSearchForm" (keydown.enter)="onSubmitAdvanceSearch()">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><input formControlName="start"
+                                                    required="required" id="callStart" type="text"
+                                                    name="callSerch"><label for="callStart"
+                                                    class="material-control-label">Start</label><i
+                                                    class="material-bar {{ cBorderDanger }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><input formControlName="end"
+                                                    required="required" id="callEnd" type="text" name="callSerch"><label
+                                                    for="callEnd" class="material-control-label">End</label><i
+                                                    class="material-bar {{ cBorderDanger }}"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-Barcode" role="tabpanel" aria-labelledby="nav-Barcode-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'barcode'">
+                                <form [formGroup]="barcodeSearchForm" (keydown.enter)="onSubmitAdvanceSearch()"
+                                    autocomplete="off" class="w-100 ng-untouched ng-pristine ng-valid">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><input formControlName="start"
+                                                    required="true" id="barcodeStart" type="text" name="BarcodeSerch"
+                                                    autocomplete="off"><label for="barcodeStart"
+                                                    class="material-control-label">Start</label><i
+                                                    class="material-bar {{ bBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><input formControlName="end"
+                                                    required="true" id="barcodeEnd" type="text" name="BarcodeSerch"
+                                                    autocomplete="off"><label for="barcodeEnd"
+                                                    class="material-control-label">End</label><i
+                                                    class="material-bar {{ bBorderDanger }}"></i></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-ReadingCounts" role="tabpanel" aria-labelledby="nav-ReadingCounts-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'reading'">
+                                <form [formGroup]="readingSearchForm" (keydown.enter)="onSubmitAdvanceSearch()">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="material-form-group"><input formControlName="levelmin"
+                                                    id="readingcountsLevelMin" type="number"
+                                                    name="readingcountsLevelMin" step="0.1" max="15" min="0.1"
+                                                    required="true" ismin="true" group="readingcountsLevel"><label
+                                                    for="input" class="material-control-label">Level Min</label><i
+                                                    class="material-bar {{ rBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="material-form-group"><input formControlName="levelmax"
+                                                    id="readingcountsLevelMax" type="number"
+                                                    name="readingcountsLevelMax" step="0.1" max="15" min="0.1"
+                                                    required="true" group="readingcountsLevel"><label for="input"
+                                                    class="material-control-label">Level Max</label><i
+                                                    class="material-bar {{ rBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="material-form-group"><input formControlName="pointmin"
+                                                    id="readingcountsPointMin" type="number"
+                                                    name="readingcountsPointMin" step="0.5" max="120" min="0.5"
+                                                    required="true" ismin="true" group="readingcountsPoint"><label
+                                                    for="input" class="material-control-label">Point
+                                                    Min</label><i class="material-bar {{ rBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="material-form-group"><input formControlName="pointmax"
+                                                    id="readingcountsPointMax" type="number"
+                                                    name="readingcountsPointMax" step="0.5" max="120" min="0.5"
+                                                    required="true" group="readingcountsPoint"><label for="input"
+                                                    class="material-control-label">Point Max</label><i
+                                                    class="material-bar {{ rBorderDanger }}"></i></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="nav-Fountas" role="tabpanel" aria-labelledby="nav-Fountas-tab"
+                                class="tab-pane fade show" [class.active]="activeTab === 'fountas'">
+                                <form [formGroup]="fountasSearchForm" (keydown.enter)="onSubmitAdvanceSearch()">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><select formControlName="levelmin"
+                                                    id="fountasLevelMin">
+                                                    <option value="a">A</option>
+                                                    <option value="b">B</option>
+                                                    <option value="c">C</option>
+                                                    <option value="d">D</option>
+                                                    <option value="e">E</option>
+                                                    <option value="f">F</option>
+                                                    <option value="g">G</option>
+                                                    <option value="h">H</option>
+                                                    <option value="i">I</option>
+                                                    <option value="j">J</option>
+                                                    <option value="k">K</option>
+                                                    <option value="l">L</option>
+                                                    <option value="m">M</option>
+                                                    <option value="n">N</option>
+                                                    <option value="o">O</option>
+                                                    <option value="p">P</option>
+                                                    <option value="q">Q</option>
+                                                    <option value="r">R</option>
+                                                    <option value="s">S</option>
+                                                    <option value="t">T</option>
+                                                    <option value="u">U</option>
+                                                    <option value="v">V</option>
+                                                    <option value="w">W</option>
+                                                    <option value="x">X</option>
+                                                    <option value="y">Y</option>
+                                                    <option value="z">Z</option>
+                                                    <option value="z+">Z+</option>
+                                                </select><label for="fountasLevelMin"
+                                                    class="material-control-label">Interest Level Min</label><i
+                                                    class="material-bar {{ fBorderDanger }}"></i></div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="material-form-group"><select formControlName="levelmax"
+                                                    id="fountasLevelMax" name="InterestLevel">
+                                                    <option value="a">A</option>
+                                                    <option value="b">B</option>
+                                                    <option value="c">C</option>
+                                                    <option value="d">D</option>
+                                                    <option value="e">E</option>
+                                                    <option value="f">F</option>
+                                                    <option value="g">G</option>
+                                                    <option value="h">H</option>
+                                                    <option value="i">I</option>
+                                                    <option value="j">J</option>
+                                                    <option value="k">K</option>
+                                                    <option value="l">L</option>
+                                                    <option value="m">M</option>
+                                                    <option value="n">N</option>
+                                                    <option value="o">O</option>
+                                                    <option value="p">P</option>
+                                                    <option value="q">Q</option>
+                                                    <option value="r">R</option>
+                                                    <option value="s">S</option>
+                                                    <option value="t">T</option>
+                                                    <option value="u">U</option>
+                                                    <option value="v">V</option>
+                                                    <option value="w">W</option>
+                                                    <option value="x">X</option>
+                                                    <option value="y">Y</option>
+                                                    <option value="z">Z</option>
+                                                    <option value="z+">Z+</option>
+                                                </select><label for="fountasLevelMax"
+                                                    class="material-control-label">Interest Level Max</label><i
+                                                    class="material-bar {{ fBorderDanger }}"></i></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="limit-btn" (click)="toggleLimitTo()">
+                        &nbsp;Limit To
+                        <span>
+                            <i class="fas fa-caret-down" *ngIf="!isToggledLimitTo"></i>
+                            <i class="fas fa-caret-up" *ngIf="isToggledLimitTo"></i>
+                        </span>
+                    </button>
+                    <!--  -->
+                    <!--  -->
+                    <div class="limit-form" *ngIf="isToggledAdvanceSearch && isToggledLimitTo">
+                        <div class="row">
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitCategory"
+                                            class="checkLimit"><i class="material-helper"></i>Category </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitInlib"
+                                            class="checkLimit"><i class="material-helper"></i>Available in Library
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitLexile"
+                                            class="checkLimit"><i class="material-helper"></i>Lexile </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitFountas"
+                                            class="checkLimit"><i class="material-helper"></i>Fountas &amp; Pinnell
+                                    </label></div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitReading"
+                                            class="checkLimit"><i class="material-helper"></i>Reading Count </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 parentLimit">
+                                <div class="material-checkbox"><label><input type="checkbox" name="limitAccelerated"
+                                            class="checkLimit"><i class="material-helper"></i>Accelerated Reader
+                                    </label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <button href="#" class="btn btn-primary btn-md pull-right btn-green"
+                        (click)="onSubmitAdvanceSearch()">
+                        Search
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+
                 <!--  -->
                 <!--  -->
-                <div class="search-main-tab-bottom">
+                <div *ngIf="!isToggledAdvanceSearch" class="search-main-tab-bottom">
                     <div class="limit-form  navbar-limit-form" *ngIf="isToggledLimitTo">
                         <div class="row">
                             <div class="col-md-6 parentLimit">

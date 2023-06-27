@@ -116,7 +116,7 @@ export class SearchComponent {
 
   advanceForm: any;
   onSubmitAdvanceSearch() {
-
+    this.toggle();
     switch (this.activeTab) {
       case 'accelerated':
         if (this.acceleratedSearchForm.valid) {
