@@ -282,6 +282,7 @@ export class SearchComponent {
     // Remove the form control at the specified index from the form array
     this.formControlsArray.removeAt(index);
     this.myIndex -= 1;
+    this.activeIndices.splice(index, 1);
   }
 
   items = [
@@ -294,8 +295,9 @@ export class SearchComponent {
 
   setActive(gate: any, i: any): void {
     this.activeIndices[i] = gate;
-    this.activeInputValue[i] = gate;
-    console.log(i);
+    this.formControlsArray.at(i).get('searchOp')?.patchValue(gate);
+    // const valuee = this.formControlsArray.at(i).value.searchOp;
+    // console.log(valuee);
   }
 
 }
