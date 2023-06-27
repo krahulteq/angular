@@ -43,7 +43,7 @@ export class SearchComponent {
       formControlsArray: this.fb.array([], Validators.required)
     });
 
-    this.addControl(this.activeGate);
+    this.addControl('AND');
   }
 
   acceleratedSearchForm: any = new FormGroup({
@@ -200,24 +200,31 @@ export class SearchComponent {
         break;
       case 'boolean':
         if (this.myForm.valid) {
-          console.log(this.myForm.value.formControlsArray);
+          // console.log(this.myForm.value.formControlsArray);
           this.blnBorderDanger = '';
           let params = new HttpParams;
-          params = params.append('type', 'Boolean');
-          
-          this.myForm.value.formControlsArray.forEach((item: any, index: any) => {
-            params = params.append(`term-${index+1}`, item.searchTerm);
-            params = params.append(`in-${index+1}`, item.searchIn);
-            params = params.append(`op-${index+1}`, item.searchOp);
+          let count = 0;
+          this.myForm.value.formControlsArray.forEach((item: any, index: any, arr: any) => {
+            params = params.append(`term-${index + 1}`, item.searchTerm);
+            params = params.append(`in-${index + 1}`, item.searchIn);
+            if (index != 0) {
+              params = params.append(`op-${index}`, item.searchOp);
+            }
+
+            if (index === arr.length - 1) {
+              params = params.append(`op-${index+1}`, item.searchOp);
+            }
+
+            count += 1;
           });
+          params = params.append('count', count);
 
           // // Loop through the array and append each item as a parameter
           // this.myForm.value.forEach((item: { searchTerm: string; searchIn: string; searchOp: string; }, index: any) => {
           // });
 
-          console.log(params);
-          // this.router.navigate(['admin/searchlist'], { queryParams: { type: 'ReadingCounts', levelmin: levelmin, levelmax: levelmax, pointmin: pointmin, pointmax: pointmax, exact: exact } });
-          this.router.navigate(['admin/searchlist'], { queryParams: params});
+          // console.log(params);
+          this.router.navigate(['admin/searchlist'], { queryParams: { type: 'Boolean', parameters: params } });
         } else {
           this.blnBorderDanger = 'border-danger';
         }

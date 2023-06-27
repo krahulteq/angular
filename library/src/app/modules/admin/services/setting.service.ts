@@ -253,4 +253,15 @@ export class SettingService {
     return this.http.get(`${'https://api.library.site/v1/search/rc?levelmin=' + levelmin + '&levelmax=' + levelmax + '&pointmin=' + pointmin + '&pointmax=' + pointmax + '&size=20&exact=' + exact + '&order=date'}`, { headers });
   }
 
+  // boolean search
+  booleanSearchService(parameters: any) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/search/bool?size=20&&' + parameters + '&order=date'}`, { headers });
+  }
+
 }
