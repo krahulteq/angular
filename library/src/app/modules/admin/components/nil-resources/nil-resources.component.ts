@@ -8,4 +8,8 @@ import { Component, Input } from '@angular/core';
 export class NilResourcesComponent {
   @Input() resources: any;
   @Input() count: any;
+
+  ngOnInit(){
+    console.log(this.resources);
+  }
 }

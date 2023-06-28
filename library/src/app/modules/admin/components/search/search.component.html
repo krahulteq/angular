@@ -927,7 +927,8 @@
                         </form>
                     </div>
                 </div>
-                <div *ngIf="!isToggledAdvanceSearch" class="col-3 border border-3 border-muted" style="background-color: #f6f6f6;">
+                <div *ngIf="!isToggledAdvanceSearch" class="col-3 border border-3 border-muted"
+                    style="background-color: #f6f6f6;">
                     <div class="search-main-tab-bottom mt-2">
                         <button type="button" class="limit-btn" (click)="toggleLimitTo()">
                             Limit To
@@ -949,7 +950,7 @@
                     <div class="advanced-form">
                         <div class="nav-tabs-head">
                             <nav>
-                                <ul id="nav-tab" role="tablist" class="nav nav-tabs nav-fill">
+                                <ul id="nav-tab" role="tablist" class="nav-tab-custom nav nav-tabs nav-fill">
                                     <li><a id="accelerated-tab" data-toggle="tab" role="tab" aria-controls="nav-home"
                                             aria-selected="false" class="nav-item nav-link"
                                             [class.active]="activeTab === 'accelerated'"

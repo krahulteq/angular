@@ -116,10 +116,10 @@ export class SearchComponent {
 
   advanceForm: any;
   onSubmitAdvanceSearch() {
-    this.toggle();
     switch (this.activeTab) {
       case 'accelerated':
         if (this.acceleratedSearchForm.valid) {
+          this.toggle();
           this.aRLMBorderDanger = '';
           const levelmin = this.acceleratedSearchForm.value.levelmin;
           const levelmax = this.acceleratedSearchForm.value.levelmax;
@@ -133,6 +133,7 @@ export class SearchComponent {
         break;
       case 'barcode':
         if (this.barcodeSearchForm.valid) {
+          this.toggle();
           this.bBorderDanger = '';
           const start = this.barcodeSearchForm.value.start;
           const end = this.barcodeSearchForm.value.end;
@@ -143,6 +144,7 @@ export class SearchComponent {
         break;
       case 'call':
         if (this.callSearchForm.valid) {
+          this.toggle();
           this.cBorderDanger = '';
           const start = this.callSearchForm.value.start;
           const end = this.callSearchForm.value.end;
@@ -153,6 +155,7 @@ export class SearchComponent {
         break;
       case 'fountas':
         if (this.fountasSearchForm.valid) {
+          this.toggle();
           this.fBorderDanger = '';
           const levelmin = this.fountasSearchForm.value.levelmin;
           const levelmax = this.fountasSearchForm.value.levelmax;
@@ -163,6 +166,7 @@ export class SearchComponent {
         break;
       case 'lexile':
         if (this.lexileSearchForm.valid) {
+          this.toggle();
           this.lBorderDanger = '';
           const levelmin = this.lexileSearchForm.value.levelmin;
           const levelmax = this.lexileSearchForm.value.levelmax;
@@ -175,6 +179,7 @@ export class SearchComponent {
         break;
       case 'MARC':
         if (this.marcSearchForm.valid) {
+          this.toggle();
           this.mBorderDanger = '';
           const keyword = this.marcSearchForm.value.keyword;
           const searchin = this.marcSearchForm.value.searchin;
@@ -187,6 +192,7 @@ export class SearchComponent {
         break;
       case 'reading':
         if (this.readingSearchForm.valid) {
+          this.toggle();
           this.rBorderDanger = '';
           const levelmin = this.readingSearchForm.value.levelmin;
           const levelmax = this.readingSearchForm.value.levelmax;
@@ -200,6 +206,7 @@ export class SearchComponent {
         break;
       case 'boolean':
         if (this.myForm.valid) {
+          this.toggle();
           // console.log(this.myForm.value.formControlsArray);
           this.blnBorderDanger = '';
           let params = new HttpParams;
@@ -212,18 +219,13 @@ export class SearchComponent {
             }
 
             if (index === arr.length - 1) {
-              params = params.append(`op-${index+1}`, item.searchOp);
+              params = params.append(`op-${index + 1}`, item.searchOp);
             }
 
             count += 1;
           });
           params = params.append('count', count);
 
-          // // Loop through the array and append each item as a parameter
-          // this.myForm.value.forEach((item: { searchTerm: string; searchIn: string; searchOp: string; }, index: any) => {
-          // });
-
-          // console.log(params);
           this.router.navigate(['admin/searchlist'], { queryParams: { type: 'Boolean', parameters: params } });
         } else {
           this.blnBorderDanger = 'border-danger';

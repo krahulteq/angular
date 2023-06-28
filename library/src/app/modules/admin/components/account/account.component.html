@@ -1,0 +1,134 @@
+<app-breadcrumb [title]="title" [downloadCSV]="downloadCSV"></app-breadcrumb>
+
+<div *ngIf="divVisible" class="loader-inner-container" style="padding: 0; position: absolute; width: 100%; top: 15px;">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<section class="section-padding">
+    <div class="search-sesults-top-head">
+        <p class="sort-by"> Sort by: <span class="active">Author <i class="fas fa-arrow-up"></i><i
+                    class="fas fa-arrow-down hide"></i></span><span>Due <i class="fas fa-arrow-up hide"></i><i
+                    class="fas fa-arrow-down hide"></i></span><span>Title <i class="fas fa-arrow-up hide"></i><i
+                    class="fas fa-arrow-down hide"></i></span>
+        </p>
+    </div>
+</section>
+<div class="container-fluid section-padding">
+    <section class="widgets onLoan">
+        <h4 class="section-title">On Loan</h4>
+        <div>
+            <div class="book-box">
+                <div class="book-image"><a class="book-box-head"
+                        href="/resources/detail/single/527"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span><img
+                                custom="794527"
+                                src="https://www.syndetics.com/index.aspx?isbn=9780689841231/lc.gif&amp;client=surpasstestcode"
+                                name="info" alt="import_contacts" index="7" loaded="yes"></span></a></div>
+                <div class="book-box-info myaccount-box-info">
+                    <div class="myaccount-info-left"><a class="book-box-head"
+                            href="/resources/detail/single/527">President
+                            George W. Bush : our
+                            forty-third president </a>
+                        <h4 class="call-number">921 BUSH</h4>
+                        <p class="author">Gormley, Beatrice.</p>
+                        <p class="author star-rating-info mt-1">
+                            <span> Rate this title </span>
+                            <span>or </span>
+                            <a href="#" role="button">Write a Review</a>
+                        </p>
+                        <div class="star-rating-outer"><span class="star-rating">
+                            </span><a href="#" class="rating-modal-btn"><small class="star-count hide">0</small></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <p class="description">Profiles the life of the forty-third president,
+                            including his childhood, education, early career, role as governor of Texas, and the 2000
+                            campaign and election.</p>
+                        <p class="barcode">935850</p>
+                    </div>
+                    <div class="myaccount-info-right">
+                        <div class="ma-info-right-inner">
+                            <ul class="myaccount-dates">
+                                <li class="dueDate bg-red"><span>Due
+                                    </span>09/26/2022 </li>
+                                <li class="CheckedOutDate"><span>Out</span> 06/22/2022 </li>
+                                <li class="cost"><span>Cost</span> $5.00
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="widgets reservations">
+        <h4 class="section-title">Holds</h4>
+        <div>
+            <div class="book-box">
+                <div class="book-image"><a class="book-box-head"
+                        href="/resources/detail/single/113"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span><img
+                                custom="417113"
+                                src="https://www.syndetics.com/index.aspx?isbn=9780439139595/lc.gif&amp;client=surpasstestcode"
+                                name="info" alt="import_contacts" index="15" loaded="yes"></span></a></div>
+                <div class="book-box-info myaccount-box-info">
+                    <div class="myaccount-info-left"><a class="book-box-head" href="/resources/detail/single/113">Harry
+                            Potter and the goblet of
+                            fire </a>
+                        <h4 class="call-number">FIC ROWdfsdf</h4>
+                        <p class="author">Rowling, J. K.</p>
+                        <p class="star-rating-info author mt-1"><span> Rate this title
+                            </span><span>or </span><a href="#" role="button">Write a Review</a></p>
+                        <div class="star-rating-outer"><span class="star-rating">
+                            </span><a href="#" class="rating-modal-btn"><small class="star-count hide">0</small></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <p class="description">Fourteen-year-old Harry Potter joins the Weasleys
+                            at the Quidditch World Cup, then enters his fourth year at Hogwarts Academy where he is
+                            mysteriously entered in an unusual contest that challenges his wizarding skills, friendships
+                            and character, amid signs that an old enemy is growing stronger.</p>
+                    </div>
+                    <div class="myaccount-info-right">
+                        <div class="ma-info-right-inner">
+                            <ul class="myaccount-dates">
+                                <li class="holding bg-red">
+                                    <p class="status-caption">Holding</p>
+                                </li>
+                                <li class="barcode"><span>Barcode</span>
+                                    933741</li>
+                                <li class="madedueDate"><span>Made</span>
+                                    5/1/2023</li>
+                                <li><span>Desired </span>5/1/2023 </li>
+                                <li><a data-toggle="modal" role="button" class="btn btn-danger btn-sm"
+                                        href="#write-cancel-holds417"><i class="fa fa-times"></i> Cancel Hold</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div role="dialog" aria-labelledby="basicModal" aria-hidden="true" class="modal fade"
+                    id="write-cancel-holds417">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" style="font-size: 15px; text-align: center;">Do you want to
+                                    cancel
+                                    this hold?</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="login-dot-container submit-btn-small"><input type="button" value="Yes"
+                                        class="btn btn-primary mr-2"><input data-dismiss="modal" aria-label="Close"
+                                        type="button" value="No" class="btn btn-primary mr-2" id="cancelholdsClose417">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

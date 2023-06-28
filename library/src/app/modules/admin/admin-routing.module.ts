@@ -11,6 +11,9 @@ import { ResourceComponent } from './components/resource/resource.component';
 import { NewsComponent } from './components/news/news.component';
 import { AwardsComponent } from './components/awards/awards.component';
 import { SearchListComponent } from './components/search-list/search-list.component';
+import { AccountComponent } from './components/account/account.component';
+import { HistoryComponent } from './components/history/history.component';
+import { ListComponent } from './components/list/list.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,9 @@ const routes: Routes = [
       { path: 'news', component: NewsComponent },
       { path: 'awards', component: AwardsComponent },
       { path: 'searchlist', component: SearchListComponent },
+      { path: 'my-account', component: AccountComponent },
+      { path: 'history', component: HistoryComponent },
+      { path: 'list/my', component: ListComponent },
       { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
     ],
   },

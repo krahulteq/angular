@@ -45,6 +45,9 @@ import { NilResourcesComponent } from './components/nil-resources/nil-resources.
 import { NgxBarcode6Module } from 'ngx-barcode6';
 import { SearchListComponent } from './components/search-list/search-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountComponent } from './components/account/account.component';
+import { HistoryComponent } from './components/history/history.component';
+import { ListComponent } from './components/list/list.component';
 
 
 @NgModule({
@@ -85,6 +88,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NilFacetsComponent,
     NilResourcesComponent,
     SearchListComponent,
+    AccountComponent,
+    HistoryComponent,
+    ListComponent,
   ],
   imports: [
     CommonModule,

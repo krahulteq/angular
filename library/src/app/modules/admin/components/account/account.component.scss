@@ -1,0 +1,258 @@
+// ***************************************************
+.section-padding {
+    padding: 0 70px;
+}
+
+.search-sesults-top-head {
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    float: left;
+    padding: 5px 5px 5px 15px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.search-sesults-top-head p {
+    color: #8c8c8c;
+    float: left;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 8px 0 0;
+}
+
+.search-sesults-top-head .sort-by span {
+    padding: 3px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    display: inline-block;
+    line-height: 15px;
+}
+
+.sort-by .active {
+    background: #26b6ef;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.hide {
+    display: none !important;
+}
+
+// ***************************************************
+
+section.widgets {
+    padding: 30px 0;
+}
+
+section.widgets {
+    float: left;
+    width: 100%;
+}
+
+h4.section-title {
+    background: #26b6ef;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+// ***************************************************
+
+.book-box {
+    border-bottom: 1px dashed rgba(0, 0, 0, .1);
+    float: left;
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+}
+
+.book-image {
+    border: 1px solid rgba(0, 0, 0, .1);
+    float: left;
+    padding: 8px;
+    width: 180px;
+}
+
+.book-box .book-image .book-box-head {
+    margin: 0;
+}
+
+.book-box .book-box-head {
+    color: #26b6ef;
+    float: left;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    margin: 5px 0 10px;
+    padding: 0;
+}
+
+.book-image a {
+    width: 100%;
+}
+
+.book-box-head {
+    color: #1e1e1e !important;
+    margin: 0 0 5px;
+}
+
+.book-box-info {
+    width: calc(100% - 180px);
+    float: left;
+    padding-left: 20px;
+}
+
+.myaccount-info-left {
+    float: left;
+    width: calc(100% - 240px);
+    padding-right: 20px;
+}
+
+.book-box .book-box-head {
+    color: #26b6ef;
+    float: left;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    margin: 5px 0 10px;
+    padding: 0;
+}
+
+a {
+    color: #26b6ef;
+    transition: all .3s;
+    display: inline-block;
+    text-decoration: none !important;
+}
+
+.book-box h4 {
+    text-transform: uppercase;
+    background: #f6f6f6 none repeat scroll 0 0;
+    float: right;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 0 0;
+    padding: 5px 10px;
+}
+
+.author {
+    float: left;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    width: 100%;
+}
+
+.book-box .description {
+    float: left;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 5px 0 10px;
+    width: 100%;
+    line-height: 20px;
+    color: #666;
+}
+
+img {
+    max-width: 100%;
+}
+
+.my-account .star-rating-info {
+    float: left;
+    margin: 5px 0;
+    width: 100%;
+}
+
+p {
+    color: #8c8c8c;
+    font-size: .875rem;
+    line-height: 1.4375rem;
+}
+
+.book-box .book-box-info .star-rating-outer {
+    float: left;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.myaccount-info-right {
+    float: left;
+    width: 240px;
+}
+
+.myaccount-dates {
+    list-style-type: none;
+    text-align: center;
+    background-color: #fff;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.myaccount-dates li.bg-red {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.myaccount-dates li.dueDate span {
+    color: #fff;
+}
+
+.myaccount-dates li span {
+    font-size: 12px;
+    color: #666;
+    font-weight: 400;
+}
+
+.myaccount-dates li {
+    padding: 8px 10px;
+    font-size: 14px;
+    position: relative;
+    color: #666;
+    font-weight: 700;
+}
+
+.myaccount-dates li.cost {
+    color: #26b6ef;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.myaccount-dates {
+    list-style-type: none;
+    text-align: center;
+    background-color: #fff;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.myaccount-dates li.holding .status-caption {
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+}
+
+.holding {
+    background-color: #ab47bc!important;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

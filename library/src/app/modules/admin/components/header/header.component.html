@@ -27,8 +27,8 @@
                                             {{ userProfile?.firstName }}
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end text-muted">
-                                            <li><a class="dropdown-item ps-2 py-1">My Account</a></li>
-                                            <li><a class="dropdown-item ps-2 py-1">History</a></li>
+                                            <li><a routerLink="/admin/my-account" class="dropdown-item ps-2 py-1">My Account</a></li>
+                                            <li><a routerLink="/admin/history" class="dropdown-item ps-2 py-1">History</a></li>
                                             <li><a class="dropdown-item ps-2 py-1" data-bs-toggle="modal"
                                                     data-bs-target="#myModalcard" (click)="getLibraryCard()">Library
                                                     Card</a></li>
@@ -43,7 +43,7 @@
                                         </button>
                                         <span class="text-white bg-warning rounded-circle my-2 px-1">0</span>
                                         <ul class="dropdown-menu dropdown-menu-end text-muted">
-                                            <li><a class="dropdown-item ps-2 py-1">View My List</a></li>
+                                            <li><a routerLink="/admin/list/my" class="dropdown-item ps-2 py-1">View My List</a></li>
                                             <li><a class="dropdown-item ps-2 py-1">Empty My List</a></li>
                                         </ul>
                                     </div>
@@ -138,8 +138,8 @@
                                             {{ userProfile?.firstName }}
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end text-muted">
-                                            <li><a class="dropdown-item ps-2 py-1">My Account</a></li>
-                                            <li><a class="dropdown-item ps-2 py-1">History</a></li>
+                                            <li><a routerLink="/admin/my-account" class="dropdown-item ps-2 py-1">My Account</a></li>
+                                            <li><a routerLink="/admin/history" class="dropdown-item ps-2 py-1">History</a></li>
                                             <li><a class="dropdown-item ps-2 py-1" data-bs-toggle="modal"
                                                     data-bs-target="#myModalcard" (click)="getLibraryCard()">Library
                                                     Card</a></li>
@@ -154,7 +154,7 @@
                                         </button>
                                         <span class="text-white bg-warning rounded-circle my-2 px-1">0</span>
                                         <ul class="dropdown-menu dropdown-menu-end text-muted">
-                                            <li><a class="dropdown-item ps-2 py-1">View My List</a></li>
+                                            <li><a routerLink="/admin/list/my" class="dropdown-item ps-2 py-1">View My List</a></li>
                                             <li><a class="dropdown-item ps-2 py-1">Empty My List</a></li>
                                         </ul>
                                     </div>
