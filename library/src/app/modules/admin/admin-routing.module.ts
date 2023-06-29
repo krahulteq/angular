@@ -14,6 +14,7 @@ import { SearchListComponent } from './components/search-list/search-list.compon
 import { AccountComponent } from './components/account/account.component';
 import { HistoryComponent } from './components/history/history.component';
 import { ListComponent } from './components/list/list.component';
+import { authGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -28,9 +29,9 @@ const routes: Routes = [
       { path: 'news', component: NewsComponent },
       { path: 'awards', component: AwardsComponent },
       { path: 'searchlist', component: SearchListComponent },
-      { path: 'my-account', component: AccountComponent },
-      { path: 'history', component: HistoryComponent },
-      { path: 'list/my', component: ListComponent },
+      { path: 'my-account', canActivate: [authGuard], component: AccountComponent },
+      { path: 'history', canActivate: [authGuard], component: HistoryComponent },
+      { path: 'list/my', canActivate: [authGuard], component: ListComponent },
       { path: '', redirectTo: '/admin/home', pathMatch: 'full' },
     ],
   },

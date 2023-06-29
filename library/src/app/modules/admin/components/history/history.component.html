@@ -9,3 +9,49 @@
         <div class="loader-dot"></div>
     </div>
 </div>
+
+<section *ngIf="records" class="section-padding">
+    <div class="search-sesults-top-head">
+        <p class="sort-by"> Sort by: <span class="active">Author <i class="fas fa-arrow-up"></i><i
+                    class="fas fa-arrow-down hide"></i></span><span>Due <i class="fas fa-arrow-up hide"></i><i
+                    class="fas fa-arrow-down hide"></i></span><span>Title <i class="fas fa-arrow-up hide"></i><i
+                    class="fas fa-arrow-down hide"></i></span>
+        </p>
+    </div>
+</section>
+
+<div class="container-fluid section-padding">
+    <section class="widgets onLoan">
+        <div *ngFor="let record of records" class="book-box">
+            <div class="book-image small-box">
+                <a class="book-box-head" href="/resources/detail/single/3847">
+                    <span>
+                        <div *ngIf="record.images!=''; else elseBlock">
+                            <img src="{{ record.images[0].url }}">
+                        </div>
+                        <ng-template #elseBlock>
+                            <img src="/assets/img/altimage.png" style="background-color: #03a9f4; color: white;">
+                        </ng-template>
+                    </span>
+                </a>
+            </div>
+            <div class="book-box-info myaccount-box-info small-box">
+                <div class="myaccount-info-left">
+                    <a class="book-box-head" href="/resources/detail/single/3847">
+                        {{ record.title }}
+                    </a>
+                    <div class="clearfix"></div>
+                    <p class="barcode"></p>
+                </div>
+                <div class="myaccount-info-right">
+                    <div class="ma-info-right-inner">
+                        <ul class="myaccount-dates">
+                            <li class="dueDate">{{ record.date | date:'MM/dd/yyyy' }} - {{ record.in.date |
+                                date:'MM/dd/yyyy' }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

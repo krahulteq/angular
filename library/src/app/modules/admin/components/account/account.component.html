@@ -11,7 +11,7 @@
 </div>
 
 <section class="section-padding">
-    <div class="search-sesults-top-head">
+    <div *ngIf="onLoan" class="search-sesults-top-head">
         <p class="sort-by"> Sort by: <span class="active">Author <i class="fas fa-arrow-up"></i><i
                     class="fas fa-arrow-down hide"></i></span><span>Due <i class="fas fa-arrow-up hide"></i><i
                     class="fas fa-arrow-down hide"></i></span><span>Title <i class="fas fa-arrow-up hide"></i><i
@@ -21,43 +21,52 @@
 </section>
 <div class="container-fluid section-padding">
     <section class="widgets onLoan">
-        <h4 class="section-title">On Loan</h4>
+        <h4 *ngIf="onLoan" class="section-title">On Loan</h4>
+        <div *ngIf="onLoan==''" class="no-items-on-loan">
+            <span>You have no items on loan.</span>
+        </div>
         <div>
-            <div class="book-box">
-                <div class="book-image"><a class="book-box-head"
-                        href="/resources/detail/single/527"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span><img
-                                custom="794527"
-                                src="https://www.syndetics.com/index.aspx?isbn=9780689841231/lc.gif&amp;client=surpasstestcode"
-                                name="info" alt="import_contacts" index="7" loaded="yes"></span></a></div>
+            <div *ngFor="let loan of onLoan" class="book-box">
+                <div class="book-image">
+                    <a class="book-box-head" href="/resources/detail/single/527">
+                        <span>
+                            <div *ngIf="loan.images!=''; else elseBlock">
+                                <img src="{{ loan.images[0].url }}">
+                            </div>
+                            <ng-template #elseBlock>
+                                <img src="/assets/img/altimage.png">
+                            </ng-template>
+                        </span>
+                    </a>
+                </div>
                 <div class="book-box-info myaccount-box-info">
-                    <div class="myaccount-info-left"><a class="book-box-head"
-                            href="/resources/detail/single/527">President
-                            George W. Bush : our
-                            forty-third president </a>
-                        <h4 class="call-number">921 BUSH</h4>
-                        <p class="author">Gormley, Beatrice.</p>
+                    <div class="myaccount-info-left"><a class="book-box-head" href="/resources/detail/single/527">{{
+                            loan.title }}</a>
+                        <h4 class="call-number">{{ loan.call }}</h4>
+                        <p class="author">{{ loan.author }}</p>
                         <p class="author star-rating-info mt-1">
                             <span> Rate this title </span>
                             <span>or </span>
                             <a href="#" role="button">Write a Review</a>
                         </p>
-                        <div class="star-rating-outer"><span class="star-rating">
-                            </span><a href="#" class="rating-modal-btn"><small class="star-count hide">0</small></a>
+                        <div class="star-rating-outer my-2">
+                            <span class="star-rating">
+                                <app-star-rating [rating]="loan.ratings.stars"></app-star-rating>
+                            </span>
                         </div>
 
                         <div class="clearfix"></div>
-                        <p class="description">Profiles the life of the forty-third president,
-                            including his childhood, education, early career, role as governor of Texas, and the 2000
-                            campaign and election.</p>
-                        <p class="barcode">935850</p>
+                        <p class="description">{{ loan.summary }}</p>
+                        <p class="barcode">{{ loan.barcode }}</p>
                     </div>
                     <div class="myaccount-info-right">
                         <div class="ma-info-right-inner">
                             <ul class="myaccount-dates">
                                 <li class="dueDate bg-red"><span>Due
-                                    </span>09/26/2022 </li>
-                                <li class="CheckedOutDate"><span>Out</span> 06/22/2022 </li>
-                                <li class="cost"><span>Cost</span> $5.00
+                                    </span>{{ loan.due | date:'MM/dd/yyyy' }}</li>
+                                <li class="CheckedOutDate"><span>Out</span>{{ loan.checkedOut | date:'MM/dd/yyyy' }}
+                                </li>
+                                <li *ngIf="loan.cost != null" class="cost"><span>Cost</span> ${{ loan.cost }}.00
                                 </li>
                             </ul>
                         </div>
@@ -67,31 +76,39 @@
         </div>
     </section>
     <section class="widgets reservations">
-        <h4 class="section-title">Holds</h4>
+        <h4 *ngIf="holds" class="section-title">Holds</h4>
         <div>
-            <div class="book-box">
-                <div class="book-image"><a class="book-box-head"
-                        href="/resources/detail/single/113"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span><img
-                                custom="417113"
-                                src="https://www.syndetics.com/index.aspx?isbn=9780439139595/lc.gif&amp;client=surpasstestcode"
-                                name="info" alt="import_contacts" index="15" loaded="yes"></span></a></div>
+            <div *ngFor="let hold of holds" class="book-box">
+                <div class="book-image">
+                    <a class="book-box-head" href="/resources/detail/single/113">
+                        <span>
+                            <div *ngIf="hold.images!=''; else elseBlock">
+                                <img src="{{ hold.images[0].url }}">
+                            </div>
+                            <ng-template #elseBlock>
+                                <img src="/assets/img/altimage.png">
+                            </ng-template>
+                        </span>
+                    </a>
+                </div>
                 <div class="book-box-info myaccount-box-info">
-                    <div class="myaccount-info-left"><a class="book-box-head" href="/resources/detail/single/113">Harry
-                            Potter and the goblet of
-                            fire </a>
-                        <h4 class="call-number">FIC ROWdfsdf</h4>
-                        <p class="author">Rowling, J. K.</p>
+                    <div class="myaccount-info-left"><a class="book-box-head" href="/resources/detail/single/113">
+                            {{ hold.call }}
+                        </a>
+                        <h4 class="call-number">{{ hold.call }}</h4>
+                        <p class="author">{{ hold.author }}</p>
                         <p class="star-rating-info author mt-1"><span> Rate this title
                             </span><span>or </span><a href="#" role="button">Write a Review</a></p>
-                        <div class="star-rating-outer"><span class="star-rating">
-                            </span><a href="#" class="rating-modal-btn"><small class="star-count hide">0</small></a>
+                        <div class="star-rating-outer my-2">
+                            <span class="star-rating">
+                                <app-star-rating [rating]="hold.ratings.stars"></app-star-rating>
+                            </span>
                         </div>
 
                         <div class="clearfix"></div>
-                        <p class="description">Fourteen-year-old Harry Potter joins the Weasleys
-                            at the Quidditch World Cup, then enters his fourth year at Hogwarts Academy where he is
-                            mysteriously entered in an unusual contest that challenges his wizarding skills, friendships
-                            and character, amid signs that an old enemy is growing stronger.</p>
+                        <p class="description">
+                            {{ hold.summary }}
+                        </p>
                     </div>
                     <div class="myaccount-info-right">
                         <div class="ma-info-right-inner">
@@ -99,11 +116,11 @@
                                 <li class="holding bg-red">
                                     <p class="status-caption">Holding</p>
                                 </li>
-                                <li class="barcode"><span>Barcode</span>
-                                    933741</li>
+                                <li *ngIf="hold.barcode" class="barcode"><span>Barcode</span>
+                                    {{ hold.barcode }}</li>
                                 <li class="madedueDate"><span>Made</span>
-                                    5/1/2023</li>
-                                <li><span>Desired </span>5/1/2023 </li>
+                                    {{ hold.date | date:'MM/dd/yyyy' }}</li>
+                                <li><span>Desired </span>{{ hold.desired | date:'MM/dd/yyyy' }} </li>
                                 <li><a data-toggle="modal" role="button" class="btn btn-danger btn-sm"
                                         href="#write-cancel-holds417"><i class="fa fa-times"></i> Cancel Hold</a></li>
                             </ul>

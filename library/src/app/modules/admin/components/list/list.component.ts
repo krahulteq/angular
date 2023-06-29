@@ -9,6 +9,7 @@ export class ListComponent {
   title = 'my list';
   downloadCSV = true;
   divVisible = true;
+  noResultsFound = true;
   constructor() {
     setTimeout(() => {
       this.divVisible = false;

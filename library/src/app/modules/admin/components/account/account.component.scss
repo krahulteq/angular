@@ -173,7 +173,9 @@ p {
     float: left;
 }
 
-*, :after, :before {
+*,
+:after,
+:before {
     box-sizing: border-box;
 }
 
@@ -195,7 +197,7 @@ p {
     text-align: center;
     background-color: #fff;
     padding: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
 .myaccount-dates li.bg-red {
@@ -238,7 +240,7 @@ p {
     text-align: center;
     background-color: #fff;
     padding: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
 .myaccount-dates li.holding .status-caption {
@@ -248,11 +250,17 @@ p {
 }
 
 .holding {
-    background-color: #ab47bc!important;
+    background-color: #ab47bc !important;
 }
 
 .btn-danger {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
+}
+
+.no-items-on-loan {
+    text-align: center;
+    padding: 57px 0 0;
+    font-size: 20px;
 }

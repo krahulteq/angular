@@ -84,9 +84,38 @@ export class AuthService {
       'locationid': '32471',
       'tenant': 'pcs',
     });
-
     // Make the HTTP POST request
     return this.http.get<any>('https://api.library.site/v1/profile/librarycard', { headers });
+  }
+
+  // logged in user Account
+  myAccount(access_token: any): Observable<any> {
+    // Prepare the headers
+    access_token = 'Bearer ' + access_token;
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'authorization': access_token,
+      'configuration': '*',
+      'locationid': '32471',
+      'tenant': 'pcs',
+    });
+    // Make the HTTP POST request
+    return this.http.get<any>('https://api.library.site/v1/account/status?sortBy=author&order=asc', { headers });
+  }
+
+  // logged in history
+  history(access_token: any): Observable<any> {
+    // Prepare the headers
+    access_token = 'Bearer ' + access_token;
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'authorization': access_token,
+      'configuration': '*',
+      'locationid': '32471',
+      'tenant': 'pcs',
+    });
+    // Make the HTTP POST request
+    return this.http.get<any>('https://api.library.site/v1/account/history?&sortBy=author&order=asc', { headers });
   }
 
 }

@@ -1,0 +1,138 @@
+.section-padding {
+    padding: 40px 70px;
+}
+
+.search-sesults-top-head {
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    float: left;
+    padding: 5px 5px 5px 15px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.search-sesults-top-head p {
+    color: #8c8c8c;
+    float: left;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 8px 0 0;
+}
+
+.search-sesults-top-head .sort-by span {
+    padding: 3px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    display: inline-block;
+    line-height: 15px;
+}
+
+.sort-by .active {
+    background: #26b6ef;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.hide {
+    display: none !important;
+}
+
+// ************************************************************
+
+.book-box {
+    border-bottom: 1px dashed rgba(0, 0, 0, .1);
+    float: left;
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+}
+
+.book-image.small-box {
+    width: 80px;
+}
+
+.book-image {
+    border: 1px solid rgba(0, 0, 0, .1);
+    float: left;
+    padding: 8px;
+    width: 180px;
+}
+
+.book-box .book-image .book-box-head {
+    margin: 0;
+}
+
+.book-box .book-box-head {
+    color: #26b6ef;
+    float: left;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    margin: 5px 0 10px;
+    padding: 0;
+}
+
+.book-image a {
+    width: 100%;
+}
+
+.book-box-info.small-box {
+    width: calc(100% - 80px);
+}
+
+.myaccount-info-left {
+    float: left;
+    width: calc(100% - 240px);
+    padding-right: 20px;
+}
+
+.myaccount-info-right {
+    float: left;
+    width: 240px;
+}
+
+.myaccount-dates {
+    list-style-type: none;
+    text-align: center;
+    background-color: #fff;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.myaccount-dates li {
+    padding: 8px 10px;
+    font-size: 14px;
+    position: relative;
+    color: #666;
+    font-weight: 700;
+}
+
+.book-image.small-box img {
+    height: 100px;
+    width: 100px;
+    min-height: unset;
+}
+
+.book-image img {
+    float: left;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+    min-height: 200px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.book-box-head {
+    color: #1e1e1e !important;
+    margin: 0 0 5px;
+}
+
+.book-box-info {
+    width: calc(100% - 180px);
+    float: left;
+    padding-left: 20px;
+}
