@@ -1,17 +1,39 @@
-body {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
+.internalerror-page {
+    width: 100%;
+    text-align: left;
+    background-color: #181818;
+    background-image: url('/assets/img/404_not_found.jpg');
+    padding: 30px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: auto 100%;
 }
 
-.error-template {
-    padding: 40px 15px;
-    text-align: center;
+.internalerror-page-inner {
+    width: 100%;
 }
 
-.error-actions {
-    margin-top: 15px;
-    margin-bottom: 15px;
+.internalerror-page h2 {
+    font-size: 50px;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
 }
 
-.error-actions .btn {
-    margin-right: 10px;
+.internalerror-page h2 strong {
+    font-weight: 800;
+    text-transform: capitalize;
+    color: #26b6ef;
+}
+
+.internalerror-page p {
+    font-size: 22px;
+    font-weight: 300;
+    color: #999;
+    line-height: 32px;
+    margin: 10px 0 30px;
 }

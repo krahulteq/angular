@@ -264,4 +264,15 @@ export class SettingService {
     return this.http.get(`${'https://api.library.site/v1/search/bool?size=20&&' + parameters + '&order=date'}`, { headers });
   }
 
+  // resource detail search
+  resourceDetailService(key: any, id: any) {
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'Configuration': '*',
+      'Selectedlibrary': '32471',
+      'Tenant': 'pcs',
+    });
+    return this.http.get(`${'https://api.library.site/v1/resource/list/item?cacheKey='+key+'&listItemId='+id+'&order=date&descending=true&eagerLoad=false&facets=undefined'}`, { headers });
+  }
+
 }

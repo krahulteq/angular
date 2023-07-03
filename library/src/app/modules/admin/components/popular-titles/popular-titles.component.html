@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class=col-2 *ngFor="let book of populars">
-                <!-- <a href="{{ book.listItemId }}"> -->
+                <a routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Config-1_Coll-P_Detail-False/{{ book.listItemId }}">
 
                 <div *ngIf="book.images[0]?.url; else elseBlock">
                     <img src="{{ book.images[0].url }}" style="width:170px; height:250px"
@@ -16,7 +16,7 @@
                 </ng-template>
 
                 <p class="pt-2 text-black pl-4 pr-4 font-weight-bold">{{ book.title }},{{ book.author }}</p>
-                <!-- </a> -->
+                </a>
                 <span class="text-center">
                     <app-star-rating [rating]="book.ratings.stars"></app-star-rating>
                 </span>

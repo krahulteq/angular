@@ -10,6 +10,6 @@ export class NilResourcesComponent {
   @Input() count: any;
 
   ngOnInit(){
-    console.log(this.resources);
+    // console.log(this.resources);
   }
 }

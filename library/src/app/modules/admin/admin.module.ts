@@ -48,6 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './components/account/account.component';
 import { HistoryComponent } from './components/history/history.component';
 import { ListComponent } from './components/list/list.component';
+import { ResourceDetailComponent } from './components/resource-detail/resource-detail.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { ListComponent } from './components/list/list.component';
     AccountComponent,
     HistoryComponent,
     ListComponent,
+    ResourceDetailComponent,
   ],
   imports: [
     CommonModule,

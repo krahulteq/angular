@@ -1,0 +1,132 @@
+<app-breadcrumb [title]="title" [downloadCSV]="downloadCSV"></app-breadcrumb>
+<section class="widgets book-detail mb-5">
+    <div class="right-btn-bread opac-dropdownBar detail-share-link export-options">
+        <div class="printContainer exploreCon">
+            <button href="#" class="print-btn">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+        <ul class="dropdown-menu">
+            <li class="dropdown-item">Copy link</li>
+        </ul>
+    </div>
+    <a id="permalink_share" class="hide" href="/resources/detail/single/4717"></a>
+    <div *ngIf="resource" class="book-box">
+        <div class="book-image-main">
+            <div class="book-image">
+                <span>
+                    <div *ngIf="resource.images!=''; else elseBlock">
+                        <img src="{{ resource.images[0].url }}">
+                    </div>
+                    <ng-template #elseBlock>
+                        <img src="/assets/img/altimage.png" style="background-color: #03a9f4; color: white;">
+                    </ng-template>
+                </span>
+            </div>
+
+            <h4 class="call-number">E ALL</h4>
+            <a>Browse Shelf <i class="fas fa-caret-down"></i></a>
+        </div>
+        <div class="book-box-info">
+            <h2 class="book-box-head">{{ resource.title }}</h2>
+            <h4 class="author">{{ resource.author }}</h4>
+            <p class="star-rating-info">
+                <span> Rate this
+                    title</span>
+            </p>
+            <div class="star-rating-outer clearfix">
+                <span class="star-rating">
+                    <app-star-rating [rating]="resource.ratings.stars"></app-star-rating>
+                </span>
+                <a href="#" class="rating-modal-btn">
+                    <small class="star-count hide">0</small>
+                </a>
+            </div>
+            <p class="description">
+                {{ resource.summary }}
+            </p>
+
+            <ul *ngIf="resource.acceleratedReader" class="detailSrchInfo">
+                <li>
+                    Accelerated Reader: <span>
+                        {{ resource.acceleratedReader }}
+                    </span>
+                </li>
+                <li class="book-links">
+                    <span></span>
+                </li>
+            </ul>
+            <div class="book-box-bottom">
+                <div *ngIf="resource.availability.availableHere > 0" class="info-text-left">
+                    <div class="avail-detail">
+                        <p class="overdue">
+                            <i class="material-icons md-12 success">check_box</i>
+                            Available
+                        </p>
+                        <p class="regular">
+                            <i class="info material-icons md-12">import_contacts</i> Regular
+                        </p>
+                    </div>
+                    <p>There is {{ resource.availability.availableHere }} available at Pleasant Valley School</p>
+                </div>
+                <div *ngIf="resource.availability.availableHere == 0" class="info-text-left">
+                    <div class="avail-detail">
+                        <p class="overdue">
+                            <i class="material-icons md-12 gray">cancel</i>
+                            Not Available
+                        </p>
+                        <p class="regular">
+                            <i class="danger material-icons md-12">import_contacts</i>
+                            Reference
+                        </p>
+                    </div>
+                    <p>There are no copies available for lending</p>
+                </div>
+                <div class="book-box-bottom-btn">
+                    <button type="button" id="AvailabilityButton" class="more-book-detail-btn"> Availability <i
+                            class="fas fa-caret-down"></i><i class="fas fa-caret-up"></i>
+                    </button>
+                    <div id="AvailabilityTable">
+                        <table class="table table-bordered more-book-detail">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><i class="fas fa-book"></i> Call</th>
+                                    <th scope="col"><i class="far fa-copy"></i> Copies</th>
+                                    <th scope="col"><i class="fas fa-check-circle"></i> Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>E ALL</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="btn-main-detail">
+                        <button data-toggle="modal" class="btn btn-succes hold-resourse btn-sm">
+                            <i class="material-icons">local_offer</i>
+                            Hold</button>
+                        <button type="button" class="MyListButton btn btn-primary btn-sm pull-right addButton4717 show">
+                            <i class="fas fa-plus"></i> Add To List</button>
+                        <button type="button"
+                            class="MyListButton btn btn-dander btn-sm pull-right removeButton4717 hide">
+                            <i class="fas fa-minus"></i> Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer *ngIf="!divVisible"></app-footer>
+
+<div *ngIf="divVisible" class="loader-inner-container" style="padding: 0; position: absolute; width: 100%; top: 15px;">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>

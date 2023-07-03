@@ -18,24 +18,24 @@
         </span>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div *ngFor="let resource of resources" class="mb-5 col-12 d-flex">
-            <span *ngFor="let image of resource.images; last as isLast; index as i">
-
-                <div *ngIf="isLast">
-                    <div *ngIf="image.url; else elseBlock">
-                        <img src="{{ image.url }}" name="warning" style="width: 90px; height: 130px;"
-                            class="border border-muted py-2 px-2">
+            <a
+                routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Coll-S_97f2f6a2-0a8c-43bc-a005-008bdac995a8/{{ resource.listItemId }}">
+                <span *ngFor="let image of resource.images; last as isLast; index as i">
+                    <div *ngIf="isLast">
+                        <div *ngIf="image.url; else elseBlock">
+                            <img src="{{ image.url }}" name="warning" style="width: 90px; height: 130px;"
+                                class="border border-muted py-2 px-2">
+                        </div>
+                        <ng-template #elseBlock>
+                            <img src="/assets/img/altimage.png" style="width: 90px; height: 130px;"
+                                class="border border-muted py-2 px-2">
+                        </ng-template>
                     </div>
-                    <ng-template #elseBlock>
-                        <img src="/assets/img/altimage.png" style="width: 90px; height: 130px;"
-                            class="border border-muted py-2 px-2">
-                    </ng-template>
-                </div>
-
-            </span>
+                </span>
+            </a>
             <div class="mt-1 ms-3">
                 <h5 class="m-0 p-0"><strong>{{ resource.title }}</strong></h5>
                 <p class="m-0 p-0">{{ resource.author }}</p>

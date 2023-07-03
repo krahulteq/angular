@@ -6,6 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./animals.component.scss']
 })
 export class AnimalsComponent {
-@Input() animalCaption: any;
-@Input() animals: any;
+  @Input() animalCaption: any;
+  @Input() animals: any;
+  constructor() {}
+  ngOnChanges(){
+    console.log(this.animals);
+  }
 }

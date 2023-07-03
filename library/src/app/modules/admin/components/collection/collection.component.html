@@ -4,26 +4,29 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-4 card border border-white" *ngFor="let book of collections">
-                <div class="row p-2 rounded mb-4 m-3">
-                    <div class="col-lg-6">
-                        <div *ngIf="book.images[0]?.url; else elseBlock">
-                            <img src="{{ book.images[0].url }}" style="width:140px; height:220px"
-                                class="img-fluid border border-muted p-2" alt="">
+                <a
+                    routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Config-1_Coll-33_Detail-False/{{ book.listItemId }}">
+                    <div class="row p-2 rounded mb-4 m-3">
+                        <div class="col-lg-6">
+                            <div *ngIf="book.images[0]?.url; else elseBlock">
+                                <img src="{{ book.images[0].url }}" style="width:140px; height:220px"
+                                    class="img-fluid border border-muted p-2" alt="">
+                            </div>
+                            <ng-template #elseBlock>
+                                <img src="/assets/img/altimage.png" style="width:140px; height:220px"
+                                    class="img-fluid border border-muted p-2" alt="">
+                            </ng-template>
                         </div>
-                        <ng-template #elseBlock>
-                            <img src="/assets/img/altimage.png" style="width:140px; height:220px"
-                                class="img-fluid border border-muted p-2" alt="">
-                        </ng-template>
+                        <div class="col-lg-6 mt-2">
+                            <h6 class="text-black">{{ book.title | slice:0:45 }}</h6>
+                            <p class="text-muted">{{ book.author | slice:0:45 }}</p>
+                            <span class="text-center">
+                                <app-star-rating [rating]="book.ratings.stars"></app-star-rating>
+                            </span>
+                            <p class="text-muted">{{ book.summary | slice:0:120 }}</p>
+                        </div>
                     </div>
-                    <div class="col-lg-6 mt-2">
-                        <h6 class="text-black">{{ book.title | slice:0:45 }}</h6>
-                        <p class="text-muted">{{ book.author | slice:0:45 }}</p>
-                        <span class="text-center">
-                            <app-star-rating [rating]="book.ratings.stars"></app-star-rating>
-                        </span>
-                        <p class="text-muted">{{ book.summary | slice:0:120 }}</p>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="row justify-content-center mt-3 mb-5">
