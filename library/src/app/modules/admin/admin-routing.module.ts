@@ -16,6 +16,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { ListComponent } from './components/list/list.component';
 import { authGuard } from 'src/app/guards/auth.guard';
 import { ResourceDetailComponent } from './components/resource-detail/resource-detail.component';
+import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     component: AdminDashboardComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'test', component: TestComponent },
       { path: 'explore', component: ExploreComponent },
       { path: 'new', component: NilComponent },
       { path: 'popular', component: PopularComponent },

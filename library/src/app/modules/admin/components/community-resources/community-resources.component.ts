@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CommunityResourcesComponent {
   @Input() community: any;
+  @Input() manageView: any;
 }

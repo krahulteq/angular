@@ -1,24 +1,27 @@
-<section id="faqsection" class="text-center mb-2">
-    <strong>
-        <h2 class="m-5">{{ faqCaption }}</h2>
-    </strong>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-5">
-                <img src="/assets/img/libraryfaq.png" style="width:300x; height:400px">
-            </div>
-            <div class="col-7 pt-5">
-                <mat-accordion>
-                    <mat-expansion-panel *ngFor="let faq of faqs" class="rounded-pill mb-2 border-bottom border-start border-muted">
-                        <mat-expansion-panel-header class="rounded-pill bg-muted pt-2 pb-2">
-                            <mat-panel-title class="d-flex justify-content-center">
-                                {{ faq.q }}
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <p class="text-muted">{{ faq.a }}</p>
-                    </mat-expansion-panel>
-                </mat-accordion>
+<div class="{{ manageView }}">
+    <section class="widgets quick-qa select-box">
+        <div class="container-fluid">
+            <strong>
+                <h2 class="text-center">{{ faqCaption }}</h2>
+            </strong>
+            <div class="row">
+                <div class="col-5">
+                    <img src="/assets/img/libraryfaq.png" style="width:300x; height:400px">
+                </div>
+                <div class="col-7 pt-5">
+                    <mat-accordion>
+                        <mat-expansion-panel *ngFor="let faq of faqs"
+                            class="rounded-pill mb-2 border-bottom border-start border-muted">
+                            <mat-expansion-panel-header class="rounded-pill bg-muted pt-2 pb-2">
+                                <mat-panel-title class="d-flex justify-content-center">
+                                    {{ faq.q }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p class="text-muted">{{ faq.a }}</p>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

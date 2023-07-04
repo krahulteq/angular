@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class LlhComponent {
 @Input() llhs:any;
+@Input() manageView: any;
 }

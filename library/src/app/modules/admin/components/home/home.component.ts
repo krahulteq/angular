@@ -78,6 +78,8 @@ export class HomeComponent {
   usedbook: any;
   community: any;
   defaultSearch: any;
+  editPageClass: string = '';
+  editPageClassStatus: boolean = false;
 
   constructor(private settingService: SettingService, private datePipe: DatePipe, private changeDetector: ChangeDetectorRef, private sanitizer: DomSanitizer) {
 
@@ -180,6 +182,16 @@ export class HomeComponent {
       });
       // console.log(this.recentreview);
     });
+  }
+
+  editPage(status: any) {
+    if (status) {
+      this.editPageClass = '';
+      this.editPageClassStatus = false;
+    } else {
+      this.editPageClass = 'manage-view';
+      this.editPageClassStatus = true;
+    }
   }
 
 }

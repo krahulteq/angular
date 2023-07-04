@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class RecentReviewsComponent {
   @Input() recentreviews: any;
   @Input() recentreviewCaption: any;
+  @Input() manageView: any;
 }

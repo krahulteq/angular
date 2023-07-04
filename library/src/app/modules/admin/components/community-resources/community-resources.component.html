@@ -1,13 +1,18 @@
-<section class="widgets select-box">
-    <div class="LK col-12 col-lg-12 col-md-12 col-sm-12 width_ ps-5 pe-5">
-        <div class="two-clum-block">
-            <h3 class="text-heading text-left">{{ community?.caption }}</h3>
-            <hr class="dot-divdr">
-            <ul class="two-clum-list">
-                <li>
-                    <a target="_blank" class="text-widgets-list text-muted active" href="{{ community?.links[0].url }}"><h5>{{ community?.links[0].caption }}</h5></a>
-                </li>
-            </ul>
+<div class="{{ manageView }}">
+    <section class="widgets select-box">
+        <div class="LK col-12 col-lg-12 col-md-12 col-sm-12 width_ ps-5 pe-5">
+            <div class="two-clum-block">
+                <h3 class="text-heading text-left">{{ community?.caption }}</h3>
+                <hr class="dot-divdr">
+                <ul class="two-clum-list">
+                    <li>
+                        <a target="_blank" class="text-widgets-list text-muted active"
+                            href="{{ community?.links[0].url }}">
+                            <h5>{{ community?.links[0].caption }}</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

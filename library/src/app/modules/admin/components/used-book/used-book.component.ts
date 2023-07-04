@@ -10,4 +10,5 @@ export class UsedBookComponent {
   @Input() usedbookCaption: any;
   @Input()
   usedbook!: SafeHtml;
+  @Input() manageView: any;
 }

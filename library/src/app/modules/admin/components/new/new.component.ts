@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class NewComponent {
   @Input() newins: any;
   @Input() newCaption: any;
+  @Input() manageView: any;
 }

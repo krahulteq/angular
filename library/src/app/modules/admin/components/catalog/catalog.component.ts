@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class CatalogComponent {
   @Input() catalogCaption: any;
   @Input() catalogContent: any;
+  @Input() manageView: any;
 }

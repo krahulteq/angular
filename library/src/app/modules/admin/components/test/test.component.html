@@ -9,15 +9,44 @@
         <a class="nav-link">Tab 3</a>
     </li>
 </ul>
+<div class="container {{ editPageClass }}">
+    <div class="tab-content select-box">
+        <div *ngIf="activeTab === 'tab1'">
+            <form (ngSubmit)="onSubmit()" #registrationForm="ngForm" novalidate>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+                    <!-- <div
+                    *ngIf="registrationForm.controls.name.invalid && (registrationForm.controls.name.dirty || registrationForm.controls.name.touched)">
+                    <div *ngIf="registrationForm.controls.name.errors.required">
+                        Name is required.
+                    </div>
+                </div> -->
+                </div>
 
-<div class="tab-content">
-    <div *ngIf="activeTab === 'tab1'">
-        Content for Tab 1
-    </div>
-    <div *ngIf="activeTab === 'tab2'">
-        Content for Tab 2
-    </div>
-    <div *ngIf="activeTab === 'tab3'">
-        Content for Tab 3
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" [(ngModel)]="user.email" required email>
+                    <!-- <div
+                    *ngIf="registrationForm.controls.email.invalid && (registrationForm.controls.email.dirty || registrationForm.controls.email.touched)">
+                    <div *ngIf="registrationForm.controls.email.errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="registrationForm.controls.email.errors.email">
+                        Invalid email format.
+                    </div>
+                </div> -->
+                </div>
+
+                <button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+            </form>
+            <button (click)="editPage(editPageClassStatus)">Edit Home Page</button>
+        </div>
+        <div *ngIf="activeTab === 'tab2'">
+            Content for Tab 2
+        </div>
+        <div *ngIf="activeTab === 'tab3'">
+            Content for Tab 3
+        </div>
     </div>
 </div>

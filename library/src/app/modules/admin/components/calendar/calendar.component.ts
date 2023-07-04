@@ -10,6 +10,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 })
 export class CalendarComponent {
   @Input() calendarEvents: any;
+  @Input() manageView: any;
 
   ssss: any;
 

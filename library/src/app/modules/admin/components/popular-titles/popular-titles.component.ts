@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class PopularTitlesComponent {
   @Input() populars: any;
   @Input() popularCaption: any;
+  @Input() manageView: any;
 }

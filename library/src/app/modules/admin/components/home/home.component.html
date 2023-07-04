@@ -2,28 +2,58 @@
 
 <app-search></app-search>
 
-<app-used-book [usedbookCaption]="usedbookCaption" [usedbook]="sanitizedHtmlContent"></app-used-book>
+<app-used-book [manageView]="editPageClass" [usedbookCaption]="usedbookCaption" [usedbook]="sanitizedHtmlContent"></app-used-book>
 
-<app-community-resources [community]="community"></app-community-resources>
+<app-community-resources [manageView]="editPageClass" [community]="community"></app-community-resources>
 
-<app-faq [faqs]="faq" [faqCaption]="faqCaption"></app-faq>
+<app-faq [manageView]="editPageClass" [faqs]="faq" [faqCaption]="faqCaption"></app-faq>
 
-<app-llh [llhs]="llh"></app-llh>
+<app-llh [manageView]="editPageClass" [llhs]="llh"></app-llh>
 
-<app-calendar [calendarEvents]="events"></app-calendar>
+<app-calendar [manageView]="editPageClass" [calendarEvents]="events"></app-calendar>
 
-<app-animals [animals]="animal" [animalCaption]="animalCaption"></app-animals>
+<app-animals [manageView]="editPageClass" [animals]="animal" [animalCaption]="animalCaption"></app-animals>
 
-<app-collection [collections]="collection" [collectionCaption]="collectionCaption"></app-collection>
+<app-collection [manageView]="editPageClass" [collections]="collection" [collectionCaption]="collectionCaption"></app-collection>
 
-<app-popular-titles [populars]="popular" [popularCaption]="popularCaption"></app-popular-titles>
+<app-popular-titles [manageView]="editPageClass" [populars]="popular" [popularCaption]="popularCaption"></app-popular-titles>
 
-<app-new [newins]="newin" [newCaption]="newCaption"></app-new>
+<app-new [manageView]="editPageClass" [newins]="newin" [newCaption]="newCaption"></app-new>
 
-<app-mysteries [mysteries]="mystry" [mystryCaption]="mystryCaption"></app-mysteries>
+<app-mysteries [manageView]="editPageClass" [mysteries]="mystry" [mystryCaption]="mystryCaption"></app-mysteries>
 
-<app-catalog [catalogCaption]="catalogCaption" [catalogContent]="catalogContent"></app-catalog>
+<app-catalog [manageView]="editPageClass" [catalogCaption]="catalogCaption" [catalogContent]="catalogContent"></app-catalog>
 
-<app-recent-reviews [recentreviews]="recentreview" [recentreviewCaption]="recentreviewCaption"></app-recent-reviews>
+<app-recent-reviews [manageView]="editPageClass" [recentreviews]="recentreview" [recentreviewCaption]="recentreviewCaption"></app-recent-reviews>
 
 <app-footer></app-footer>
+
+<div class="login-patron">
+    <section class="manage-ui-block">
+        <div class="EditModeButtonMain">
+            <button (click)="editPage(editPageClassStatus)" id="editModeButton" href="#"
+                class="rotating-btn-main edit-btn edit">
+                <div class="btn-icon">
+                    <div *ngIf="!editPageClassStatus" class="rotating fas fa-cog">
+
+                    </div>
+                    <i *ngIf="editPageClassStatus" class="fas fa-check"></i>
+                </div>
+                <span *ngIf="editPageClassStatus">Finished Editing</span>
+                <span *ngIf="!editPageClassStatus">Edit Home Page</span>
+            </button>
+            <button *ngIf="editPageClassStatus" href="#" class="rotating-btn-main add-widget-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <span>Add New Widget</span>
+            </button>
+            <button *ngIf="editPageClassStatus" href="#" class="rotating-btn-main add-widget-btn change-theme-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <span>Change Theme</span>
+            </button>
+        </div>
+    </section>
+</div>

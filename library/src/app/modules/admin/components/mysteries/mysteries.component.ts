@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class MysteriesComponent {
   @Input() mysteries: any;
   @Input() mystryCaption: any;
+  @Input() manageView: any;
 }

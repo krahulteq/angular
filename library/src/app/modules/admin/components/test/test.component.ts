@@ -7,9 +7,31 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class TestComponent {
   activeTab: string = 'tab1';
+  editPageClass: string = '';
+  editPageClassStatus: any;
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
+  }
+
+  user = {
+    name: '',
+    email: ''
+  };
+
+  onSubmit() {
+    // Form submission logic goes here
+    console.log(this.user);
+  }
+
+  editPage(status: any){
+    if(status){
+      this.editPageClass = '';
+      this.editPageClassStatus = false;
+    }else{
+      this.editPageClass = 'manage-view';
+      this.editPageClassStatus = true;
+    }
   }
 
 }

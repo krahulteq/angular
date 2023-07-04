@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 export class FaqComponent {
   @Input() faqs: any;
   @Input() faqCaption: any;
+  @Input() manageView: any;
 }
