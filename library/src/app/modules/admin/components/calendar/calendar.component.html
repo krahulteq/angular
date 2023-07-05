@@ -1,38 +1,50 @@
-<section class="mt-5">
-    <div class="container">
-        <h2 class="text-center font-weight-bold m-5">Library Calendar</h2>
-        <div class="card">
-            <div class='demo-app'>
-                <div class="row p-3">
-                    <div class="col-9">
-                        <div class='demo-app-main text-muted'>
-                            <full-calendar *ngIf='calendarVisible' [events]="calendarEvents" [options]='calendarOptions'>
-                                <ng-template #eventContent let-arg>
-                                    <b>{{ arg.timeText }}</b>
-                                    <i>{{ arg.event.title }}</i>
-                                </ng-template>
-                            </full-calendar>
-                        </div>
-                    </div>
-                    <div class="col-3 demo-app-sidebar-section-parent">
-                        <div class='demo-app-sidebar-section'>
-                            <h5 class="text-center pt-2">EVENTS THIS MONTH</h5>
-                            <ul>
-                                <li *ngFor='let event of currentEvents'>
-                                    <div class="eventList bg-white rounded-pill p-2 m-1">
-                                        <span class="title">
-                                            {{event.title}}
-                                        </span>
-                                        <span class="pull-right">
-                                            {{event.startStr}}
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
+<div class="{{ manageView }}">
+    <span class="MS example-box layout_ width_H">
+        <div *ngIf="manageView" class="btn-group edit-widgets-btn"><button cdkdraghandle="" type="button"
+                class="cdk-drag-handle btn btn-move my-handle"
+                style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: transparent; user-select: none;"><i
+                    class="fa fa-arrows-alt"></i></button><button type="button" class="btn btn-edit"><i
+                    class="fa fa-pencil-square-o"></i></button><button type="button" class="btn btn-remove"><i
+                    class="fa fa-times"></i></button>
+        </div>
+        <section class="widgets select-box">
+            <div class="container">
+                <h2 class="text-center font-weight-bold m-5">Library Calendar</h2>
+                <div class="card">
+                    <div class='demo-app'>
+                        <div class="row p-3">
+                            <div class="col-9">
+                                <div class='demo-app-main text-muted'>
+                                    <full-calendar *ngIf='calendarVisible' [events]="calendarEvents"
+                                        [options]='calendarOptions'>
+                                        <ng-template #eventContent let-arg>
+                                            <b>{{ arg.timeText }}</b>
+                                            <i>{{ arg.event.title }}</i>
+                                        </ng-template>
+                                    </full-calendar>
+                                </div>
+                            </div>
+                            <div class="col-3 demo-app-sidebar-section-parent">
+                                <div class='demo-app-sidebar-section'>
+                                    <h5 class="text-center pt-2">EVENTS THIS MONTH</h5>
+                                    <ul>
+                                        <li *ngFor='let event of currentEvents'>
+                                            <div class="eventList bg-white rounded-pill p-2 m-1">
+                                                <span class="title">
+                                                    {{event.title}}
+                                                </span>
+                                                <span class="pull-right">
+                                                    {{event.startStr}}
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+    </span>
+</div>

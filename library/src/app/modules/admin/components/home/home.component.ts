@@ -165,8 +165,7 @@ export class HomeComponent {
           case 'BU':
             // Catalog Access section
             if (section.content.id == 3) {
-              this.catalogCaption = section.content.caption
-              this.catalogContent = section.content.content
+              this.catalogContent = section
             }
             break;
           case 'RV':

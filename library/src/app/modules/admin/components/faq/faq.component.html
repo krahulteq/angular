@@ -1,27 +1,36 @@
 <div class="{{ manageView }}">
-    <section class="widgets quick-qa select-box">
-        <div class="container-fluid">
-            <strong>
-                <h2 class="text-center">{{ faqCaption }}</h2>
-            </strong>
-            <div class="row">
-                <div class="col-5">
-                    <img src="/assets/img/libraryfaq.png" style="width:300x; height:400px">
-                </div>
-                <div class="col-7 pt-5">
-                    <mat-accordion>
-                        <mat-expansion-panel *ngFor="let faq of faqs"
-                            class="rounded-pill mb-2 border-bottom border-start border-muted">
-                            <mat-expansion-panel-header class="rounded-pill bg-muted pt-2 pb-2">
-                                <mat-panel-title class="d-flex justify-content-center">
-                                    {{ faq.q }}
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <p class="text-muted">{{ faq.a }}</p>
-                        </mat-expansion-panel>
-                    </mat-accordion>
+    <span class="MS example-box layout_ width_H">
+        <div *ngIf="manageView" class="btn-group edit-widgets-btn"><button cdkdraghandle="" type="button"
+                class="cdk-drag-handle btn btn-move my-handle"
+                style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: transparent; user-select: none;"><i
+                    class="fa fa-arrows-alt"></i></button><button type="button" class="btn btn-edit"><i
+                    class="fa fa-pencil-square-o"></i></button><button type="button" class="btn btn-remove"><i
+                    class="fa fa-times"></i></button>
+        </div>
+        <section class="widgets quick-qa select-box">
+            <div class="container-fluid">
+                <strong>
+                    <h2 class="text-center">{{ faqCaption }}</h2>
+                </strong>
+                <div class="row">
+                    <div class="col-5">
+                        <img src="/assets/img/libraryfaq.png" style="width:300x; height:400px">
+                    </div>
+                    <div class="col-7 pt-5">
+                        <mat-accordion>
+                            <mat-expansion-panel *ngFor="let faq of faqs"
+                                class="rounded-pill mb-2 border-bottom border-start border-muted">
+                                <mat-expansion-panel-header class="rounded-pill bg-muted pt-2 pb-2">
+                                    <mat-panel-title class="d-flex justify-content-center">
+                                        {{ faq.q }}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p class="text-muted">{{ faq.a }}</p>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </span>
 </div>

@@ -118,4 +118,26 @@ export class AuthService {
     return this.http.get<any>('https://api.library.site/v1/account/history?&sortBy=author&order=asc', { headers });
   }
 
+  // update catalog settings
+  editCatalogSettings(access_token: any, bulletinId: any, width: any): Observable<any> {
+
+    const params = {
+      bulletinId: bulletinId,
+      width: width,
+    };
+
+    // Prepare the headers
+    access_token = 'Bearer ' + access_token;
+    const headers = new HttpHeaders({
+      'App-Id': 'opac',
+      'authorization': access_token,
+      'configuration': '*',
+      'locationid': '32471',
+      'tenant': 'pcs',
+      'content-type': 'application/json'
+    });
+    // Make the HTTP POST request
+    return this.http.post<any>('https://api.library.site/v1/widget/settings/bulletin?id=231', params, { headers });
+  }
+
 }

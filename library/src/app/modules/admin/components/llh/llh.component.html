@@ -1,27 +1,36 @@
 <div class="{{ manageView }}">
-    <section class="text-white widgets select-box">
-        <br>
-        <br>
-        <div class="container">
-            <div class="row ml-5 mr-5">
-                <div class="col-6 bg-info p-5">
-                    <h3 class="font-weight-bold mb-4 m-2">Location</h3>
-                    <a href="https://goo.gl/maps/rt1JGAAyaJ9zR6GPA?coh=178572&entry=tt"
-                        class="p-2 bg-white text-info font-weight-bold m-2">Find In Map <i
-                            class="far fa-arrow-alt-circle-right"></i></a>
-                </div>
-                <div class="col-6 bg-warning p-5">
-                    <div class="hours-details">
-                        <h4 class="block-heading font-weight-bold">Library Hours</h4>
-                        <h5 class="font-weight-bold mb-3">REGULAR LIBRARY HOURS</h5>
-                        <div *ngFor="let llh of llhs; first as isFirst">
-                            <h6 class="font-weight-bold">{{ llh.caption}}<span class="float-end">{{
-                                    llh.hours}}</span></h6>
-                            <hr *ngIf="isFirst" class="bg-white">
+    <span class="MS example-box layout_ width_H">
+        <div *ngIf="manageView" class="btn-group edit-widgets-btn"><button cdkdraghandle="" type="button"
+                class="cdk-drag-handle btn btn-move my-handle"
+                style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: transparent; user-select: none;"><i
+                    class="fa fa-arrows-alt"></i></button><button type="button" class="btn btn-edit"><i
+                    class="fa fa-pencil-square-o"></i></button><button type="button" class="btn btn-remove"><i
+                    class="fa fa-times"></i></button>
+        </div>
+        <section class="text-white widgets select-box">
+            <br>
+            <br>
+            <div class="container">
+                <div class="row ml-5 mr-5">
+                    <div class="col-6 bg-info p-5">
+                        <h3 class="font-weight-bold mb-4 m-2">Location</h3>
+                        <a href="https://goo.gl/maps/rt1JGAAyaJ9zR6GPA?coh=178572&entry=tt"
+                            class="p-2 bg-white text-info font-weight-bold m-2">Find In Map <i
+                                class="far fa-arrow-alt-circle-right"></i></a>
+                    </div>
+                    <div class="col-6 bg-warning p-5">
+                        <div class="hours-details">
+                            <h4 class="block-heading font-weight-bold">Library Hours</h4>
+                            <h5 class="font-weight-bold mb-3">REGULAR LIBRARY HOURS</h5>
+                            <div *ngFor="let llh of llhs; first as isFirst">
+                                <h6 class="font-weight-bold">{{ llh.caption}}<span class="float-end">{{
+                                        llh.hours}}</span></h6>
+                                <hr *ngIf="isFirst" class="bg-white">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </span>
 </div>

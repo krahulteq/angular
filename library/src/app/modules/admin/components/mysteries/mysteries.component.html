@@ -1,30 +1,42 @@
-<section class="text-center">
-    <br>
-    <h2 class="mb-5"><strong>{{ mystryCaption }}</strong></h2>
-    <div class="container-fluid">
-        <div class="row d-flex justify-content-center">
-            <div class=col-2 *ngFor="let book of mysteries">
-                <a routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Config-1_Coll-199_Detail-False/{{ book.listItemId }}">
+<div class="{{ manageView }}">
+    <span class="MS example-box layout_ width_H">
+        <div *ngIf="manageView" class="btn-group edit-widgets-btn"><button cdkdraghandle="" type="button"
+                class="cdk-drag-handle btn btn-move my-handle"
+                style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: transparent; user-select: none;"><i
+                    class="fa fa-arrows-alt"></i></button><button type="button" class="btn btn-edit"><i
+                    class="fa fa-pencil-square-o"></i></button><button type="button" class="btn btn-remove"><i
+                    class="fa fa-times"></i></button>
+        </div>
+        <section class="text-center widgets select-box">
+            <br>
+            <h2 class="mb-5"><strong>{{ mystryCaption }}</strong></h2>
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class=col-2 *ngFor="let book of mysteries">
+                        <a
+                            routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Config-1_Coll-199_Detail-False/{{ book.listItemId }}">
 
-                <div *ngIf="book.images[0]?.url; else elseBlock">
-                    <img src="{{ book.images[0].url }}" style="width:170px; height:250px"
-                        class="img-fluid border border-muted p-2" alt="">
+                            <div *ngIf="book.images[0]?.url; else elseBlock">
+                                <img src="{{ book.images[0].url }}" style="width:170px; height:250px"
+                                    class="img-fluid border border-muted p-2" alt="">
+                            </div>
+                            <ng-template #elseBlock>
+                                <img src="/assets/img/altimage.png" style="width:170px; height:250px"
+                                    class="img-fluid border border-muted p-2" alt="">
+                            </ng-template>
+
+                            <p class="pt-2 text-black pl-4 pr-4 font-weight-bold">{{ book.title }},{{ book.author }}</p>
+                        </a>
+                        <span class="text-center">
+                            <app-star-rating [rating]="book.ratings.stars"></app-star-rating>
+                        </span>
+                    </div>
                 </div>
-                <ng-template #elseBlock>
-                    <img src="/assets/img/altimage.png" style="width:170px; height:250px"
-                        class="img-fluid border border-muted p-2" alt="">
-                </ng-template>
-
-                <p class="pt-2 text-black pl-4 pr-4 font-weight-bold">{{ book.title }},{{ book.author }}</p>
-                </a>
-                <span class="text-center">
-                    <app-star-rating [rating]="book.ratings.stars"></app-star-rating>
-                </span>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-3 mb-5">
-            <!-- <a href="{{ route('populartitles') }}" class="btn btn-info mt-2">View More <i
+                <div class="row justify-content-center">
+                    <!-- <a href="{{ route('populartitles') }}" class="btn btn-info mt-2">View More <i
                     class="fa-solid fa-arrow-right"></i></a> -->
-        </div>
-    </div>
-</section>
+                </div>
+            </div>
+        </section>
+    </span>
+</div>

@@ -222,32 +222,6 @@ body {
     left: 0;
 }
 
-// @keyframes border-dance {
-//     0% {
-//         /* CSS properties at the start of the animation */
-//         /* For example, no background image */
-//         background-image: none;
-//     }
-
-//     50% {
-//         /* CSS properties at the midpoint of the animation */
-//         /* For example, linear gradients */
-//         background-image: linear-gradient(90deg, silver 50%, transparent 0),
-//             linear-gradient(90deg, silver 50%, transparent 0),
-//             linear-gradient(0deg, silver 50%, transparent 0),
-//             linear-gradient(0deg, silver 50%, transparent 0);
-//     }
-
-//     100% {
-//         /* CSS properties at the end of the animation */
-//         /* For example, linear gradients */
-//         background-image: linear-gradient(90deg, silver 50%, transparent 0),
-//             linear-gradient(90deg, silver 50%, transparent 0),
-//             linear-gradient(0deg, silver 50%, transparent 0),
-//             linear-gradient(0deg, silver 50%, transparent 0);
-//     }
-// }
-
 .manage-view section.select-box {
     background-image: linear-gradient(90deg, silver 50%, transparent 0), linear-gradient(90deg, silver 50%, transparent 0), linear-gradient(0deg, silver 50%, transparent 0), linear-gradient(0deg, silver 50%, transparent 0);
     background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
@@ -262,4 +236,132 @@ body {
 
 .manage-view {
     padding: 40px;
+}
+
+.width_H .edit-widgets-btn {
+    right: 15px;
+}
+
+.manage-view .edit-widgets-btn,
+.manage-view .edit-widgets-btn .btn {
+    -webkit-animation: border-dance .5s linear infinite;
+    animation: border-dance .5s linear infinite;
+}
+
+.manage-view .edit-widgets-btn {
+    background-image: linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px;
+    background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+}
+
+.manage-view .edit-widgets-btn {
+    display: block !important;
+    border-bottom: 3px solid #fff;
+    border-left: 3px solid #fff;
+}
+
+.edit-widgets-btn {
+    width: auto;
+    float: right;
+    position: absolute !important;
+    top: 5px;
+    right: 0;
+    background-color: #fff;
+    z-index: 99;
+}
+
+.manage-view span.width_H {
+    padding: 0 15px;
+}
+
+.manage-view span.width_H,
+span.width_H {
+    float: left;
+    width: 100%;
+}
+
+.manage-view .example-box {
+    display: unset;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.btn-group>.btn:first-child {
+    margin-left: 0;
+}
+
+.btn-group>.btn:hover {
+    z-index: 1;
+}
+
+.manage-view .edit-widgets-btn .btn {
+    background: transparent;
+    color: #26b6ef;
+    background-image: linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 0 0, 0 0, 0 0, 2px 15px;
+    background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+}
+
+.manage-view .edit-widgets-btn,
+.manage-view .edit-widgets-btn .btn {
+    -webkit-animation: border-dance .5s linear infinite;
+    animation: border-dance .5s linear infinite;
+}
+
+.btn-move {
+    cursor: move !important;
+}
+
+.btn i {
+    margin: 0 3px 0 0;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.manage-view .edit-widgets-btn .btn {
+    background: transparent;
+    color: #26b6ef;
+    background-image: linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 0 0, 0 0, 0 0, 2px 15px;
+    background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+}
+
+.fa-arrows-alt:before {
+    content: "\f0b2";
+}
+
+.manage-view .edit-widgets-btn .btn {
+    background: transparent;
+    color: #26b6ef;
+    background-image: linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(90deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0), linear-gradient(0deg, #ffca51 50%, transparent 0);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 0 0, 0 0, 0 0, 2px 15px;
+    background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+}
+
+.fa-edit:before,
+.fa-pencil-square-o:before {
+    content: "\f044";
+}
+
+.manage-view .edit-widgets-btn .btn.btn-remove {
+    color: red;
+}
+
+.manage-view .edit-widgets-btn .btn:last-child {
+    background-size: 0 0, 0 0, 0 0, 0 0;
 }
