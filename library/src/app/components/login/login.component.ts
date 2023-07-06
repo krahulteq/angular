@@ -51,10 +51,17 @@ export class LoginComponent {
       next: data => {
         // console.log(data);
         this.authService.setToken(data.access_token)
-        this.router.navigate(['admin/home']);
-        setTimeout(() => {
-          this.divVisible = false;
-        }, 1000);
+        this.authService.loginProfile(data.access_token).subscribe((response: any) => {
+          if (response.data.permission.opacAdmin) {
+            this.authService.setUserType('admin');
+            this.router.navigate(['admin']);
+          }else{
+            this.router.navigate(['admin']);
+          }
+          setTimeout(() => {
+            this.divVisible = false;
+          }, 1000);
+        });
         // location.reload();
       },
       error: err => {

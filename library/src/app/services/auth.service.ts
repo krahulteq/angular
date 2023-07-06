@@ -28,12 +28,21 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  setUserType(userType: string): void {
+    localStorage.setItem('userType', userType);
+  }
+
+  getUserType(): string | null {
+    return localStorage.getItem('userType');
+  }
+
   isLoggedIn() {
     return this.getToken() !== null;
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userType');
     location.reload();
   }
 

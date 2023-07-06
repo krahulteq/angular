@@ -4,6 +4,7 @@ import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import { DatePipe } from '@angular/common';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -80,15 +81,15 @@ export class HomeComponent {
   defaultSearch: any;
   editPageClass: string = '';
   editPageClassStatus: boolean = false;
+  userTypeAdmin: boolean = false;
+  userType: any;
 
-  constructor(private settingService: SettingService, private datePipe: DatePipe, private changeDetector: ChangeDetectorRef, private sanitizer: DomSanitizer) {
+  constructor(private settingService: SettingService, private auth: AuthService, private datePipe: DatePipe, private changeDetector: ChangeDetectorRef, private sanitizer: DomSanitizer) {
 
     this.sanitizedHtmlContent = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
     this.settingService.getSettings().subscribe((response: any) => {
       this.settings = response;
       this.bannerTitle = this.settings.data.settings.appearance.banner.main;
-      // this.defaultSearch = response.data.settings.search.defaultSearch;
-      // console.log(this.defaultSearch);
     });
 
     this.settingService.getSettingsWithContent().subscribe((response: any) => {
@@ -179,8 +180,16 @@ export class HomeComponent {
             break;
         }
       });
-      // console.log(this.recentreview);
     });
+  }
+
+  ngOnInit() {
+    if (this.auth.isLoggedIn()) {
+      this.userType = this.auth.getUserType();
+      if (this.userType === 'admin') {
+        this.userTypeAdmin = true;
+      }
+    }
   }
 
   editPage(status: any) {

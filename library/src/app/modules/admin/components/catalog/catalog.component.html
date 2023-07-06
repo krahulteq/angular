@@ -1,6 +1,6 @@
 <div class="{{ manageView }}">
     <!-- <div class="manage-view"> -->
-    <span class="MS example-box layout_ width_H" [ngClass]="{'open': editCatalog}">
+    <span class="MS example-box layout_ width_H {{ catalogWidth }}" [ngClass]="{'open': editCatalog}">
         <!-- <div class="btn-group edit-widgets-btn"><button cdkdraghandle="" type="button" -->
         <div *ngIf="manageView" class="btn-group edit-widgets-btn">
             <button cdkdraghandle="" type="button" class="cdk-drag-handle btn btn-move my-handle"
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <section class="widgets select-box" [ngClass]="{'customCatalog': editCatalog, 'halfWidth': catalog?.settings.width==='H'}">
+        <section class="widgets select-box" [ngClass]="{'customCatalog': editCatalog}">
             <div class="p-4 container border border-muted bg-white">
                 <h3 class="mb-3">
                     <strong id="bu-caption">

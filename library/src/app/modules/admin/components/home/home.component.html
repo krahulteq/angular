@@ -28,7 +28,7 @@
 
 <app-footer></app-footer>
 
-<div class="login-patron">
+<div class="login-patron" *ngIf="userTypeAdmin">
     <section class="manage-ui-block">
         <div class="EditModeButtonMain">
             <button (click)="editPage(editPageClassStatus)" id="editModeButton" href="#"

@@ -26,6 +26,9 @@ export class AdminDashboardComponent {
       const access_token = this.auth.getToken();
       this.auth.loginProfile(access_token).subscribe((response: any) => {
         this.userProfile = response.data;
+        // if (response.data.permission.opacAdmin) {
+        //   this.auth.setUserType('admin');
+        // }
       });
     }
   }
