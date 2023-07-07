@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nil-resources',
@@ -8,8 +8,19 @@ import { Component, Input } from '@angular/core';
 export class NilResourcesComponent {
   @Input() resources: any;
   @Input() count: any;
+  @Input() divVisibleResource: any;
+  @Output() newItemEvent = new EventEmitter<string>();
+  activeClassInitialy: string = 'active';
 
-  ngOnInit(){
-    // console.log(this.resources);
+  addNewItem(value: string) {
+    this.activeClassInitialy = '';
+    this.newItemEvent.emit(value);
   }
+
+  activeTab: string = 'tab1';
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
 }

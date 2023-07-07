@@ -17,7 +17,7 @@
                 <app-nil-facets [facets]="facet"></app-nil-facets>
             </div>
             <div class="col-sm-12 col-12 search-results-main col-xl-9 col-lg-8 col-md-8">
-                <app-nil-resources [resources]="resource" [count]="count"></app-nil-resources>
+                <app-nil-resources [divVisibleResource]="divVisibleResource" (newItemEvent)="addItem($event)" [resources]="resource" [count]="count"></app-nil-resources>
             </div>
         </div>
     </div>

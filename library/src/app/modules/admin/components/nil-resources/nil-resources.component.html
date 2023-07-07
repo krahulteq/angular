@@ -1,25 +1,136 @@
 <div class="search-sesults-top-head mb-4">
     <p class="found-items">Found: <span>{{ count }} items</span></p>
     <p class="sort-by">
-        Sort by: <span>Author</span><span>Call</span>
-        <span class="active">Newest</span><span>Title</span><span>Type</span>
+        Sort by:
+        <span (click)="addNewItem('author')" routerLinkActive="active" routerLink="./"
+            [queryParams]="{order: 'author'}">Author</span>
+        <span (click)="addNewItem('call')" routerLinkActive="active" routerLink="./"
+            [queryParams]="{order: 'call'}">Call</span>
+        <span (click)="addNewItem('date')" routerLinkActive="active" routerLink="./" [queryParams]="{order: 'date'}"
+            class="{{ activeClassInitialy }}">Newest</span>
+        <span (click)="addNewItem('title')" routerLinkActive="active" routerLink="./"
+            [queryParams]="{order: 'title'}">Title</span>
+        <span (click)="addNewItem('category')" routerLinkActive="active" routerLink="./"
+            [queryParams]="{order: 'category'}">Type</span>
     </p>
     <div class="view-btn">
         <span>
-            <span class="thumbnail-btn">
+            <span [class.thumbnail-btn]="activeTab === 'tab1'" (click)="setActiveTab('tab1')">
                 <i class="fas fa-list"></i>
             </span>
-            <span>
+            <span [class.thumbnail-btn]="activeTab === 'tab2'" (click)="setActiveTab('tab2')">
                 <i class="fas fa-th-list"></i>
             </span>
-            <span>
+            <span [class.thumbnail-btn]="activeTab === 'tab3'" (click)="setActiveTab('tab3')">
                 <i class="fas fa-th"></i>
             </span>
         </span>
     </div>
 </div>
-<div class="container">
-    <div class="row">
+
+<section *ngIf="activeTab === 'tab3'" class="widgets select-box text-center">
+    <div *ngIf="!divVisibleResource" class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-3 mb-4" *ngFor="let book of resources">
+                <a
+                    routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Config-1_Coll-P_Detail-False/{{ book.listItemId }}">
+
+                    <div *ngIf="book.images[0]?.url; else elseBlock">
+                        <img src="{{ book.images[0].url }}" style="width:100%; height:330px"
+                            class="img-fluid border border-muted p-2" alt="">
+                    </div>
+                    <ng-template #elseBlock>
+                        <img src="/assets/img/altimage.png" style="width:100%; height:330px"
+                            class="img-fluid border border-muted p-2" alt="">
+                    </ng-template>
+
+                    <h6 class="pt-2 text-black pl-4 pr-4 font-weight-bold">{{ book.title }},{{ book.author }}</h6>
+                </a>
+                <span class="text-center">
+                    <app-star-rating [rating]="book.ratings.stars"></app-star-rating>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="!divVisibleResource && activeTab === 'tab2'" class="widgets book-detail mb-5">
+    <div *ngFor="let resource of resources" class="book-box">
+        <div class="book-image-main">
+            <div class="book-image">
+                <span>
+                    <div *ngIf="resource.images!=''; else elseBlock">
+                        <img src="{{ resource.images[0].url }}">
+                    </div>
+                    <ng-template #elseBlock>
+                        <img src="/assets/img/altimage.png" style="background-color: #03a9f4; color: white;">
+                    </ng-template>
+                </span>
+            </div>
+        </div>
+        <div class="book-box-info">
+            <h2 class="book-box-head">{{ resource.title }}</h2>
+            <p class="author text-muted">{{ resource.author }}</p>
+            <div class="star-rating-outer clearfix">
+                <span class="star-rating">
+                    <app-star-rating [rating]="resource.ratings.stars"></app-star-rating>
+                </span>
+            </div>
+            <p class="description">
+                {{ resource.summary }}
+            </p>
+
+            <div class="book-box-bottom">
+                <div *ngIf="resource.availability.availableHere > 0" class="info-text-left">
+                    <div class="avail-detail">
+                        <p class="overdue">
+                            <i class="material-icons md-12 success">check_box</i>
+                            Available
+                        </p>
+                        <p class="regular">
+                            <i class="info material-icons md-12">import_contacts</i> Regular
+                        </p>
+                    </div>
+                </div>
+                <div *ngIf="resource.availability.availableHere == 0" class="info-text-left">
+                    <div class="avail-detail">
+                        <p class="overdue">
+                            <i class="material-icons md-12 gray">cancel</i>
+                            Not Available
+                        </p>
+                        <p class="regular">
+                            <i class="danger material-icons md-12">import_contacts</i>
+                            Reference
+                        </p>
+                    </div>
+                </div>
+                <div class="book-box-bottom-btn">
+                    <div class="btn-main-detail">
+                        <button data-toggle="modal" class="btn btn-succes hold-resourse btn-sm">
+                            <i class="material-icons">local_offer</i>
+                            Hold</button>
+                        <button type="button" class="MyListButton btn btn-primary btn-sm pull-right addButton4717 show">
+                            <i class="fas fa-plus"></i> Add To List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div *ngIf="divVisibleResource" class="loader-inner-container"
+    style="padding: 0; position: absolute; width: 100%; top: 15px;">
+    <div class="loader-inner">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<div *ngIf="activeTab === 'tab1'" class="container">
+    <div *ngIf="!divVisibleResource" class="row">
         <div *ngFor="let resource of resources" class="mb-5 col-12 d-flex">
             <a
                 routerLink="/admin/resources/detail/32471-32471_OPAC_v1_Coll-S_97f2f6a2-0a8c-43bc-a005-008bdac995a8/{{ resource.listItemId }}">
@@ -37,11 +148,14 @@
                 </span>
             </a>
             <div class="mt-1 ms-3">
-                <h5 class="m-0 p-0"><strong>{{ resource.title }}</strong></h5>
+                <h5 class="m-0 p-0">
+                    <strong>{{ resource.title }}</strong>
+                </h5>
                 <p class="m-0 p-0">{{ resource.author }}</p>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
-                        <p class="overdue"><i style="color: #8bc34acb;" class="material-icons md-12 success">check_box</i>
+                        <p class="overdue"><i style="color: #8bc34acb;"
+                                class="material-icons md-12 success">check_box</i>
                             <strong class="ms-2">AVAILABLE</strong>
                         </p>
                         <span class="px-3">|</span>

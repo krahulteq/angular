@@ -14,17 +14,30 @@ export class PopularComponent {
   resource: any;
   facet: any;
   count: any;
+  order: string = 'date';
+  divVisibleResource: boolean = false;
 
   constructor(private settingService: SettingService) {
-    
-    this.settingService.popularTitles().subscribe((response: any) => {
+
+    this.settingService.popularTitles(this.order).subscribe((response: any) => {
       this.facet = response.data.facets;
       this.resource = response.data.resources;
       this.count = response.data.count;
       setTimeout(() => {
         this.divVisible = false;
       }, 1000);
-      // console.log(response.data);
     });
   }
+
+  addItem(newItem: string) {
+    this.divVisibleResource = true;
+    this.order = newItem;
+    this.settingService.popularTitles(this.order).subscribe((response: any) => {
+      this.resource = response.data.resources;
+      setTimeout(() => {
+        this.divVisibleResource = false;
+      }, 1000);
+    });
+  }
+
 }

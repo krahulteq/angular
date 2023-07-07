@@ -49,8 +49,8 @@ export class SettingService {
   }
 
   // for new in libarary
-  private apiUrlNewInLibrary = 'https://api.library.site/v1/resource/list/new?size=20&offset=0&order=date&descending=true&facets=';
-  newInLibrary() {
+  newInLibrary(order: string) {
+    const apiUrlNewInLibrary = 'https://api.library.site/v1/resource/list/new?size=20&offset=0&order='+order+'&descending=true&facets=';
     const headers = new HttpHeaders({
       'App-Id': 'opac',
       'Authorization': 'Bearer',
@@ -59,12 +59,12 @@ export class SettingService {
       'Tenant': 'pcs',
     });
 
-    return this.http.get(`${this.apiUrlNewInLibrary}`, { headers });
+    return this.http.get(`${apiUrlNewInLibrary}`, { headers });
   }
 
   // for popular titles
-  private apiUrlPopular = 'https://api.library.site/v1/resource/list/popular?size=20&offset=0&order=date&descending=true&facets=';
-  popularTitles() {
+  popularTitles(order: string) {
+    const apiUrlPopular = 'https://api.library.site/v1/resource/list/popular?size=20&offset=0&order='+order+'&descending=true&facets=';
     const headers = new HttpHeaders({
       'App-Id': 'opac',
       'Authorization': 'Bearer',
@@ -73,7 +73,7 @@ export class SettingService {
       'Tenant': 'pcs',
     });
 
-    return this.http.get(`${this.apiUrlPopular}`, { headers });
+    return this.http.get(`${apiUrlPopular}`, { headers });
   }
 
   // for resource list
